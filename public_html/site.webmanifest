@@ -1,0 +1,17 @@
+{
+  "name": "Nexisco Network Inc.",
+  "short_name": "Nexisco",
+  "description": "Smart IT. Seamless Support. Professional IT services across Canada — headquartered in Edmonton, Alberta.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070A0F",
+  "theme_color": "#06B6D4",
+  "icons": [
+    {
+      "src": "/assets/img/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

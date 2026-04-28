@@ -1,0 +1,102 @@
+# Nexisco Network — Apache .htaccess
+# HTTPS redirect, URL rewriting, security headers, compression, caching
+
+# ── Force HTTPS ──────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} !^localhost [NC]
+  RewriteCond %{REMOTE_ADDR} !^127\.
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ── URL Rewriting (Single Entry Point) ───────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Skip actual files and directories
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Route everything to index.php
+  RewriteRule ^ index.php [L,QSA]
+</IfModule>
+
+# ── Security Headers ─────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ── Protect Sensitive Directories ────────────────────────────────
+<FilesMatch "\.(php)$">
+  <RequireAll>
+    Require all granted
+  </RequireAll>
+</FilesMatch>
+
+# Block direct access to config/, includes/, lib/, data/ PHP files
+<IfModule mod_rewrite.c>
+  RewriteRule ^config/.*\.php$   - [F,L]
+  RewriteRule ^includes/.*\.php$ - [F,L]
+  RewriteRule ^lib/.*\.php$      - [F,L]
+  RewriteRule ^data/.*\.php$     - [F,L]
+</IfModule>
+
+# Block .env files, git files, composer files
+<FilesMatch "(^\.env|\.git|composer\.(json|lock)|package\.json)">
+  Require all denied
+</FilesMatch>
+
+# ── Compression (Gzip) ───────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/xhtml+xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff2
+</IfModule>
+
+# ── Browser Caching ──────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/gif         "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 year"
+  ExpiresByType image/x-icon      "access plus 1 year"
+  ExpiresByType video/mp4         "access plus 6 months"
+  ExpiresByType video/webm        "access plus 6 months"
+  ExpiresByType font/woff2        "access plus 1 year"
+  ExpiresByType font/woff         "access plus 1 year"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# Cache-Control for CSS/JS (versioned via query string)
+<FilesMatch "\.(css|js)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "public, max-age=2592000"
+  </IfModule>
+</FilesMatch>
+
+# ── PHP Settings ─────────────────────────────────────────────────
+<IfModule mod_php.c>
+  php_flag display_errors Off
+  php_flag log_errors On
+  php_value upload_max_filesize 10M
+  php_value post_max_size 12M
+  php_value max_execution_time 60
+  php_value session.cookie_httponly 1
+  php_value session.cookie_secure 1
+  php_value session.cookie_samesite Strict
+</IfModule>
+
+# ── Custom Error Pages ────────────────────────────────────────────
+ErrorDocument 404 /index.php
+ErrorDocument 403 /index.php

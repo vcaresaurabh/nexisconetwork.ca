@@ -1,0 +1,111 @@
+<?php
+declare(strict_types=1);
+/**
+ * Nexisco Network — FAQ Data
+ * 6 categories, 30+ Q&A items
+ */
+
+$FAQS = [
+  [
+    'category' => 'General',
+    'slug'     => 'general',
+    'icon'     => '💬',
+    'items'    => [
+      ['q' => 'Where are you located and what areas do you serve?',
+       'a' => 'We serve clients across Canada. We offer remote support nationwide and on-site service in the Greater Toronto Area and surrounding regions. Contact us to confirm on-site availability in your area.'],
+      ['q' => 'What are your business hours?',
+       'a' => 'Monday–Friday: 9am–6pm EST. Saturday: 10am–4pm EST. Emergency remote support is available outside hours for membership clients.'],
+      ['q' => 'How do I book a service?',
+       'a' => 'Use our online booking wizard — choose your service, pick a time, and fill in your contact details. You\'ll receive a confirmation email with your booking reference immediately.'],
+      ['q' => 'Do you offer in-home service?',
+       'a' => 'Yes — on-site service is available for network setups, smart home installations, and business IT. A travel fee may apply depending on your location.'],
+      ['q' => 'What payment methods do you accept?',
+       'a' => 'We accept Visa, Mastercard, Interac e-Transfer, and cash (in-person only). All prices are in Canadian Dollars (CAD) and do not include applicable GST/HST/PST.'],
+    ],
+  ],
+  [
+    'category' => 'Pricing & Billing',
+    'slug'     => 'pricing',
+    'icon'     => '💰',
+    'items'    => [
+      ['q' => 'Are your prices all-inclusive?',
+       'a' => 'Labour prices are listed on each service page. Parts and hardware are quoted separately. All prices are in CAD and exclude applicable taxes.'],
+      ['q' => 'Do you charge for diagnostics?',
+       'a' => 'We offer a free initial assessment for most services. A $49 diagnostic fee applies for complex hardware issues, which is credited toward the repair if you proceed.'],
+      ['q' => 'Is there a cancellation fee?',
+       'a' => 'Cancellations made 24+ hours before the appointment are free. Cancellations under 24 hours incur a $25 cancellation fee. See our full Cancellation Policy for details.'],
+      ['q' => 'Do membership plans auto-renew?',
+       'a' => 'Yes — plans auto-renew unless cancelled. You\'ll receive a reminder 14 days before renewal. Cancel anytime through your account or by contacting us.'],
+      ['q' => 'Do prices include GST/HST?',
+       'a' => 'No — listed prices are before tax. Applicable GST/HST (and PST in some provinces) will be added at checkout or invoiced separately.'],
+    ],
+  ],
+  [
+    'category' => 'Repairs & Turnaround',
+    'slug'     => 'repairs',
+    'icon'     => '🔧',
+    'items'    => [
+      ['q' => 'How long does a typical repair take?',
+       'a' => 'Most software fixes and simple hardware repairs are same-day or next-day. Complex repairs (motherboard, RAID recovery) may take 2–5 business days. We always give you a timeline upfront.'],
+      ['q' => 'Do you offer a warranty on repairs?',
+       'a' => 'Yes — all labour comes with a 90-day warranty. If the same issue recurs within 90 days, we fix it at no additional charge. Parts warranties vary by manufacturer.'],
+      ['q' => 'What brands do you repair?',
+       'a' => 'We repair all major brands: Dell, HP, Lenovo, Asus, Acer, MSI, Apple, Samsung, and more. For Apple devices, we are an independent repair provider.'],
+      ['q' => 'Can you back up my data before starting?',
+       'a' => 'Yes — we offer data backup as part of any repair. We strongly recommend it. A fee applies for large data sets; included free for membership clients.'],
+      ['q' => 'What if you can\'t fix the issue?',
+       'a' => 'If we can\'t fix the problem, you pay nothing beyond the diagnostic fee (if applicable). We\'ll give you an honest assessment of your options.'],
+    ],
+  ],
+  [
+    'category' => 'Privacy & Security',
+    'slug'     => 'privacy',
+    'icon'     => '🔒',
+    'items'    => [
+      ['q' => 'Is remote access secure?',
+       'a' => 'Yes — we use industry-standard encrypted remote tools (AnyDesk/TeamViewer). You can see everything we do, revoke access at any time, and the session software leaves nothing permanent on your system.'],
+      ['q' => 'Will you access my personal files?',
+       'a' => 'We only access files directly necessary to perform the service. We never copy, read, or store your personal data beyond what\'s required for the repair. See our Privacy Policy for full details.'],
+      ['q' => 'Are you PIPEDA compliant?',
+       'a' => 'Yes — we comply with Canada\'s Personal Information Protection and Electronic Documents Act (PIPEDA), as well as provincial privacy laws. You have the right to access and correct your information at any time.'],
+      ['q' => 'How is my data stored?',
+       'a' => 'Customer data is stored securely in Canada on encrypted servers. We do not sell your data to third parties. We disclose any cross-border data storage as required by PIPEDA.'],
+      ['q' => 'What happens to my data after service?',
+       'a' => 'Any temporary copies made during service are securely deleted within 7 days of job completion. Booking and contact records are retained for 2 years for warranty and billing purposes.'],
+    ],
+  ],
+  [
+    'category' => 'Membership Plans',
+    'slug'     => 'membership',
+    'icon'     => '⭐',
+    'items'    => [
+      ['q' => 'What\'s included in a membership plan?',
+       'a' => 'Plans include regular remote support sessions, PC tune-ups, antivirus management, priority support, and discounts on in-person services. See the Membership page for a full feature comparison.'],
+      ['q' => 'Can I upgrade or downgrade my plan?',
+       'a' => 'Yes — you can change plans at any time. Upgrades take effect immediately; downgrades at the next billing cycle.'],
+      ['q' => 'Does the membership cover my whole household?',
+       'a' => 'The Pro plan covers up to 3 devices. The Basic plan covers 1 device. The Business plan covers 10 devices. Additional devices can be added for a monthly fee.'],
+      ['q' => 'What happens to unused sessions?',
+       'a' => 'Remote support sessions do not roll over month-to-month. However, if you have an urgent need, we can always accommodate you at a discounted member rate.'],
+      ['q' => 'Is there a free trial?',
+       'a' => 'We offer a 30-day satisfaction guarantee on annual plans. If you\'re not happy in the first 30 days, we\'ll refund the unused portion.'],
+    ],
+  ],
+  [
+    'category' => 'Business & Enterprise',
+    'slug'     => 'business',
+    'icon'     => '🏢',
+    'items'    => [
+      ['q' => 'Do you offer IT support contracts for businesses?',
+       'a' => 'Yes — our Business plan and custom enterprise agreements include SLA-backed response times, dedicated account management, on-site visits, and full IT lifecycle management.'],
+      ['q' => 'Can you support a remote / distributed team?',
+       'a' => 'Absolutely — we set up cloud infrastructure, VPNs, remote device management (MDM), and collaboration tools for fully remote and hybrid teams.'],
+      ['q' => 'Do you provide cybersecurity services?',
+       'a' => 'Yes — endpoint protection, email filtering, security awareness training, penetration testing referrals, and incident response planning.'],
+      ['q' => 'Can you handle PIPEDA / privacy compliance for our business?',
+       'a' => 'We provide technical guidance on privacy-compliant data handling, encryption, and access controls. For legal compliance advice, we recommend consulting a privacy lawyer.'],
+      ['q' => 'Do you offer after-hours emergency support for businesses?',
+       'a' => 'Business plan members have access to emergency after-hours remote support with a 2-hour response SLA. Additional on-site emergency service is available by arrangement.'],
+    ],
+  ],
+];
