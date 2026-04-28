@@ -390,7 +390,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         'num'   => '02',
         'title' => 'Free Diagnosis',
         'desc'  => 'We assess the issue thoroughly — no charge. You get a clear quote before any work begins. No surprises.',
-        'img'   => 'https://images.unsplash.com/photo-1563770660941-10a63607cff2?w=1200&q=70',
+        'img'   => 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&q=70',
         'color' => '#6366F1',
         // TODO: Replace with final step image
       ],
