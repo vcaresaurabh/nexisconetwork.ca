@@ -14,7 +14,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=1920&q=50"
          alt="" style="opacity:0.08;width:100%;height:100%;object-fit:cover">
   </div>
-  <div class="bg-overlay-full" style="background:rgba(7,10,15,0.85)" aria-hidden="true"></div>
+  <div class="bg-overlay-full" style="background:rgba(250,251,252,0.85)" aria-hidden="true"></div>
 
   <!-- Glow orbs -->
   <div class="glow-orb glow-orb-cyan" style="width:400px;height:400px;top:10%;left:20%;opacity:0.25" aria-hidden="true"></div>

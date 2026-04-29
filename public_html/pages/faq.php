@@ -26,7 +26,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.15;width:100%;height:100%;object-fit:cover" data-parallax="-15">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.6) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"  style="width:450px;height:450px;top:-5%;right:8%;opacity:0.14" aria-hidden="true"></div>
 
@@ -58,8 +58,8 @@ require_once __DIR__ . '/../partials/navbar.php';
               <li>
                 <button @click="activeCategory = '<?= e($cat['category']) ?>'"
                         class="w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all duration-200"
-                        :class="activeCategory === '<?= e($cat['category']) ?>' ? 'text-white font-semibold' : 'hover:bg-[rgba(255,255,255,0.04)]'"
-                        :style="activeCategory === '<?= e($cat['category']) ?>' ? 'background:rgba(6,182,212,0.12);color:var(--accent)' : 'color:var(--text-secondary)'">
+                        :class="activeCategory === '<?= e($cat['category']) ?>' ? 'font-semibold' : 'hover:bg-[rgba(15,23,42,0.04)]'"
+                        :style="activeCategory === '<?= e($cat['category']) ?>' ? 'background:rgba(8,145,178,0.10);color:var(--accent)' : 'color:var(--text-secondary)'">
                   <?= e($cat['category']) ?>
                   <span class="text-xs ml-1 opacity-60">(<?= count($cat['items']) ?>)</span>
                 </button>
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../partials/navbar.php';
             <?php foreach ($cat['items'] as $i => $faq): ?>
             <div x-data="{ open: <?= $i === 0 ? 'true' : 'false' ?> }"
                  class="glass rounded-2xl overflow-hidden transition-colors duration-200"
-                 :class="open ? 'border-[rgba(6,182,212,0.2)]' : ''">
+                 :class="open ? 'border-[rgba(8,145,178,0.2)]' : ''">
 
               <button @click="open = !open"
                       class="w-full flex items-start justify-between gap-4 px-6 py-5 text-left"
@@ -116,7 +116,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 <!-- ── Still have questions? ─────────────────────────────────────── -->
 <section class="relative py-20 overflow-hidden grain">
   <div class="gradient-mesh absolute inset-0 z-0 opacity-20" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.75)" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.75)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Still need help?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">

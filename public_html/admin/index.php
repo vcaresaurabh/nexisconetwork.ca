@@ -54,10 +54,10 @@ function read_log(string $filename, int $max = 50): array {
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="/assets/css/app.css">
   <style>
-    body { background:#070A0F; color:#F8FAFC; font-family:'Inter',sans-serif; min-height:100vh; }
-    .admin-card { background:#0F1520; border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:24px; }
-    .log-entry { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#94A3B8; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
-    .stat-num { font-size:2rem; font-weight:700; color:#06B6D4; font-family:'JetBrains Mono',monospace; }
+    body { background:#FAFBFC; color:#0F172A; font-family:'Inter',sans-serif; min-height:100vh; }
+    .admin-card { background:#FFFFFF; border:1px solid rgba(15,23,42,0.08); border-radius:16px; padding:24px; box-shadow:0 1px 3px rgba(15,23,42,0.04); }
+    .log-entry { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:#475569; padding:6px 0; border-bottom:1px solid rgba(15,23,42,0.06); }
+    .stat-num { font-size:2rem; font-weight:700; color:#0891B2; font-family:'JetBrains Mono',monospace; }
   </style>
 </head>
 <body>
@@ -69,15 +69,15 @@ function read_log(string $filename, int $max = 50): array {
     <div class="admin-card">
       <div class="text-center mb-8">
         <svg width="40" height="40" viewBox="0 0 36 36" fill="none" class="mx-auto mb-3" aria-hidden="true">
-          <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#06B6D4" stroke-width="2.5"
+          <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
                 stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <circle cx="18" cy="18" r="2.5" fill="#6366F1"/>
+          <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
         </svg>
         <h1 style="font-size:1.25rem;font-weight:600">Nexisco Admin</h1>
       </div>
 
       <?php if (!empty($login_error)): ?>
-      <p style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#f87171;padding:12px;border-radius:8px;font-size:0.875rem;margin-bottom:16px">
+      <p style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);color:#dc2626;padding:12px;border-radius:8px;font-size:0.875rem;margin-bottom:16px">
         <?= e($login_error) ?>
       </p>
       <?php endif; ?>
@@ -86,9 +86,9 @@ function read_log(string $filename, int $max = 50): array {
         <?= csrf_field() ?>
         <label style="display:block;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#64748B;margin-bottom:6px">Password</label>
         <input type="password" name="admin_password" autofocus required
-               style="width:100%;background:#1a2232;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;color:#F8FAFC;font-size:0.875rem;outline:none;box-sizing:border-box">
+               style="width:100%;background:#FFFFFF;border:1px solid rgba(15,23,42,0.14);border-radius:8px;padding:10px 14px;color:#0F172A;font-size:0.875rem;outline:none;box-sizing:border-box">
         <button type="submit"
-                style="width:100%;margin-top:16px;background:linear-gradient(135deg,#06B6D4,#6366F1);border:none;border-radius:8px;padding:12px;color:#070A0F;font-weight:600;cursor:pointer;font-size:0.875rem">
+                style="width:100%;margin-top:16px;background:linear-gradient(135deg,#0891B2,#4F46E5);border:none;border-radius:8px;padding:12px;color:#FFFFFF;font-weight:600;cursor:pointer;font-size:0.875rem">
           Sign In
         </button>
       </form>
@@ -101,18 +101,18 @@ function read_log(string $filename, int $max = 50): array {
 <div style="padding:24px;max-width:1200px;margin:0 auto">
 
   <!-- Header -->
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.06)">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid rgba(15,23,42,0.08)">
     <div style="display:flex;align-items:center;gap:12px">
       <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#06B6D4" stroke-width="2.5"
+        <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="18" cy="18" r="2.5" fill="#6366F1"/>
+        <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
       </svg>
       <h1 style="font-size:1.125rem;font-weight:600">Nexisco Admin</h1>
     </div>
     <div style="display:flex;gap:12px;align-items:center">
-      <a href="/" target="_blank" style="font-size:0.8rem;color:#94A3B8;text-decoration:none">View Site ↗</a>
-      <a href="/admin?logout=1" style="font-size:0.8rem;color:#f87171;text-decoration:none">Sign Out</a>
+      <a href="/" target="_blank" style="font-size:0.8rem;color:#475569;text-decoration:none">View Site ↗</a>
+      <a href="/admin?logout=1" style="font-size:0.8rem;color:#dc2626;text-decoration:none">Sign Out</a>
     </div>
   </div>
 
@@ -150,9 +150,9 @@ function read_log(string $filename, int $max = 50): array {
     ];
     foreach ($sections as $sec): ?>
     <div class="admin-card">
-      <h2 style="font-size:0.875rem;font-weight:600;margin-bottom:12px;color:#94A3B8"><?= e($sec['title']) ?></h2>
+      <h2 style="font-size:0.875rem;font-weight:600;margin-bottom:12px;color:#0F172A"><?= e($sec['title']) ?></h2>
       <?php if (empty($sec['rows'])): ?>
-      <p style="font-size:0.8rem;color:#475569">No entries yet.</p>
+      <p style="font-size:0.8rem;color:#94A3B8">No entries yet.</p>
       <?php else: ?>
       <div style="max-height:300px;overflow-y:auto">
         <?php foreach ($sec['rows'] as $row): ?>
@@ -164,7 +164,7 @@ function read_log(string $filename, int $max = 50): array {
     <?php endforeach; ?>
   </div>
 
-  <p style="font-size:0.75rem;color:#334155;text-align:center;margin-top:24px">
+  <p style="font-size:0.75rem;color:#94A3B8;text-align:center;margin-top:24px">
     Dev log only — integrate a real database for production use.
   </p>
 </div>

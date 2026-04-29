@@ -16,7 +16,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.18;width:100%;height:100%;object-fit:cover" data-parallax="-20">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.6) 0%,rgba(7,10,15,0.95) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.95) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"  style="width:600px;height:600px;top:-10%;right:5%;opacity:0.15" aria-hidden="true"></div>
   <div class="glow-orb glow-orb-indigo" style="width:400px;height:400px;bottom:0;left:10%;opacity:0.12;animation-delay:2s" aria-hidden="true"></div>
@@ -51,10 +51,10 @@ require_once __DIR__ . '/../partials/navbar.php';
                loading="lazy" width="800" height="450"
                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                data-ken-burns>
-          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(7,10,15,0.9) 100%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(250,251,252,0.9) 100%)"></div>
           <!-- Price badge -->
           <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold font-mono"
-               style="background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);color:var(--accent)">
+               style="background:rgba(8,145,178,0.15);border:1px solid rgba(8,145,178,0.3);color:var(--accent)">
             <?= e($svc['price_label']) ?>
           </div>
         </div>
@@ -63,7 +63,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="p-6">
           <div class="flex items-start gap-4 mb-3">
             <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
-                 style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(99,102,241,0.15));border:1px solid var(--border-subtle)">
+                 style="background:linear-gradient(135deg,rgba(8,145,178,0.15),rgba(79,70,229,0.15));border:1px solid var(--border-subtle)">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                    stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <?= $svc['icon_path'] ?>
@@ -92,7 +92,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 <!-- ── CTA Band ──────────────────────────────────────────────────── -->
 <section class="relative py-20 overflow-hidden grain">
   <div class="gradient-mesh absolute inset-0 z-0 opacity-20" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.75)" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.75)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Not sure which service you need?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">

@@ -13,7 +13,7 @@ $TESTIMONIALS = [
     'service' => 'Business IT Support',
     'review'  => 'Nexisco set up our entire office network in one day with zero downtime. Our team was back to work faster than we expected. Their ongoing support plan has saved us from several potential disasters already.',
     'avatar'  => 'SM',
-    'color'   => '#06B6D4',
+    'color'   => '#0891B2',
   ],
   [
     'name'    => 'David K.',
@@ -23,7 +23,7 @@ $TESTIMONIALS = [
     'service' => 'Data Recovery',
     'review'  => 'I accidentally formatted my external drive with 3 years of design projects. Nexisco recovered 98% of my files. I was devastated when it happened — now I\'m amazed. Worth every penny.',
     'avatar'  => 'DK',
-    'color'   => '#6366F1',
+    'color'   => '#4F46E5',
   ],
   [
     'name'    => 'Jennifer L.',
@@ -53,7 +53,7 @@ $TESTIMONIALS = [
     'service' => 'Network & WiFi Setup',
     'review'  => 'Our clinic had WiFi dead zones everywhere. Nexisco installed a mesh system and now we have perfect coverage in every exam room. They also set up a separate patient WiFi. Very professional.',
     'avatar'  => 'PS',
-    'color'   => '#06B6D4',
+    'color'   => '#0891B2',
   ],
   [
     'name'    => 'Chris B.',
@@ -63,7 +63,7 @@ $TESTIMONIALS = [
     'service' => 'PC & Laptop Repair',
     'review'  => 'Dropped my laptop and cracked the screen right before finals. They replaced it same-day for a fair price. Could have been a disaster — instead it was almost painless. Really grateful.',
     'avatar'  => 'CB',
-    'color'   => '#6366F1',
+    'color'   => '#4F46E5',
   ],
   [
     'name'    => 'Linda W.',
@@ -83,7 +83,7 @@ $TESTIMONIALS = [
     'service' => 'Business IT Support',
     'review'  => 'We had our POS system crash during a busy Saturday service. Nexisco had a tech on-site within the hour and we were back up within 90 minutes. Their emergency response is genuinely impressive.',
     'avatar'  => 'AD',
-    'color'   => '#EF4444',
+    'color'   => '#DC2626',
   ],
   [
     'name'    => 'Rachel N.',
@@ -93,7 +93,7 @@ $TESTIMONIALS = [
     'service' => 'Smart Home & IoT Setup',
     'review'  => 'Had them set up my entire smart home — cameras, lights, thermostat, the works. Everything is seamlessly integrated and the routines they set up are perfect. My house actually feels smart now.',
     'avatar'  => 'RN',
-    'color'   => '#6366F1',
+    'color'   => '#4F46E5',
   ],
   [
     'name'    => 'Tom H.',
@@ -103,7 +103,7 @@ $TESTIMONIALS = [
     'service' => 'Software Installation & Setup',
     'review'  => 'Had them set up my new development workstation with a complex multi-boot configuration. They got it right the first time, configured all my dev tools, and documented everything. Exactly what I needed.',
     'avatar'  => 'TH',
-    'color'   => '#06B6D4',
+    'color'   => '#0891B2',
   ],
   [
     'name'    => 'Nancy P.',

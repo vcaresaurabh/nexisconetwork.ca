@@ -17,7 +17,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.15;width:100%;height:100%;object-fit:cover" data-parallax="-15">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.6) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan" style="width:400px;height:400px;top:0;right:10%;opacity:0.15" aria-hidden="true"></div>
 
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         foreach ($channels as $c): ?>
         <div class="glass rounded-2xl p-5 flex items-start gap-4">
           <div class="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
-               style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(99,102,241,0.15));border:1px solid var(--border-subtle)">
+               style="background:linear-gradient(135deg,rgba(8,145,178,0.15),rgba(79,70,229,0.15));border:1px solid var(--border-subtle)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
                  stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="<?= e($c['icon']) ?>"/>

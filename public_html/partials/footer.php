@@ -25,10 +25,10 @@
     <!-- TODO: Replace with final footer background image -->
     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="600"
-         style="opacity:0.12;object-fit:cover;width:100%;height:100%">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.8),rgba(7,10,15,0.95))"></div>
+         style="opacity:0.05;object-fit:cover;width:100%;height:100%">
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(241,245,249,0.85),rgba(241,245,249,0.98))"></div>
   </div>
-  <div class="bg-grid" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.5" aria-hidden="true"></div>
+  <div class="bg-grid" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.6" aria-hidden="true"></div>
 
   <div class="relative z-10">
 
@@ -62,7 +62,7 @@
             <p class="text-xs mt-3" style="color:var(--text-tertiary)">
               By subscribing you expressly consent to receive commercial electronic messages from
               Nexisco Network. You may unsubscribe at any time.
-              <a href="/privacy" class="underline hover:text-white">Privacy Policy</a>.
+              <a href="/privacy" class="underline hover:text-slate-900">Privacy Policy</a>.
             </p>
             <p data-form-msg class="text-sm mt-2" aria-live="polite"></p>
           </form>
@@ -78,9 +78,9 @@
         <div class="col-span-2 md:col-span-4 lg:col-span-2">
           <a href="/" class="flex items-center gap-2.5 mb-4" aria-label="Home">
             <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#06B6D4" stroke-width="2.5"
+              <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
                     stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <circle cx="18" cy="18" r="2.5" fill="#6366F1"/>
+              <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
             </svg>
             <span class="text-lg font-semibold" style="font-family:'General Sans',sans-serif">
               Nexisco <span style="color:var(--accent)">Network</span>
@@ -92,12 +92,12 @@
           <!-- Contact info -->
           <address class="not-italic text-sm space-y-2" style="color:var(--text-secondary)">
             <div>
-              <a href="tel:+18257717727" class="hover:text-white transition-colors">
+              <a href="tel:+18257717727" class="hover:text-slate-900 transition-colors">
                 📞 +1 (825) 771-7727
               </a>
             </div>
             <div>
-              <a href="mailto:support@nexisconetwork.ca" class="hover:text-white transition-colors">
+              <a href="mailto:support@nexisconetwork.ca" class="hover:text-slate-900 transition-colors">
                 ✉️ support@nexisconetwork.ca
               </a>
             </div>
@@ -128,15 +128,15 @@
         <div>
           <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider" style="color:var(--text-tertiary)">Services</h4>
           <ul class="space-y-2.5 text-sm" style="color:var(--text-secondary)">
-            <li><a href="/services/virus-malware-removal" class="hover:text-white transition-colors">Virus Removal</a></li>
-            <li><a href="/services/pc-laptop-repair"      class="hover:text-white transition-colors">PC & Laptop Repair</a></li>
-            <li><a href="/services/data-recovery"         class="hover:text-white transition-colors">Data Recovery</a></li>
-            <li><a href="/services/network-wifi-setup"    class="hover:text-white transition-colors">Network & WiFi</a></li>
-            <li><a href="/services/software-installation" class="hover:text-white transition-colors">Software Install</a></li>
-            <li><a href="/services/remote-support"        class="hover:text-white transition-colors">Remote Support</a></li>
-            <li><a href="/services/business-it-support"   class="hover:text-white transition-colors">Business IT</a></li>
-            <li><a href="/services/hardware-upgrades"     class="hover:text-white transition-colors">Hardware Upgrades</a></li>
-            <li><a href="/services/smart-home-iot"        class="hover:text-white transition-colors">Smart Home & IoT</a></li>
+            <li><a href="/services/virus-malware-removal" class="hover:text-slate-900 transition-colors">Virus Removal</a></li>
+            <li><a href="/services/pc-laptop-repair"      class="hover:text-slate-900 transition-colors">PC & Laptop Repair</a></li>
+            <li><a href="/services/data-recovery"         class="hover:text-slate-900 transition-colors">Data Recovery</a></li>
+            <li><a href="/services/network-wifi-setup"    class="hover:text-slate-900 transition-colors">Network & WiFi</a></li>
+            <li><a href="/services/software-installation" class="hover:text-slate-900 transition-colors">Software Install</a></li>
+            <li><a href="/services/remote-support"        class="hover:text-slate-900 transition-colors">Remote Support</a></li>
+            <li><a href="/services/business-it-support"   class="hover:text-slate-900 transition-colors">Business IT</a></li>
+            <li><a href="/services/hardware-upgrades"     class="hover:text-slate-900 transition-colors">Hardware Upgrades</a></li>
+            <li><a href="/services/smart-home-iot"        class="hover:text-slate-900 transition-colors">Smart Home & IoT</a></li>
           </ul>
         </div>
 
@@ -144,12 +144,12 @@
         <div>
           <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider" style="color:var(--text-tertiary)">Company</h4>
           <ul class="space-y-2.5 text-sm" style="color:var(--text-secondary)">
-            <li><a href="/about"      class="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="/membership" class="hover:text-white transition-colors">Membership Plans</a></li>
-            <li><a href="/partners"   class="hover:text-white transition-colors">Partner Program</a></li>
-            <li><a href="/faq"        class="hover:text-white transition-colors">FAQ</a></li>
-            <li><a href="/contact"    class="hover:text-white transition-colors">Contact</a></li>
-            <li><a href="/book"       class="hover:text-white transition-colors">Book a Repair</a></li>
+            <li><a href="/about"      class="hover:text-slate-900 transition-colors">About Us</a></li>
+            <li><a href="/membership" class="hover:text-slate-900 transition-colors">Membership Plans</a></li>
+            <li><a href="/partners"   class="hover:text-slate-900 transition-colors">Partner Program</a></li>
+            <li><a href="/faq"        class="hover:text-slate-900 transition-colors">FAQ</a></li>
+            <li><a href="/contact"    class="hover:text-slate-900 transition-colors">Contact</a></li>
+            <li><a href="/book"       class="hover:text-slate-900 transition-colors">Book a Repair</a></li>
           </ul>
         </div>
 
@@ -157,12 +157,12 @@
         <div>
           <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider" style="color:var(--text-tertiary)">Legal</h4>
           <ul class="space-y-2.5 text-sm" style="color:var(--text-secondary)">
-            <li><a href="/privacy"             class="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="/terms"               class="hover:text-white transition-colors">Terms of Service</a></li>
-            <li><a href="/cookie-policy"       class="hover:text-white transition-colors">Cookie Policy</a></li>
-            <li><a href="/cancellation-policy" class="hover:text-white transition-colors">Cancellation Policy</a></li>
-            <li><a href="/disclaimer"          class="hover:text-white transition-colors">Disclaimer</a></li>
-            <li><a href="/opt-in-opt-out"      class="hover:text-white transition-colors">Opt-In / Opt-Out</a></li>
+            <li><a href="/privacy"             class="hover:text-slate-900 transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms"               class="hover:text-slate-900 transition-colors">Terms of Service</a></li>
+            <li><a href="/cookie-policy"       class="hover:text-slate-900 transition-colors">Cookie Policy</a></li>
+            <li><a href="/cancellation-policy" class="hover:text-slate-900 transition-colors">Cancellation Policy</a></li>
+            <li><a href="/disclaimer"          class="hover:text-slate-900 transition-colors">Disclaimer</a></li>
+            <li><a href="/opt-in-opt-out"      class="hover:text-slate-900 transition-colors">Opt-In / Opt-Out</a></li>
           </ul>
         </div>
       </div>

@@ -16,7 +16,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.15;width:100%;height:100%;object-fit:cover" data-parallax="-20">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.5) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.5) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"   style="width:500px;height:500px;top:-5%;right:5%;opacity:0.15" aria-hidden="true"></div>
   <div class="glow-orb glow-orb-indigo" style="width:350px;height:350px;bottom:0;left:5%;opacity:0.12;animation-delay:2s" aria-hidden="true"></div>
@@ -44,7 +44,7 @@ $_plans_js = json_encode(array_combine(
   <div class="relative z-10 container-wide">
     <!-- Billing toggle -->
     <div class="flex items-center justify-center gap-4 mb-14">
-      <span class="text-sm" :class="term === 'monthly' ? 'text-white' : ''" style="color:var(--text-secondary)">Monthly</span>
+      <span class="text-sm" :class="term === 'monthly' ? '!text-slate-900 font-semibold' : ''" style="color:var(--text-secondary)">Monthly</span>
       <div class="relative w-14 h-7 rounded-full cursor-pointer transition-colors duration-300"
            style="background:var(--bg-tertiary);border:1px solid var(--border-subtle)"
            @click="term = (term === 'monthly') ? '1yr' : 'monthly'" role="switch" :aria-checked="term !== 'monthly'">
@@ -52,10 +52,10 @@ $_plans_js = json_encode(array_combine(
              style="background:var(--accent-gradient)"
              :class="term !== 'monthly' ? 'left-8' : 'left-1'"></div>
       </div>
-      <span class="text-sm flex items-center gap-2" :class="term !== 'monthly' ? 'text-white' : ''" style="color:var(--text-secondary)">
+      <span class="text-sm flex items-center gap-2" :class="term !== 'monthly' ? '!text-slate-900 font-semibold' : ''" style="color:var(--text-secondary)">
         Annual
         <span class="px-2 py-0.5 rounded-full text-xs font-semibold"
-              style="background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3);color:var(--accent)">
+              style="background:rgba(8,145,178,0.10);border:1px solid rgba(8,145,178,0.25);color:var(--accent)">
           Save up to 30%
         </span>
       </span>
@@ -66,7 +66,7 @@ $_plans_js = json_encode(array_combine(
       <?php foreach (['6mo' => '6 Months', '1yr' => '1 Year', '2yr' => '2 Years', '3yr' => '3 Years'] as $k => $label): ?>
       <button @click="term = '<?= e($k) ?>'"
               class="px-4 py-1.5 rounded-full text-sm transition-all duration-200"
-              :class="term === '<?= e($k) ?>' ? 'text-black font-semibold' : 'hover:border-[rgba(255,255,255,0.2)]'"
+              :class="term === '<?= e($k) ?>' ? 'text-white font-semibold' : 'hover:border-[rgba(15,23,42,0.2)]'"
               :style="term === '<?= e($k) ?>' ? 'background:var(--accent-gradient)' : 'background:var(--bg-tertiary);border:1px solid var(--border-subtle);color:var(--text-secondary)'">
         <?= e($label) ?>
       </button>
@@ -82,7 +82,7 @@ $_plans_js = json_encode(array_combine(
         <?php if ($plan['featured']): ?>
         <div class="absolute top-0 left-0 right-0 h-px" style="background:var(--accent-gradient)" aria-hidden="true"></div>
         <div class="absolute top-3 right-4 px-3 py-1 rounded-full text-xs font-semibold"
-             style="background:var(--accent-gradient);color:#070A0F">Most Popular</div>
+             style="background:var(--accent-gradient);color:#FFFFFF">Most Popular</div>
         <?php endif; ?>
 
         <div class="p-8">
@@ -168,7 +168,7 @@ $_plans_js = json_encode(array_combine(
           foreach ($rows as $feature => $cells):
           $i++;
           ?>
-          <tr style="border-top:1px solid var(--border-subtle);background:<?= $i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent' ?>">
+          <tr style="border-top:1px solid var(--border-subtle);background:<?= $i % 2 === 0 ? 'rgba(15,23,42,0.02)' : 'transparent' ?>">
             <td class="p-4 font-medium"><?= e($feature) ?></td>
             <?php foreach ($cells as $ci => $cell): ?>
             <td class="p-4 text-center" style="color:<?= $cell === '✓' ? 'var(--accent)' : ($cell === '✗' ? 'var(--text-tertiary)' : 'inherit') ?>">
@@ -186,7 +186,7 @@ $_plans_js = json_encode(array_combine(
 <!-- ── CTA ────────────────────────────────────────────────────────── -->
 <section class="relative py-20 overflow-hidden grain">
   <div class="gradient-mesh absolute inset-0 z-0 opacity-20" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.75)" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.75)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Not sure which plan?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">

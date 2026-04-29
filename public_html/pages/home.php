@@ -68,7 +68,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
   <!-- Layer 2: Gradient overlay (bottom fade) -->
   <div class="bg-overlay-dark" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center top,transparent 40%,rgba(7,10,15,0.6) 100%);z-index:1;pointer-events:none" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center top,transparent 40%,rgba(250,251,252,0.6) 100%);z-index:1;pointer-events:none" aria-hidden="true"></div>
 
   <!-- Layer 3: Canvas particle network -->
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
@@ -113,7 +113,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         $trust = ['⭐ 4.9/5 Rating','🛡️ 30-Day Guarantee','🇨🇦 Canadian Owned','⚡ Same-Day Service'];
         foreach ($trust as $t): ?>
         <span class="text-xs px-3 py-1.5 rounded-full"
-              style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:var(--text-secondary)">
+              style="background:rgba(255,255,255,0.7);border:1px solid rgba(15,23,42,0.08);color:var(--text-secondary);backdrop-filter:blur(8px)">
           <?= $t ?>
         </span>
         <?php endforeach; ?>
@@ -124,7 +124,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <!-- Scroll indicator -->
   <div class="scroll-indicator" aria-hidden="true">
     <span class="text-xs uppercase tracking-[0.15em]" style="color:var(--text-tertiary)">Scroll</span>
-    <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent)"></div>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(15,23,42,0.4),transparent)"></div>
   </div>
 </section>
 
@@ -243,8 +243,8 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="relative z-10">
           <!-- Service icon -->
           <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-               style="background:rgba(6,182,212,0.15);border:1px solid rgba(6,182,212,0.3)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4"
+               style="background:rgba(8,145,178,0.10);border:1px solid rgba(8,145,178,0.25)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0891B2"
                  stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
               <?= $svc['icon_path'] ?>
             </svg>
@@ -295,7 +295,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="floating-badge rounded-2xl px-5 py-4 absolute -right-4 top-12"
              data-anim="fade-up" style="max-width:170px">
           <div class="stat-number text-3xl leading-none">6+</div>
-          <div class="text-xs mt-2 font-medium" style="color:#E2E8F0">Years serving<br>Canadian clients</div>
+          <div class="text-xs mt-2 font-medium" style="color:var(--text-secondary)">Years serving<br>Canadian clients</div>
         </div>
 
         <!-- Floating badge: Response time -->
@@ -303,9 +303,9 @@ require_once __DIR__ . '/../partials/navbar.php';
              data-anim="fade-up" style="max-width:190px">
           <div class="flex items-center gap-2 mb-2">
             <span style="width:8px;height:8px;background:#10B981;border-radius:50%;display:inline-block;box-shadow:0 0 10px rgba(16,185,129,0.6);animation:widget-pulse 2s ease-in-out infinite"></span>
-            <span class="text-xs font-semibold" style="color:#34D399">Same-Day Available</span>
+            <span class="text-xs font-semibold" style="color:#059669">Same-Day Available</span>
           </div>
-          <div class="text-sm font-semibold" style="color:#F8FAFC">Most repairs done within 24 hours</div>
+          <div class="text-sm font-semibold" style="color:var(--text-primary)">Most repairs done within 24 hours</div>
         </div>
       </div>
 
@@ -332,10 +332,10 @@ require_once __DIR__ . '/../partials/navbar.php';
         ?>
         <ul class="space-y-5" data-stagger data-stagger-delay="0.07">
           <?php foreach ($benefits as $b): ?>
-          <li class="flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-white/3"
+          <li class="flex items-start gap-4 p-4 rounded-xl transition-all duration-300 hover:bg-slate-900/[0.03]"
               style="border:1px solid transparent;border-radius:0.75rem">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-lg"
-                 style="background:rgba(6,182,212,0.08);border:1px solid rgba(6,182,212,0.15)">
+                 style="background:rgba(8,145,178,0.08);border:1px solid rgba(8,145,178,0.15)">
               <?= $b['icon'] ?>
             </div>
             <div>
@@ -383,7 +383,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         'title' => 'Book Online',
         'desc'  => 'Choose your service, pick a time, and fill in your details. Takes less than 2 minutes. Instant booking confirmation sent to your email.',
         'img'   => 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=70',
-        'color' => '#06B6D4',
+        'color' => '#0891B2',
         // TODO: Replace with final step image
       ],
       [
@@ -391,7 +391,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         'title' => 'Free Diagnosis',
         'desc'  => 'We assess the issue thoroughly — no charge. You get a clear quote before any work begins. No surprises.',
         'img'   => 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1200&q=70',
-        'color' => '#6366F1',
+        'color' => '#4F46E5',
         // TODO: Replace with final step image
       ],
       [
@@ -419,7 +419,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <img src="<?= e($step['img']) ?>" alt="" loading="lazy" width="1200" height="800"
              style="opacity:0.2;width:100%;height:100%;object-fit:cover">
       </div>
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,10,15,0.9) 0%,rgba(7,10,15,0.7) 100%);z-index:1"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(250,251,252,0.9) 0%,rgba(250,251,252,0.7) 100%);z-index:1"></div>
 
       <div class="relative z-10 h-full flex items-center container-wide">
         <div class="max-w-xl">
@@ -440,7 +440,7 @@ require_once __DIR__ . '/../partials/navbar.php';
           <div class="flex gap-2">
             <?php for ($j = 0; $j < count($steps); $j++): ?>
             <div style="width:<?= $j === $i ? '24px' : '8px' ?>;height:8px;border-radius:4px;
-                        background:<?= $j === $i ? $step['color'] : 'rgba(255,255,255,0.2)' ?>;
+                        background:<?= $j === $i ? $step['color'] : 'rgba(15,23,42,0.2)' ?>;
                         transition:all 0.3s ease"></div>
             <?php endfor; ?>
           </div>
@@ -480,7 +480,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         $periods = ['6mo' => '6 Months', '1yr' => '1 Year', '2yr' => '2 Years', '3yr' => '3 Years'];
         foreach ($periods as $key => $label): ?>
         <button @click="period = '<?= $key ?>'"
-                :class="period === '<?= $key ?>' ? 'bg-gradient-to-r from-[#06B6D4] to-[#6366F1] text-black' : 'text-[var(--text-secondary)] hover:text-white'"
+                :class="period === '<?= $key ?>' ? 'bg-gradient-to-r from-[#0891B2] to-[#4F46E5] text-white' : 'text-[var(--text-secondary)] hover:text-slate-900'"
                 class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200">
           <?= $label ?>
         </button>
@@ -525,7 +525,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <ul class="space-y-2.5 mb-8">
           <?php foreach ($plan['features'] as $feature): ?>
           <li class="flex items-start gap-2.5 text-sm">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06B6D4"
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0891B2"
                  stroke-width="2.5" stroke-linecap="round" aria-hidden="true" class="flex-shrink-0 mt-0.5">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
@@ -554,7 +554,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
     <p class="text-center text-xs mt-6" style="color:var(--text-tertiary)" data-anim="fade-up">
       All prices in CAD. Applicable GST/HST added at checkout. Cancel anytime.
-      <a href="/cancellation-policy" class="underline hover:text-white">Cancellation Policy</a>.
+      <a href="/cancellation-policy" class="underline hover:text-slate-900">Cancellation Policy</a>.
     </p>
   </div>
 </section>
@@ -575,7 +575,7 @@ require_once __DIR__ . '/../partials/navbar.php';
          style="opacity:0.08;width:100%;height:100%;object-fit:cover;filter:blur(3px)">
     <!-- TODO: Replace with final image -->
   </div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.85);z-index:1" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.85);z-index:1" aria-hidden="true"></div>
 
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
@@ -626,7 +626,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
         <?php foreach ($TESTIMONIALS as $i => $_): ?>
         <button class="carousel-dot w-2 h-2 rounded-full transition-all duration-300 <?= $i === 0 ? 'active' : '' ?>"
-                style="background:<?= $i === 0 ? 'var(--accent)' : 'rgba(255,255,255,0.2)' ?>;width:<?= $i === 0 ? '24px' : '8px' ?>"
+                style="background:<?= $i === 0 ? 'var(--accent)' : 'rgba(15,23,42,0.2)' ?>;width:<?= $i === 0 ? '24px' : '8px' ?>"
                 aria-label="Go to testimonial <?= $i + 1 ?>">
         </button>
         <?php endforeach; ?>
@@ -700,7 +700,7 @@ require_once __DIR__ . '/../partials/navbar.php';
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15">
     <!-- TODO: Replace with final image -->
   </div>
-  <div class="bg-overlay-full" aria-hidden="true" style="background:rgba(7,10,15,0.8)"></div>
+  <div class="bg-overlay-full" aria-hidden="true" style="background:rgba(250,251,252,0.8)"></div>
 
   <!-- Glow orbs -->
   <div class="glow-orb glow-orb-cyan"

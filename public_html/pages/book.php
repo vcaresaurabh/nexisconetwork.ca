@@ -22,7 +22,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.15;width:100%;height:100%;object-fit:cover" data-parallax="-15">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.6) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan" style="width:400px;height:400px;top:-5%;right:5%;opacity:0.15" aria-hidden="true"></div>
 
@@ -49,7 +49,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <template x-for="i in totalSteps" :key="i">
         <div class="flex items-center">
           <div class="flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold transition-all duration-300"
-               :class="step >= i ? 'text-black' : 'text-[var(--text-tertiary)]'"
+               :class="step >= i ? 'text-white' : 'text-[var(--text-tertiary)]'"
                :style="step >= i ? 'background:var(--accent-gradient)' : 'background:var(--bg-tertiary);border:1px solid var(--border-subtle)'"
                :aria-current="step === i ? 'step' : false">
             <span x-show="step > i">✓</span>
@@ -71,10 +71,10 @@ require_once __DIR__ . '/../partials/navbar.php';
           <input type="radio" name="service" value="<?= e($s['slug']) ?>"
                  x-model="service" class="sr-only">
           <div class="glass rounded-2xl p-4 h-full transition-all duration-200"
-               :class="service === '<?= e($s['slug']) ?>' ? 'border-[var(--accent)] !bg-[rgba(6,182,212,0.08)]' : 'hover:border-[rgba(255,255,255,0.15)]'">
+               :class="service === '<?= e($s['slug']) ?>' ? 'border-[var(--accent)] !bg-[rgba(8,145,178,0.08)]' : 'hover:border-[rgba(15,23,42,0.15)]'">
             <div class="flex items-center gap-3">
               <div class="w-9 h-9 rounded-xl flex-shrink-0 flex items-center justify-center"
-                   style="background:rgba(6,182,212,0.1);border:1px solid var(--border-subtle)">
+                   style="background:rgba(8,145,178,0.1);border:1px solid var(--border-subtle)">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                      stroke="var(--accent)" stroke-width="2" stroke-linecap="round" aria-hidden="true">
                   <?= $s['icon_path'] ?>
@@ -130,7 +130,7 @@ require_once __DIR__ . '/../partials/navbar.php';
             <label class="cursor-pointer">
               <input type="radio" name="serviceType" value="<?= e($stype) ?>" x-model="serviceType" class="sr-only">
               <div class="glass rounded-xl p-3 text-sm text-center transition-colors duration-200"
-                   :class="serviceType === '<?= e($stype) ?>' ? 'border-[var(--accent)] !bg-[rgba(6,182,212,0.08)]' : 'hover:border-[rgba(255,255,255,0.15)]'">
+                   :class="serviceType === '<?= e($stype) ?>' ? 'border-[var(--accent)] !bg-[rgba(8,145,178,0.08)]' : 'hover:border-[rgba(15,23,42,0.15)]'">
                 <?= e($stype) ?>
               </div>
             </label>

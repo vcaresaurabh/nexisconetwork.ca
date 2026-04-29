@@ -32,7 +32,7 @@ require_once __DIR__ . '/../partials/navbar.php';
          onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=60'"
          alt="" loading="eager" width="1920" height="1080"
          style="opacity:0.22;width:100%;height:100%;object-fit:cover" data-parallax="-30">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.4) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.4) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"  style="width:500px;height:500px;top:5%;right:10%;opacity:0.18" aria-hidden="true"></div>
 
@@ -41,9 +41,9 @@ require_once __DIR__ . '/../partials/navbar.php';
     <div class="container-wide">
       <nav aria-label="Breadcrumb">
         <ol class="flex items-center gap-2 text-sm" style="color:var(--text-tertiary)">
-          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="/" class="hover:text-slate-900 transition-colors">Home</a></li>
           <li aria-hidden="true" class="opacity-40">/</li>
-          <li><a href="/services" class="hover:text-white transition-colors">Services</a></li>
+          <li><a href="/services" class="hover:text-slate-900 transition-colors">Services</a></li>
           <li aria-hidden="true" class="opacity-40">/</li>
           <li style="color:var(--accent)"><?= e($service['name']) ?></li>
         </ol>
@@ -54,7 +54,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-wide pb-20 pt-52">
     <div class="flex items-center gap-4 mb-5" data-anim="fade-up">
       <div class="w-14 h-14 rounded-2xl flex items-center justify-center"
-           style="background:linear-gradient(135deg,rgba(6,182,212,0.2),rgba(99,102,241,0.2));border:1px solid var(--border-subtle)">
+           style="background:linear-gradient(135deg,rgba(8,145,178,0.2),rgba(79,70,229,0.2));border:1px solid var(--border-subtle)">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
              stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <?= $service['icon_path'] ?>
@@ -128,7 +128,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="relative text-center">
         <!-- Step number -->
         <div class="w-14 h-14 rounded-2xl mx-auto mb-5 flex items-center justify-center font-mono text-xl font-bold"
-             style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(99,102,241,0.15));border:1px solid var(--border-subtle);color:var(--accent)">
+             style="background:linear-gradient(135deg,rgba(8,145,178,0.15),rgba(79,70,229,0.15));border:1px solid var(--border-subtle);color:var(--accent)">
           <?= e($step['step']) ?>
         </div>
         <h3 class="text-lg font-semibold mb-2"><?= e($step['title']) ?></h3>
@@ -172,7 +172,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 <!-- ── CTA ────────────────────────────────────────────────────────── -->
 <section class="relative section-padding overflow-hidden grain">
   <div class="gradient-mesh absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.55)" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.55)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Ready to get started?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">

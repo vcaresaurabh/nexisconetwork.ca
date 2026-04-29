@@ -17,7 +17,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.20;width:100%;height:100%;object-fit:cover" data-parallax="-20">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.5) 0%,rgba(7,10,15,0.96) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.5) 0%,rgba(250,251,252,0.96) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"  style="width:500px;height:500px;top:-5%;right:5%;opacity:0.15" aria-hidden="true"></div>
   <div class="glow-orb glow-orb-indigo" style="width:350px;height:350px;bottom:5%;left:5%;opacity:0.12;animation-delay:2.5s" aria-hidden="true"></div>
@@ -42,7 +42,7 @@ require_once __DIR__ . '/../partials/navbar.php';
              alt="Nexisco Network team at work"
              loading="lazy" width="900" height="675"
              class="w-full h-full object-cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(99,102,241,0.08))"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,145,178,0.08),rgba(79,70,229,0.08))"></div>
       </div>
       <!-- Text -->
       <div>
@@ -114,7 +114,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       foreach ($values as $v): ?>
       <div class="glass rounded-2xl p-8 text-center">
         <div class="w-14 h-14 rounded-2xl mx-auto mb-5 flex items-center justify-center"
-             style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(99,102,241,0.15));border:1px solid var(--border-subtle)">
+             style="background:linear-gradient(135deg,rgba(8,145,178,0.15),rgba(79,70,229,0.15));border:1px solid var(--border-subtle)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="<?= e($v['icon']) ?>"/>
@@ -131,7 +131,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 <!-- ── CTA ────────────────────────────────────────────────────────── -->
 <section class="relative py-20 overflow-hidden grain">
   <div class="gradient-mesh absolute inset-0 z-0 opacity-20" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:rgba(7,10,15,0.75)" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:rgba(250,251,252,0.75)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Ready to work with us?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">

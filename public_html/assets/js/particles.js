@@ -19,11 +19,11 @@
     connectDist:     150,          // max px to draw a connecting line
     mouseRepelDist:  100,          // px radius of mouse repel force
     repelStrength:   0.04,         // how strongly particles run from cursor
-    dotOpacityMin:   0.15,
-    dotOpacityMax:   0.45,
-    lineOpacityMax:  0.07,
-    colorDot:        '100, 220, 240',   // RGB for particles (cyan-ish)
-    colorLine:       '99, 102, 241',    // RGB for lines (indigo)
+    dotOpacityMin:   0.25,
+    dotOpacityMax:   0.55,
+    lineOpacityMax:  0.10,
+    colorDot:        '8, 145, 178',     // RGB for particles (cyan-600 — visible on light)
+    colorLine:       '79, 70, 229',     // RGB for lines (indigo-600)
     speedMin:        0.12,
     speedMax:        0.35,
   };

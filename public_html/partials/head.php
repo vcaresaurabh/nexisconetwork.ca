@@ -7,7 +7,7 @@ $page_title       = $page_title       ?? 'Nexisco Network — Smart IT. Seamless
 $page_description = $page_description ?? 'Professional IT services in Canada. Virus & malware removal, PC & laptop repair, data recovery, network & WiFi setup, and managed business IT. Book online — same-day service available.';
 $page_canonical   = $page_canonical   ?? 'https://nexisconetwork.ca' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
 $og_image         = $og_image         ?? 'https://nexisconetwork.ca/assets/img/og-image.png';
-$theme_color      = '#06B6D4';
+$theme_color      = '#0891B2';
 $page_keywords    = $page_keywords    ?? 'IT services Canada, computer repair Toronto, virus removal, data recovery, laptop repair, network setup, WiFi installation, PC tune-up, business IT support, managed IT services, smart home setup, remote tech support, Nexisco Network';
 $page_type        = $page_type        ?? 'website'; // override per page (article, service, etc.)
 
@@ -39,7 +39,7 @@ if (empty($_SESSION['csrf_token'])) {
   <meta name="revisit-after" content="7 days">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="<?= $theme_color ?>">
-  <meta name="color-scheme" content="dark light">
+  <meta name="color-scheme" content="light">
   <meta name="application-name" content="Nexisco Network">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -80,9 +80,9 @@ if (empty($_SESSION['csrf_token'])) {
   <link rel="icon"             href="/assets/img/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="manifest"         href="/site.webmanifest">
-  <meta name="msapplication-TileColor" content="#070A0F">
+  <meta name="msapplication-TileColor" content="#FAFBFC">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Nexisco">
   <meta name="mobile-web-app-capable" content="yes">
 
@@ -129,7 +129,7 @@ if (empty($_SESSION['csrf_token'])) {
     #preloader {
       position: fixed;
       inset: 0;
-      background: #070A0F;
+      background: #FAFBFC;
       z-index: 10000;
       display: flex;
       flex-direction: column;
@@ -220,7 +220,7 @@ if (empty($_SESSION['csrf_token'])) {
   <?php if (!empty($extra_jsonld)) echo $extra_jsonld; ?>
   <?php if (!empty($extra_head)) echo $extra_head; ?>
 </head>
-<body class="bg-[#070A0F] text-[#F8FAFC] antialiased overflow-x-hidden">
+<body class="bg-[#FAFBFC] text-[#0F172A] antialiased overflow-x-hidden">
 
 <!-- ── Scroll Progress Bar ───────────────────────────────────── -->
 <div id="scroll-progress" aria-hidden="true"></div>
@@ -232,19 +232,19 @@ if (empty($_SESSION['csrf_token'])) {
        xmlns="http://www.w3.org/2000/svg" style="opacity:0" aria-hidden="true">
     <path id="preloader-logo-path"
       d="M8 56 L8 8 L32 32 L56 8 L56 56"
-      stroke="#06B6D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+      stroke="#0891B2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
       fill="none"/>
-    <circle cx="32" cy="32" r="4" fill="#06B6D4" opacity="0.6"/>
+    <circle cx="32" cy="32" r="4" fill="#0891B2" opacity="0.6"/>
   </svg>
 
-  <div class="preloader-bar-track" style="width:200px;height:2px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden">
-    <div id="preloader-bar-fill" class="preloader-bar-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#06B6D4,#6366F1);border-radius:1px;transition:width 0.1s ease"></div>
+  <div class="preloader-bar-track" style="width:200px;height:2px;background:rgba(15,23,42,0.08);border-radius:1px;overflow:hidden">
+    <div id="preloader-bar-fill" class="preloader-bar-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#0891B2,#4F46E5);border-radius:1px;transition:width 0.1s ease"></div>
   </div>
 
   <span id="preloader-counter" style="font-family:'JetBrains Mono',monospace;font-size:0.875rem;color:#64748B;letter-spacing:0.05em">0%</span>
 
   <!-- Curtain overlay for exit wipe -->
-  <div id="preloader-curtain" style="position:absolute;inset:0;background:#070A0F;transform-origin:top;pointer-events:none"></div>
+  <div id="preloader-curtain" style="position:absolute;inset:0;background:#FAFBFC;transform-origin:top;pointer-events:none"></div>
 </div>
 
 <!-- ── Custom Cursor (desktop only) ──────────────────────────── -->
@@ -252,4 +252,4 @@ if (empty($_SESSION['csrf_token'])) {
 
 <!-- ── Page Transition Overlay ───────────────────────────────── -->
 <div id="page-transition" aria-hidden="true"
-     style="position:fixed;inset:0;background:#070A0F;z-index:9997;transform:scaleY(0);transform-origin:bottom;pointer-events:none"></div>
+     style="position:fixed;inset:0;background:#FAFBFC;z-index:9997;transform:scaleY(0);transform-origin:bottom;pointer-events:none"></div>

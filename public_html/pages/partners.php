@@ -16,7 +16,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.18;width:100%;height:100%;object-fit:cover" data-parallax="-20">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,10,15,0.5) 0%,rgba(7,10,15,0.97) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.5) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"   style="width:500px;height:500px;top:-5%;right:5%;opacity:0.14" aria-hidden="true"></div>
   <div class="glow-orb glow-orb-indigo" style="width:350px;height:350px;bottom:0;left:5%;opacity:0.12;animation-delay:2s" aria-hidden="true"></div>
@@ -59,7 +59,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       foreach ($benefits as $b): ?>
       <div class="glass rounded-2xl p-6 text-center">
         <div class="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center"
-             style="background:linear-gradient(135deg,rgba(6,182,212,0.15),rgba(99,102,241,0.15));border:1px solid var(--border-subtle)">
+             style="background:linear-gradient(135deg,rgba(8,145,178,0.15),rgba(79,70,229,0.15));border:1px solid var(--border-subtle)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="<?= e($b['icon']) ?>"/>
@@ -92,7 +92,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="glass rounded-3xl p-8 text-center <?= ($tier['featured'] ?? false) ? 'ring-1 ring-[var(--accent)]' : '' ?>">
         <?php if ($tier['featured'] ?? false): ?>
         <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-             style="background:var(--accent-gradient);color:#070A0F">Most Common</div>
+             style="background:var(--accent-gradient);color:#FFFFFF">Most Common</div>
         <?php endif; ?>
         <div class="text-4xl font-bold font-mono mb-1" style="color:var(--accent)"><?= e($tier['rate']) ?></div>
         <div class="text-lg font-semibold mb-1"><?= e($tier['name']) ?></div>
