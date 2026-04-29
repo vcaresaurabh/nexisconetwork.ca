@@ -31,7 +31,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="<?= e($service['hero_image']) ?>"
          onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=60'"
          alt="" loading="eager" width="1920" height="1080"
-         style="opacity:0.22;width:100%;height:100%;object-fit:cover" data-parallax="-30">
+         style="opacity:0.70;width:100%;height:100%;object-fit:cover" data-parallax="-30">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.4) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"  style="width:500px;height:500px;top:5%;right:10%;opacity:0.18" aria-hidden="true"></div>

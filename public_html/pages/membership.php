@@ -15,7 +15,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="bg-media-wrapper" aria-hidden="true">
     <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=1920&q=60"
          alt="" loading="eager"
-         style="opacity:0.15;width:100%;height:100%;object-fit:cover" data-parallax="-20">
+         style="opacity:0.55;width:100%;height:100%;object-fit:cover" data-parallax="-20">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.5) 0%,rgba(250,251,252,0.97) 100%)"></div>
   </div>
   <div class="glow-orb glow-orb-cyan"   style="width:500px;height:500px;top:-5%;right:5%;opacity:0.15" aria-hidden="true"></div>

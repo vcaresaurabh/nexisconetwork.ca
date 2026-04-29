@@ -606,15 +606,18 @@ function initTestimonialsCarousel() {
       gsap.to(c, {
         opacity: i === index ? 1 : 0,
         scale:   i === index ? 1 : 0.96,
-        duration: 0.5,
+        duration: 0.55,
         ease: 'power2.inOut',
         pointerEvents: i === index ? 'auto' : 'none',
       });
     });
 
-    // Update dots
+    // Update dots — both class and inline style (pill effect)
     carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === index);
+      const active = i === index;
+      d.classList.toggle('active', active);
+      d.style.background = active ? 'var(--accent)' : 'rgba(15,23,42,0.2)';
+      d.style.width      = active ? '24px' : '8px';
     });
 
     current = index;
@@ -662,6 +665,39 @@ function initTestimonialsCarousel() {
   // Pause on hover
   carousel.addEventListener('mouseenter', stopAuto);
   carousel.addEventListener('mouseleave', startAuto);
+}
+
+/* ================================================================
+   HERO BLOBS — mouse-reactive lerp follow
+   ================================================================ */
+function initHeroBlobs() {
+  if (REDUCED_MOTION) return;
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  const blob1 = document.getElementById('hero-blob-1');
+  const blob2 = document.getElementById('hero-blob-2');
+  if (!blob1 && !blob2) return;
+
+  let mouseX = 0, mouseY = 0;
+  let b1x = 0, b1y = 0, b2x = 0, b2y = 0;
+
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) / r.width  - 0.5; // -0.5..0.5
+    mouseY = (e.clientY - r.top)  / r.height - 0.5;
+  });
+
+  function tick() {
+    // lerp toward mouse with different intensity per blob (parallax)
+    b1x += (mouseX *  60 - b1x) * 0.04;
+    b1y += (mouseY *  60 - b1y) * 0.04;
+    b2x += (mouseX * -90 - b2x) * 0.05;
+    b2y += (mouseY * -90 - b2y) * 0.05;
+    if (blob1) blob1.style.transform = `translate3d(${b1x}px, ${b1y}px, 0)`;
+    if (blob2) blob2.style.transform = `translate3d(${b2x}px, ${b2y}px, 0)`;
+    requestAnimationFrame(tick);
+  }
+  tick();
 }
 
 /* ================================================================
@@ -956,6 +992,7 @@ function initAll() {
   initKenBurns();
   initClipReveals();
   initTestimonialsCarousel();
+  initHeroBlobs();
   initPageTransitions();
   initMembershipToggle();
   initBookingWizard();

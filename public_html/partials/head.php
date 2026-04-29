@@ -99,19 +99,32 @@ if (empty($_SESSION['csrf_token'])) {
   <link rel="preload" href="/assets/css/app.css" as="style">
 
   <!-- ── Google Fonts (display=swap for fast text render) ──── -->
-  <link rel="preload" as="style"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap"
-        media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400&display=swap"></noscript>
+  <?php
+    // Multi-family pairing for editorial light theme:
+    //   Inter           — body
+    //   Bricolage       — display headlines (modern grotesque w/ optical sizing)
+    //   Playfair        — serif accent for editorial pull-quotes / hero phrase
+    //   Outfit          — alt sans for buttons / labels
+    //   JetBrains Mono  — code / data
+    $fonts_url = 'https://fonts.googleapis.com/css2?'
+      . 'family=Inter:wght@400;500;600;700'
+      . '&family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700;10..48,800'
+      . '&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700'
+      . '&family=Outfit:wght@400;500;600;700'
+      . '&family=JetBrains+Mono:wght@400;500'
+      . '&display=swap';
+  ?>
+  <link rel="preload" as="style" href="<?= $fonts_url ?>">
+  <link rel="stylesheet" href="<?= $fonts_url ?>" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="<?= $fonts_url ?>"></noscript>
   <style>
-    /* Map Space Grotesk → General Sans slot for display headings */
+    /* Font slot mapping — used by Tailwind v4 @theme + utility classes */
     :root {
-      --font-display: "Space Grotesk", "Inter", sans-serif;
-      --font-body:    "Inter", sans-serif;
-      --font-mono:    "JetBrains Mono", monospace;
+      --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+      --font-body:    "Inter", system-ui, sans-serif;
+      --font-serif:   "Playfair Display", "Georgia", serif;
+      --font-accent:  "Outfit", "Inter", sans-serif;
+      --font-mono:    "JetBrains Mono", ui-monospace, monospace;
     }
   </style>
 

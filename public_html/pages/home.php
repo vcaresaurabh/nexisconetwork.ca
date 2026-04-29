@@ -36,94 +36,162 @@ require_once __DIR__ . '/../partials/navbar.php';
 ?>
 
 <!-- ================================================================
-     HERO SECTION
-     Layer stack: video bg → particle canvas → gradient fade → content
+     HERO SECTION — innovative layout
+     Layers: video bg → mouse-reactive blobs → orbital icons → particles → content
      ================================================================ -->
 <section id="hero" aria-label="Hero — Nexisco Network">
 
-  <!-- Layer 1: Video background -->
+  <!-- Layer 1: Video / image background -->
   <div class="bg-media-wrapper" aria-hidden="true">
-    <!--
-      Mobile: video hidden, poster shown via CSS
-      Desktop: autoplay muted loop
-      TODO: Add real video sources (hero-bg.mp4 + hero-bg.webm)
-    -->
     <video class="bg-video" autoplay muted loop playsinline
            poster="/assets/img/hero/hero-poster.jpg"
-           style="opacity:0.45">
-      <!-- TODO: Add video sources -->
-      <!-- <source src="/assets/video/hero-bg.webm" type="video/webm"> -->
-      <!-- <source src="/assets/video/hero-bg.mp4"  type="video/mp4"> -->
+           style="opacity:0.75">
+      <!-- TODO: Add video sources (hero-bg.webm + hero-bg.mp4) -->
     </video>
 
-    <!-- Poster fallback (always visible, video overlaid on desktop) -->
-    <!-- TODO: Replace with final hero poster image -->
+    <!-- Poster fallback (visible when video is not present) -->
     <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=70"
          alt=""
-         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.4"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.78"
          data-preload
          width="1920" height="1080">
-    <!-- TODO: Replace with final image -->
   </div>
 
-  <!-- Layer 2: Gradient overlay (bottom fade) -->
+  <!-- Layer 2: Light wash overlay (lets image show through but keeps text legible) -->
   <div class="bg-overlay-dark" aria-hidden="true"></div>
-  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center top,transparent 40%,rgba(250,251,252,0.6) 100%);z-index:1;pointer-events:none" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center top,transparent 35%,rgba(250,251,252,0.55) 100%);z-index:1;pointer-events:none" aria-hidden="true"></div>
 
-  <!-- Layer 3: Canvas particle network -->
+  <!-- Layer 3: Mouse-reactive morphing colour blobs -->
+  <div id="hero-blob-1" class="hero-blob"  aria-hidden="true"
+       style="top:-8%;left:-6%"></div>
+  <div id="hero-blob-2" class="hero-blob b2" aria-hidden="true"
+       style="bottom:-12%;right:-4%;animation-delay:-6s"></div>
+
+  <!-- Layer 4: Orbital service icons (desktop only) -->
+  <div class="hero-orbit" aria-hidden="true">
+    <!-- Outer ring — clockwise -->
+    <div class="hero-orbit-ring" style="width:780px;height:780px">
+      <div class="hero-orbit-icon" style="top:-28px;left:50%;margin-left:-28px">
+        <!-- shield (virus) -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="hero-orbit-icon" style="top:50%;right:-28px;margin-top:-28px">
+        <!-- wifi (network) -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12.55a11 11 0 0 1 14 0M2 8.82a15 15 0 0 1 20 0M8.5 16.43a6 6 0 0 1 7 0"/><line x1="12" y1="20" x2="12" y2="20"/>
+        </svg>
+      </div>
+      <div class="hero-orbit-icon" style="bottom:-28px;left:50%;margin-left:-28px">
+        <!-- HDD (data recovery) -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="10" rx="2"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="10" y1="12" x2="10.01" y2="12"/>
+        </svg>
+      </div>
+      <div class="hero-orbit-icon" style="top:50%;left:-28px;margin-top:-28px">
+        <!-- monitor (PC repair) -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+    </div>
+    <!-- Inner ring — counter-clockwise -->
+    <div class="hero-orbit-ring r2" style="width:520px;height:520px">
+      <div class="hero-orbit-icon" style="top:-28px;left:50%;margin-left:-28px">
+        <!-- chip -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/>
+        </svg>
+      </div>
+      <div class="hero-orbit-icon" style="bottom:-28px;left:50%;margin-left:-28px">
+        <!-- terminal -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Layer 5: Canvas particle network -->
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-  <!-- Layer 4: Content -->
+  <!-- Layer 6: Content -->
   <div class="hero-content container-wide w-full">
     <div class="max-w-3xl pt-36 pb-24 md:pt-44 md:pb-28">
 
-      <!-- Eyebrow label -->
-      <div data-anim="fade-up"
-           style="display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem">
-        <span class="text-eyebrow">Canada's IT Experts</span>
-        <span style="width:32px;height:1px;background:var(--accent);opacity:0.6"></span>
-        <span class="text-eyebrow" style="color:var(--text-tertiary)">Est. 2018</span>
+      <!-- Live status pill -->
+      <div data-anim="fade-up" class="hero-status mb-6">
+        <span class="pulse-dot"></span>
+        <span class="text-accent-font">Online · Same-day repairs available across Canada</span>
       </div>
 
-      <!-- Headline — char-by-char SplitType reveal -->
-      <h1 data-split="chars"
-          class="text-display mb-6"
-          style="line-height:0.95">
-        Smart IT.<br>
-        <span class="text-gradient">Seamless Support.</span>
+      <!-- Headline — multi-font, multi-gradient -->
+      <h1 class="text-display mb-6" style="line-height:0.95;font-family:var(--font-display)">
+        <span class="block" data-split="chars">Smart IT.</span>
+        <span class="block">
+          <span class="text-serif text-gradient-warm">Seamless</span>
+          <span class="text-gradient-anim" data-split="chars">&nbsp;Support.</span>
+        </span>
       </h1>
 
-      <!-- Subtitle -->
+      <!-- Subtitle with rotating ticker -->
       <p data-anim="fade-up"
          class="text-lg md:text-xl mb-10 max-w-xl"
          style="color:var(--text-secondary);line-height:1.7">
-        Expert computer repair, network setup, virus removal &amp; business IT
-        across Canada. Fast turnaround. Guaranteed results.
+        Expert
+        <span class="hero-ticker">
+          <span class="hero-ticker-track">
+            <span>computer repair</span>
+            <span>virus removal</span>
+            <span>network setup</span>
+            <span>data recovery</span>
+            <span>business IT</span>
+            <span>computer repair</span>
+          </span>
+        </span>
+        across Canada.<br>
+        Fast turnaround. Guaranteed results.<span class="type-cursor"></span>
       </p>
 
       <!-- CTAs -->
       <div data-anim="fade-up" class="flex flex-wrap gap-4">
-        <a href="/book"     class="btn btn-gradient"    data-magnetic>Book a Repair</a>
-        <a href="/services" class="btn btn-secondary"   data-magnetic>View Services →</a>
+        <a href="/book"     class="btn btn-gradient btn-lg"  data-magnetic>Book a Repair</a>
+        <a href="/services" class="btn btn-secondary btn-lg" data-magnetic>View Services →</a>
       </div>
 
       <!-- Trust micro-badges -->
-      <div data-anim="fade-up" class="flex flex-wrap gap-4 mt-8">
+      <div data-anim="fade-up" class="flex flex-wrap gap-3 mt-8">
         <?php
-        $trust = ['⭐ 4.9/5 Rating','🛡️ 30-Day Guarantee','🇨🇦 Canadian Owned','⚡ Same-Day Service'];
-        foreach ($trust as $t): ?>
-        <span class="text-xs px-3 py-1.5 rounded-full"
-              style="background:rgba(255,255,255,0.7);border:1px solid rgba(15,23,42,0.08);color:var(--text-secondary);backdrop-filter:blur(8px)">
-          <?= $t ?>
+        $trust = [
+          ['⭐', '4.9/5 Rating'],
+          ['🛡️', '30-Day Guarantee'],
+          ['🇨🇦', 'Canadian Owned'],
+          ['⚡', 'Same-Day Service'],
+        ];
+        foreach ($trust as [$icon, $label]): ?>
+        <span class="text-xs px-3 py-2 rounded-full inline-flex items-center gap-1.5 text-accent-font font-semibold"
+              style="background:rgba(255,255,255,0.85);border:1px solid rgba(15,23,42,0.08);color:var(--text-secondary);backdrop-filter:blur(10px) saturate(160%);box-shadow:0 4px 14px rgba(15,23,42,0.05)">
+          <span aria-hidden="true"><?= $icon ?></span><?= $label ?>
         </span>
         <?php endforeach; ?>
       </div>
     </div>
   </div>
 
+  <!-- Floating tag chips -->
+  <div class="hero-chip" style="top:18%;right:6%;animation-delay:-1s">
+    <span class="chip-icon">⚡</span>
+    Avg. response: 2 hrs
+  </div>
+  <div class="hero-chip" style="bottom:22%;right:14%;animation-delay:-3s">
+    <span class="chip-icon" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(251,146,60,0.15));color:#EC4899">★</span>
+    247+ five-star reviews
+  </div>
+
   <!-- Scroll indicator -->
   <div class="scroll-indicator" aria-hidden="true">
-    <span class="text-xs uppercase tracking-[0.15em]" style="color:var(--text-tertiary)">Scroll</span>
+    <span class="text-xs uppercase tracking-[0.15em] text-accent-font" style="color:var(--text-tertiary)">Scroll</span>
     <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(15,23,42,0.4),transparent)"></div>
   </div>
 </section>
@@ -169,7 +237,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=70"
          alt="" loading="lazy" width="1920" height="900"
          data-parallax="-20"
-         style="opacity:0.35;width:100%;height:115%;object-fit:cover">
+         style="opacity:0.75;width:100%;height:115%;object-fit:cover">
     <!-- TODO: Replace with final image -->
   </div>
   <div class="bg-overlay-dark" aria-hidden="true"></div>
@@ -219,7 +287,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">What We Do</p>
-      <h2>9 IT Services. <span class="text-gradient">One Team.</span></h2>
+      <h2>9 IT Services. <span class="text-gradient-warm">One Team.</span></h2>
       <p>From urgent virus removal to managed business IT — we've got every technology need covered.</p>
     </div>
 
@@ -313,7 +381,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div>
         <p class="text-eyebrow mb-4" data-anim="fade-up">Why Nexisco</p>
         <h2 class="text-h1 mb-6" data-split="words">
-          The IT team your business <span class="text-gradient">actually needs.</span>
+          The IT team your business <span class="text-gradient-electric">actually needs.</span>
         </h2>
         <p class="text-base mb-8 leading-relaxed" style="color:var(--text-secondary)" data-anim="fade-up">
           We're not a call centre. We're certified Canadian technicians who solve real problems
@@ -363,7 +431,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="container-wide section-padding relative z-10">
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">The Process</p>
-      <h2>How It Works in <span class="text-gradient">4 Simple Steps</span></h2>
+      <h2>How It Works in <span class="text-gradient-ocean">4 Simple Steps</span></h2>
       <p>Getting your tech fixed is easier than you think.</p>
     </div>
   </div>
@@ -417,7 +485,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <!-- Panel background image with overlay -->
       <div class="panel-bg bg-media-wrapper" aria-hidden="true">
         <img src="<?= e($step['img']) ?>" alt="" loading="lazy" width="1200" height="800"
-             style="opacity:0.2;width:100%;height:100%;object-fit:cover">
+             style="opacity:0.55;width:100%;height:100%;object-fit:cover">
       </div>
       <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(250,251,252,0.9) 0%,rgba(250,251,252,0.7) 100%);z-index:1"></div>
 
@@ -469,7 +537,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Membership Plans</p>
-      <h2>Regular IT Care. <span class="text-gradient">Predictable Price.</span></h2>
+      <h2>Regular IT Care. <span class="text-gradient-sunset">Predictable Price.</span></h2>
       <p>Choose a plan and get ongoing IT support, priority response, and serious savings on repairs.</p>
     </div>
 
@@ -572,7 +640,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <!-- TODO: Replace with final testimonials section background image -->
     <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="900"
-         style="opacity:0.08;width:100%;height:100%;object-fit:cover;filter:blur(3px)">
+         style="opacity:0.30;width:100%;height:100%;object-fit:cover;filter:blur(3px)">
     <!-- TODO: Replace with final image -->
   </div>
   <div style="position:absolute;inset:0;background:rgba(250,251,252,0.85);z-index:1" aria-hidden="true"></div>
@@ -654,7 +722,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="container-narrow relative z-10">
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Got Questions?</p>
-      <h2>Frequently <span class="text-gradient">Asked Questions</span></h2>
+      <h2>Frequently <span class="text-gradient-electric">Asked Questions</span></h2>
     </div>
 
     <!-- FAQ accordion (first 5 from General category) -->
@@ -688,7 +756,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="bg-media-wrapper" aria-hidden="true">
     <video class="bg-video" autoplay muted loop playsinline
            poster="/assets/img/backgrounds/cta-poster.jpg"
-           style="opacity:0.3">
+           style="opacity:0.6">
       <!-- TODO: Add video sources -->
       <!-- <source src="/assets/video/cta-bg.webm" type="video/webm"> -->
       <!-- <source src="/assets/video/cta-bg.mp4"  type="video/mp4"> -->
@@ -697,7 +765,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <!-- TODO: Replace with final CTA section background image -->
     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="800"
-         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15">
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45">
     <!-- TODO: Replace with final image -->
   </div>
   <div class="bg-overlay-full" aria-hidden="true" style="background:rgba(250,251,252,0.8)"></div>
@@ -716,7 +784,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <p class="text-eyebrow mb-4" data-anim="fade-up">Ready to Get Started?</p>
       <h2 class="text-display mb-6" data-split="words">
-        Your tech problems,<br><span class="text-gradient">solved today.</span>
+        Your tech problems,<br><span class="text-gradient-anim">solved today.</span>
       </h2>
       <p class="text-lg mb-10 max-w-xl mx-auto" style="color:var(--text-secondary)" data-anim="fade-up">
         Book online in 2 minutes. Free diagnosis. Guaranteed results.

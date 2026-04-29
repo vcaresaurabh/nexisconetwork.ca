@@ -25,7 +25,7 @@
     <!-- TODO: Replace with final footer background image -->
     <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="600"
-         style="opacity:0.05;object-fit:cover;width:100%;height:100%">
+         style="opacity:0.20;object-fit:cover;width:100%;height:100%">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(241,245,249,0.85),rgba(241,245,249,0.98))"></div>
   </div>
   <div class="bg-grid" style="position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0.6" aria-hidden="true"></div>

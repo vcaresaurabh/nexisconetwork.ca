@@ -12,7 +12,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <!-- Abstract dark background -->
   <div class="bg-media-wrapper" aria-hidden="true">
     <img src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?w=1920&q=50"
-         alt="" style="opacity:0.08;width:100%;height:100%;object-fit:cover">
+         alt="" style="opacity:0.30;width:100%;height:100%;object-fit:cover">
   </div>
   <div class="bg-overlay-full" style="background:rgba(250,251,252,0.85)" aria-hidden="true"></div>
 
