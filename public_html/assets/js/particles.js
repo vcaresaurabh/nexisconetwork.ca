@@ -23,7 +23,7 @@
     dotOpacityMax:   0.55,
     lineOpacityMax:  0.10,
     colorDot:        '8, 145, 178',     // RGB for particles (cyan-600 — visible on light)
-    colorLine:       '79, 70, 229',     // RGB for lines (indigo-600)
+    colorLine:       '20, 184, 166',     // RGB for lines (teal-500 — turquoise)
     speedMin:        0.12,
     speedMax:        0.35,
   };

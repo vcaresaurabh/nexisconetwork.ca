@@ -130,7 +130,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <h1 class="text-display mb-6" style="line-height:0.95;font-family:var(--font-display)">
         <span class="block" data-split="chars">Smart IT.</span>
         <span class="block">
-          <span class="text-serif text-gradient-warm">Seamless</span>
+          <span class="text-serif text-gradient-turquoise">Seamless</span>
           <span class="text-gradient-anim" data-split="chars">&nbsp;Support.</span>
         </span>
       </h1>
@@ -140,18 +140,9 @@ require_once __DIR__ . '/../partials/navbar.php';
          class="text-lg md:text-xl mb-10 max-w-xl"
          style="color:var(--text-secondary);line-height:1.7">
         Expert
-        <span class="hero-ticker">
-          <span class="hero-ticker-track">
-            <span>computer repair</span>
-            <span>virus removal</span>
-            <span>network setup</span>
-            <span>data recovery</span>
-            <span>business IT</span>
-            <span>computer repair</span>
-          </span>
-        </span>
+        <span class="typewriter" id="hero-typewriter">computer repair</span>
         across Canada.<br>
-        Fast turnaround. Guaranteed results.<span class="type-cursor"></span>
+        Fast turnaround. Guaranteed results.
       </p>
 
       <!-- CTAs -->
@@ -282,7 +273,9 @@ require_once __DIR__ . '/../partials/navbar.php';
      SERVICES GRID
      Per-card service images (grayscale→color) + VanillaTilt + circuit bg
      ================================================================ -->
-<section id="services" class="relative section-padding bg-circuit grain" aria-label="Our IT services">
+<section id="services" class="relative section-padding gradient-mesh-services grain" aria-label="Our IT services">
+  <div class="glow-orb glow-orb-cyan"   style="width:600px;height:600px;top:-10%;left:-8%;opacity:0.14"   aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-indigo" style="width:500px;height:500px;bottom:0;right:-5%;opacity:0.10" aria-hidden="true"></div>
 
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
@@ -653,11 +646,10 @@ require_once __DIR__ . '/../partials/navbar.php';
     </div>
 
     <!-- Testimonials carousel -->
-    <div class="testimonials-carousel relative" style="min-height:280px">
-      <div class="carousel-track" style="position:relative;min-height:260px">
+    <div class="testimonials-carousel">
+      <div class="carousel-track">
         <?php foreach ($TESTIMONIALS as $i => $t): ?>
-        <div class="testimonial-card <?= $i === 0 ? '' : 'absolute inset-0' ?>"
-             style="<?= $i > 0 ? 'opacity:0;pointer-events:none' : '' ?>">
+        <div class="testimonial-card">
           <div class="flex items-center gap-3 mb-4">
             <!-- Avatar -->
             <div class="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 font-semibold text-sm"

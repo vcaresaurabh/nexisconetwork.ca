@@ -14,12 +14,30 @@ $services = $SERVICES ?? [];
 
     <!-- ── Logo ──────────────────────────────────────────────── -->
     <a href="/" class="flex items-center gap-3 group" aria-label="Nexisco Network — Home">
-      <!-- Inline SVG logo mark -->
+      <!-- N-shaped network graph logo mark -->
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
            class="transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-        <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
+        <defs>
+          <linearGradient id="logo-lg" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#14B8A6"/>
+            <stop offset="100%" stop-color="#0891B2"/>
+          </linearGradient>
+          <linearGradient id="logo-ng" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2DD4BF"/>
+            <stop offset="100%" stop-color="#0891B2"/>
+          </linearGradient>
+        </defs>
+        <!-- N strokes -->
+        <line x1="9" y1="28" x2="9" y2="8"  stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="9" y1="8"  x2="27" y2="28" stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="27" y1="8" x2="27" y2="28" stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Corner nodes -->
+        <circle cx="9"  cy="8"  r="2.5" fill="url(#logo-ng)"/>
+        <circle cx="9"  cy="28" r="2"   fill="#06B6D4" opacity="0.85"/>
+        <circle cx="27" cy="8"  r="2"   fill="#14B8A6" opacity="0.85"/>
+        <circle cx="27" cy="28" r="2.5" fill="url(#logo-ng)"/>
+        <!-- Centre pulse node -->
+        <circle cx="18" cy="18" r="1.5" fill="#06B6D4" opacity="0.55"/>
       </svg>
       <span class="font-semibold text-[1.125rem] tracking-tight" style="font-family:'General Sans',sans-serif">
         Nexisco <span style="color:var(--accent)">Network</span>

@@ -78,9 +78,24 @@
         <div class="col-span-2 md:col-span-4 lg:col-span-2">
           <a href="/" class="flex items-center gap-2.5 mb-4" aria-label="Home">
             <svg width="32" height="32" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-              <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
+              <defs>
+                <linearGradient id="ft-lg" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#14B8A6"/>
+                  <stop offset="100%" stop-color="#0891B2"/>
+                </linearGradient>
+                <linearGradient id="ft-ng" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#2DD4BF"/>
+                  <stop offset="100%" stop-color="#0891B2"/>
+                </linearGradient>
+              </defs>
+              <line x1="9" y1="28" x2="9" y2="8"  stroke="url(#ft-lg)" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="9" y1="8"  x2="27" y2="28" stroke="url(#ft-lg)" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="27" y1="8" x2="27" y2="28" stroke="url(#ft-lg)" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="9"  cy="8"  r="2.5" fill="url(#ft-ng)"/>
+              <circle cx="9"  cy="28" r="2"   fill="#06B6D4" opacity="0.85"/>
+              <circle cx="27" cy="8"  r="2"   fill="#14B8A6" opacity="0.85"/>
+              <circle cx="27" cy="28" r="2.5" fill="url(#ft-ng)"/>
+              <circle cx="18" cy="18" r="1.5" fill="#06B6D4" opacity="0.55"/>
             </svg>
             <span class="text-lg font-semibold" style="font-family:'General Sans',sans-serif">
               Nexisco <span style="color:var(--accent)">Network</span>

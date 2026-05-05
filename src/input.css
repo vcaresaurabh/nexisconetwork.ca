@@ -19,9 +19,10 @@
   --color-bg-tertiary:   #E2E8F0;
   --color-bg-card:       #FFFFFF;
 
-  --color-accent:        #0891B2;     /* cyan-600 */
-  --color-accent-2:      #4F46E5;     /* indigo-600 */
-  --color-accent-glow:   rgba(8, 145, 178, 0.18);
+  --color-accent:        #0891B2;     /* cyan-600 — primary brand */
+  --color-accent-2:      #14B8A6;     /* teal-500 — turquoise sibling */
+  --color-accent-3:      #4F46E5;     /* indigo-600 — secondary for variety */
+  --color-accent-glow:   rgba(20, 184, 166, 0.20);
 
   --color-text-primary:   #0F172A;    /* slate-900 */
   --color-text-secondary: #475569;    /* slate-600 */
@@ -56,12 +57,16 @@
   --bg-tertiary:   #E2E8F0;
   --bg-card:       #FFFFFF;
 
-  /* Accent */
-  --accent:          #0891B2;
-  --accent-2:        #4F46E5;
-  --accent-gradient: linear-gradient(135deg, #0891B2 0%, #4F46E5 100%);
-  --accent-glow:     0 0 40px rgba(8, 145, 178, 0.18);
-  --accent-glow-lg:  0 0 80px rgba(8, 145, 178, 0.25);
+  /* Accent — turquoise palette */
+  --accent:          #0891B2;       /* cyan-600 (primary) */
+  --accent-2:        #14B8A6;       /* teal-500 (turquoise sibling) */
+  --accent-3:        #4F46E5;       /* indigo (variety / accents) */
+  --accent-light:    #22D3EE;       /* cyan-400 (highlight) */
+  --accent-deep:     #0E7490;       /* cyan-700 (shadow) */
+  --accent-gradient: linear-gradient(135deg, #14B8A6 0%, #06B6D4 50%, #0891B2 100%);
+  --accent-gradient-soft: linear-gradient(135deg, rgba(20,184,166,0.18) 0%, rgba(8,145,178,0.18) 100%);
+  --accent-glow:     0 0 40px rgba(20, 184, 166, 0.22);
+  --accent-glow-lg:  0 0 80px rgba(20, 184, 166, 0.30);
 
   /* Text */
   --text-primary:   #0F172A;
@@ -343,6 +348,14 @@
     background-clip: text;
   }
 
+  /* Vibrant turquoise — primary brand emphasis */
+  .text-gradient-turquoise {
+    background: linear-gradient(120deg, #2DD4BF 0%, #14B8A6 30%, #06B6D4 65%, #0891B2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   /* Warm gradient — pink → orange (variety accent) */
   .text-gradient-warm {
     background: linear-gradient(135deg, #EC4899 0%, #F97316 60%, #F59E0B 100%);
@@ -610,6 +623,14 @@
   .bg-dots {
     background-image: radial-gradient(rgba(15,23,42,0.08) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  .gradient-mesh-services {
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 30%, rgba(20,184,166,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 70%, rgba(6,182,212,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 50% 10%, rgba(79,70,229,0.07) 0%, transparent 50%),
+      var(--bg-secondary);
   }
 
   /* ── Button System ────────────────────────────────────────── */
@@ -909,23 +930,28 @@
   }
 
   /* ── Navbar ───────────────────────────────────────────────── */
+  /* Always a subtle white-glass — intensifies on scroll */
   #navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 1.375rem clamp(1.25rem, 5vw, 4rem);
+    padding: 1.125rem clamp(1.25rem, 5vw, 4rem);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
     transition: background 0.45s ease, backdrop-filter 0.45s ease, padding 0.35s ease, border-color 0.45s ease, box-shadow 0.45s ease;
     color: var(--text-primary);
   }
 
   #navbar.scrolled {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-    box-shadow: 0 2px 16px rgba(15, 23, 42, 0.05);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
     padding-top: 0.875rem;
     padding-bottom: 0.875rem;
   }
@@ -959,25 +985,27 @@
   .nav-link {
     position: relative;
     font-size: 0.9375rem;
-    color: var(--text-secondary);
+    font-weight: 500;
+    color: var(--text-primary);
     transition: color 0.2s ease;
   }
 
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
     width: 100%;
-    height: 1px;
-    background: var(--accent);
+    height: 2px;
+    background: var(--accent-gradient);
+    border-radius: 2px;
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav-link:hover {
-    color: var(--text-primary);
+    color: var(--accent-deep);
   }
 
   .nav-link:hover::after {
@@ -1140,28 +1168,32 @@
     flex-shrink: 0;
   }
 
-  /* Ticker — vertical roll-through 5 strings */
-  .hero-ticker {
+  /* JS typewriter — runtime swaps text inside .typewriter */
+  .typewriter {
     display: inline-block;
-    height: 1.25em;
-    overflow: hidden;
-    line-height: 1.25em;
-    vertical-align: bottom;
     color: var(--accent);
-    font-weight: 600;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    min-width: 2ch;
   }
 
-  .hero-ticker-track {
-    animation: ticker-rotate 12s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  .typewriter::after {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 0.95em;
+    margin-left: 3px;
+    background: var(--accent);
+    vertical-align: -0.05em;
+    animation: type-cursor 1s step-end infinite;
+    border-radius: 1px;
   }
 
-  .hero-ticker-track span {
-    display: block;
-    height: 1.25em;
-    white-space: nowrap;
-  }
-
-  /* Terminal-style typing cursor */
+  /* Terminal-style typing cursor (used elsewhere) */
   .type-cursor::after {
     content: '|';
     margin-left: 2px;
@@ -1250,8 +1282,24 @@
     color: var(--accent);
   }
 
+  /* ── Testimonials Carousel — flex translateX strip ───────── */
+  .testimonials-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+  }
+
+  .testimonials-carousel .carousel-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+
   /* ── Testimonial Card ─────────────────────────────────────── */
   .testimonial-card {
+    flex: 0 0 100%;
+    min-width: 100%;
     background: var(--bg-card);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -1259,6 +1307,14 @@
     border-radius: 1.5rem;
     padding: 2.5rem;
     box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+    box-sizing: border-box;
+  }
+
+  /* Carousel dot pill — JS adjusts width/background */
+  .carousel-dot {
+    border: none;
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
   }
 
   .star-rating {

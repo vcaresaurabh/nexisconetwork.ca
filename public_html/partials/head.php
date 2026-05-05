@@ -240,14 +240,29 @@ if (empty($_SESSION['csrf_token'])) {
 
 <!-- ── Preloader ──────────────────────────────────────────────── -->
 <div id="preloader" role="status" aria-label="Loading Nexisco Network">
-  <!-- Logo: replace with real SVG -->
   <svg id="preloader-logo" width="64" height="64" viewBox="0 0 64 64" fill="none"
        xmlns="http://www.w3.org/2000/svg" style="opacity:0" aria-hidden="true">
-    <path id="preloader-logo-path"
-      d="M8 56 L8 8 L32 32 L56 8 L56 56"
-      stroke="#0891B2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-      fill="none"/>
-    <circle cx="32" cy="32" r="4" fill="#0891B2" opacity="0.6"/>
+    <defs>
+      <linearGradient id="pre-lg" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#14B8A6"/>
+        <stop offset="100%" stop-color="#0891B2"/>
+      </linearGradient>
+      <linearGradient id="pre-ng" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#2DD4BF"/>
+        <stop offset="100%" stop-color="#0891B2"/>
+      </linearGradient>
+    </defs>
+    <!-- N strokes -->
+    <line x1="16" y1="50" x2="16" y2="14" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="16" y1="14" x2="48" y2="50" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="48" y1="14" x2="48" y2="50" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Corner nodes -->
+    <circle cx="16" cy="14" r="4.5" fill="url(#pre-ng)"/>
+    <circle cx="16" cy="50" r="3.5" fill="#06B6D4" opacity="0.85"/>
+    <circle cx="48" cy="14" r="3.5" fill="#14B8A6" opacity="0.85"/>
+    <circle cx="48" cy="50" r="4.5" fill="url(#pre-ng)"/>
+    <!-- Centre pulse -->
+    <circle cx="32" cy="32" r="2.5" fill="#06B6D4" opacity="0.55"/>
   </svg>
 
   <div class="preloader-bar-track" style="width:200px;height:2px;background:rgba(15,23,42,0.08);border-radius:1px;overflow:hidden">

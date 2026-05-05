@@ -602,17 +602,9 @@ function initTestimonialsCarousel() {
   let autoTimer = null;
 
   function goTo(index) {
-    cards.forEach((c, i) => {
-      gsap.to(c, {
-        opacity: i === index ? 1 : 0,
-        scale:   i === index ? 1 : 0.96,
-        duration: 0.55,
-        ease: 'power2.inOut',
-        pointerEvents: i === index ? 'auto' : 'none',
-      });
-    });
+    track.style.transform = `translateX(-${index * 100}%)`;
 
-    // Update dots — both class and inline style (pill effect)
+    // Update dots — pill effect
     carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
       const active = i === index;
       d.classList.toggle('active', active);
@@ -636,7 +628,6 @@ function initTestimonialsCarousel() {
   }
 
   // Init
-  gsap.set(cards, { opacity: 0, scale: 0.96, position: 'absolute', top: 0, left: 0, width: '100%' });
   goTo(0);
   startAuto();
 
@@ -698,6 +689,32 @@ function initHeroBlobs() {
     requestAnimationFrame(tick);
   }
   tick();
+}
+
+/* ================================================================
+   HERO TYPEWRITER
+   ================================================================ */
+function initHeroTypewriter() {
+  const el = document.getElementById('hero-typewriter');
+  if (!el) return;
+
+  const phrases = ['computer repair', 'virus removal', 'network setup', 'data recovery', 'business IT'];
+  let idx = 0;
+
+  function cycle() {
+    idx = (idx + 1) % phrases.length;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      el.textContent = phrases[idx];
+      el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 400);
+  }
+
+  el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+  setInterval(cycle, 3500);
 }
 
 /* ================================================================
@@ -992,6 +1009,7 @@ function initAll() {
   initKenBurns();
   initClipReveals();
   initTestimonialsCarousel();
+  initHeroTypewriter();
   initHeroBlobs();
   initPageTransitions();
   initMembershipToggle();
