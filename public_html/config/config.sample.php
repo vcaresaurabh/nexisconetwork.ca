@@ -18,7 +18,7 @@ return [
         'user'         => 'noreply@nexisconetwork.ca',
         'pass'         => 'CHANGE_ME_smtp_password',
         'from_address' => 'noreply@nexisconetwork.ca',
-        'from_name'    => 'Nexisco Network Inc.',
+        'from_name'    => 'Nexisco Network',
         'admin_email'  => 'admin@nexisconetwork.ca',
     ],
     'app' => [

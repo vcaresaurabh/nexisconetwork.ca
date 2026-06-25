@@ -10,7 +10,8 @@ $config = require __DIR__ . '/config/config.php';
 
 define('APP_URL',     $config['app']['url']      ?? 'https://nexisconetwork.ca');
 define('APP_DEBUG',   $config['app']['debug']    ?? false);
-define('ASSET_VERSION', '1');
+define('ANALYTICS_ID', $config['app']['analytics_id'] ?? '');
+define('ASSET_VERSION', '4'); // bumped for production-finalization — busts cached app.css / app.js
 
 if (isset($config['app']['timezone'])) {
     date_default_timezone_set($config['app']['timezone']);
@@ -35,7 +36,6 @@ if (str_starts_with($uri, '/api/')) {
     $endpoint = substr($uri, 5); // strip /api/
 
     $api_files = [
-        'book'       => 'api/book.php',
         'contact'    => 'api/contact.php',
         'newsletter' => 'api/newsletter.php',
         'partners'   => 'api/partners.php',
@@ -62,13 +62,37 @@ if (str_starts_with($uri, '/admin')) {
     exit;
 }
 
+/* ── 301 Redirects (retired IT routes → new agency routes) ───────── */
+$redirects = [
+    // Retired top-level routes
+    '/membership'        => '/pricing',
+    '/book'              => '/start-project',
+    '/book/confirmation' => '/start-project',
+    '/eula'              => '/terms',
+    '/uninstall'         => '/terms',
+    // Retired IT service detail routes → consolidated /services
+    '/services/virus-malware-removal' => '/services',
+    '/services/pc-laptop-repair'      => '/services',
+    '/services/data-recovery'         => '/services',
+    '/services/network-wifi-setup'    => '/services',
+    '/services/software-installation' => '/services',
+    '/services/remote-support'        => '/services',
+    '/services/business-it-support'   => '/services',
+    '/services/hardware-upgrades'     => '/services',
+    '/services/smart-home-iot'        => '/services',
+];
+if (isset($redirects[$uri])) {
+    header('Location: ' . $redirects[$uri], true, 301);
+    exit;
+}
+
 /* ── Page routes ─────────────────────────────────────────────────── */
 $route_map = [
     '/'                  => 'pages/home.php',
     '/services'          => 'pages/services-index.php',
-    '/book'              => 'pages/book.php',
-    '/book/confirmation' => 'pages/book-confirmation.php',
-    '/membership'        => 'pages/membership.php',
+    '/portfolio'         => 'pages/portfolio.php',
+    '/pricing'           => 'pages/pricing.php',
+    '/start-project'     => 'pages/start-project.php',
     '/about'             => 'pages/about.php',
     '/faq'               => 'pages/faq.php',
     '/contact'           => 'pages/contact.php',
@@ -76,11 +100,10 @@ $route_map = [
     // Legal
     '/privacy'             => 'pages/privacy.php',
     '/terms'               => 'pages/terms.php',
+    '/refund-policy'       => 'pages/refund-policy.php',
     '/cookie-policy'       => 'pages/cookie-policy.php',
     '/disclaimer'          => 'pages/disclaimer.php',
     '/cancellation-policy' => 'pages/cancellation-policy.php',
-    '/eula'                => 'pages/eula.php',
-    '/uninstall'           => 'pages/uninstall.php',
     '/opt-in-opt-out'      => 'pages/opt-in-opt-out.php',
     // Meta
     '/robots.txt'          => 'robots.php',

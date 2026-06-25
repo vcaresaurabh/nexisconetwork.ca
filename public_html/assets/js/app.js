@@ -497,7 +497,7 @@ function initHorizontalScroll() {
   const panels     = gsap.utils.toArray('.horizontal-scroll-panel');
   const getDistance = () => (panels.length - 1) * window.innerWidth;
 
-  gsap.to(container, {
+  const mainTween = gsap.to(container, {
     x: () => -getDistance(),
     ease: 'none',
     scrollTrigger: {
@@ -519,16 +519,17 @@ function initHorizontalScroll() {
     const bg = panel.querySelector('.panel-bg');
     if (!bg) return;
 
-    gsap.from(bg, {
+    const opts = {
       opacity: 0,
       scrollTrigger: {
         trigger: section,
         start: () => `+=${(i - 0.3) * window.innerWidth}`,
         end:   () => `+=${i * window.innerWidth}`,
         scrub: true,
-        containerAnimation: ScrollTrigger.getById('horizontal-scroll'),
       },
-    });
+    };
+    if (mainTween) opts.scrollTrigger.containerAnimation = mainTween;
+    gsap.from(bg, opts);
   });
 }
 
@@ -698,7 +699,7 @@ function initHeroTypewriter() {
   const el = document.getElementById('hero-typewriter');
   if (!el) return;
 
-  const phrases = ['computer repair', 'virus removal', 'network setup', 'data recovery', 'business IT'];
+  const phrases = ['web development', 'digital marketing', 'SEO & paid ads', 'ecommerce stores', 'conversion design'];
   let idx = 0;
 
   function cycle() {
@@ -988,34 +989,18 @@ function initContactForm() {
    INIT — run after DOM + preloader finish
    ================================================================ */
 function initAll() {
-  initLenis();
-  initGSAP();
-  initScrollProgress();
-  initNavbar();
-  initBookingWidget();
-  initTextReveals();
-  initStaggerGrids();
-  initParallax();
-  initCounters();
-  initGlowOrbs();
-  initVanillaTilt();
-  initMagneticButtons();
-  initCustomCursor();
-  initButtonRipple();
-  initFaqAccordion();
-  initLazyVideos();
-  handleMobileVideos();
-  initHorizontalScroll();
-  initKenBurns();
-  initClipReveals();
-  initTestimonialsCarousel();
-  initHeroTypewriter();
-  initHeroBlobs();
-  initPageTransitions();
-  initMembershipToggle();
-  initBookingWizard();
-  initNewsletterForm();
-  initContactForm();
+  const steps = [
+    initLenis, initGSAP, initScrollProgress, initNavbar, initBookingWidget,
+    initTextReveals, initStaggerGrids, initParallax, initCounters, initGlowOrbs,
+    initVanillaTilt, initMagneticButtons, initCustomCursor, initButtonRipple,
+    initFaqAccordion, initLazyVideos, handleMobileVideos, initHorizontalScroll,
+    initKenBurns, initClipReveals, initTestimonialsCarousel, initHeroTypewriter,
+    initHeroBlobs, initPageTransitions, initMembershipToggle, initBookingWizard,
+    initNewsletterForm, initContactForm,
+  ];
+  steps.forEach((fn) => {
+    try { fn(); } catch (err) { console.error('[init error]', fn.name, err); }
+  });
 }
 
 // Run on DOMContentLoaded so animations are wired up early

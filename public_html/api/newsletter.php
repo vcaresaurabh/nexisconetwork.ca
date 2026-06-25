@@ -37,7 +37,7 @@ $consent_method    = 'web_footer_form';
 $consent_timestamp = date('Y-m-d H:i:s');
 $consent_ip        = client_ip();
 
-// TODO: Insert into DB — example query:
+// NOTE (owner): Insert into DB — example query:
 // $pdo->prepare("INSERT INTO newsletter (email, casl_consent, consent_timestamp, consent_method, consent_ip)
 //                VALUES (?, 1, ?, ?, ?) ON DUPLICATE KEY UPDATE
 //                casl_consent=1, consent_timestamp=?, consent_method=?, consent_ip=?")
@@ -52,7 +52,7 @@ $welcome = mail_template([
     'cta_text' => 'Unsubscribe',
     'cta_url'  => APP_URL . '/opt-in-opt-out',
 ]);
-// TODO: send_mail($email, '', 'Welcome to Nexisco Network', $welcome);
+// NOTE (owner): send_mail($email, '', 'Welcome to Nexisco Network', $welcome);
 
 if (defined('APP_DEBUG') && APP_DEBUG) {
     $log = date('Y-m-d H:i:s') . " | NEWSLETTER | {$email} | CONSENT=1\n";

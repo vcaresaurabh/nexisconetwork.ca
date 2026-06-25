@@ -11,8 +11,8 @@ foreach ($FAQS as $cat) {
     }
 }
 
-$page_title       = 'FAQ | Nexisco Network — Frequently Asked Questions';
-$page_description = 'Answers to common questions about Nexisco Network\'s IT services, pricing, turnaround times, privacy, and membership plans.';
+$page_title       = 'FAQ | Nexisco Network — Digital Agency Questions Answered';
+$page_description = 'Answers about Nexisco Network\'s web development, digital marketing, and ecommerce services — process, timelines, USD/CAD pricing, ownership, and working with clients worldwide.';
 $page_canonical   = 'https://nexisconetwork.ca/faq';
 $extra_head       = Seo::faq_page($all_faqs);
 
@@ -22,20 +22,20 @@ require_once __DIR__ . '/../partials/navbar.php';
 
 <!-- ── Hero ──────────────────────────────────────────────────────── -->
 <section class="relative min-h-[50vh] flex items-end overflow-hidden grain" style="background:var(--bg-primary)">
-  <div class="bg-media-wrapper" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=60"
-         alt="" loading="eager"
-         style="opacity:0.55;width:100%;height:100%;object-fit:cover" data-parallax="-15">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.97) 100%)"></div>
-  </div>
-  <div class="glow-orb glow-orb-cyan"  style="width:450px;height:450px;top:-5%;right:8%;opacity:0.14" aria-hidden="true"></div>
+  <div class="gradient-mesh absolute inset-0 z-0 opacity-30" aria-hidden="true"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.55) 0%,rgba(250,251,252,0.92) 100%)" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-cyan"   style="width:450px;height:450px;top:-5%;right:8%;opacity:0.14" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb-indigo" style="width:380px;height:380px;bottom:-15%;left:4%;opacity:0.10" aria-hidden="true"></div>
 
   <div class="relative z-10 container-wide pb-16 pt-40">
     <div class="label-tag mb-4" data-anim="fade-up">FAQ</div>
-    <h1 class="text-display mb-4 max-w-2xl" data-split="words">Got questions?<br>We've got answers.</h1>
-    <p class="text-xl max-w-xl" style="color:var(--text-secondary)" data-anim="fade-up">
-      <?= count($all_faqs) ?> answers across <?= count($FAQS) ?> categories.
-      Can't find what you need? <a href="/contact" class="underline hover:text-[var(--accent)] transition-colors">Contact us</a>.
+    <h1 class="text-display mb-4 max-w-2xl" data-split="words">Answers, the<br>agency way.</h1>
+    <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
+      Everything you need to know about working with Nexisco Network on web development,
+      digital marketing, and ecommerce — from our process and timelines to USD/CAD pricing.
+      We partner with clients across the US, Canada, and worldwide.
+      Still stuck? <a href="/contact" class="underline hover:text-[var(--accent)] transition-colors">Reach out</a>
+      or <a href="/start-project" class="underline hover:text-[var(--accent)] transition-colors">get a free quote</a>.
     </p>
   </div>
 </section>
@@ -60,7 +60,7 @@ require_once __DIR__ . '/../partials/navbar.php';
                         class="w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all duration-200"
                         :class="activeCategory === '<?= e($cat['category']) ?>' ? 'font-semibold' : 'hover:bg-[rgba(15,23,42,0.04)]'"
                         :style="activeCategory === '<?= e($cat['category']) ?>' ? 'background:rgba(8,145,178,0.10);color:var(--accent)' : 'color:var(--text-secondary)'">
-                  <?= e($cat['category']) ?>
+                  <span class="mr-1.5" aria-hidden="true"><?= e($cat['icon'] ?? '') ?></span><?= e($cat['category']) ?>
                   <span class="text-xs ml-1 opacity-60">(<?= count($cat['items']) ?>)</span>
                 </button>
               </li>
@@ -118,13 +118,14 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="gradient-mesh absolute inset-0 z-0 opacity-20" aria-hidden="true"></div>
   <div style="position:absolute;inset:0;background:rgba(250,251,252,0.75)" aria-hidden="true"></div>
   <div class="relative z-10 container-narrow text-center">
-    <h2 class="text-h1 mb-4" data-split="words">Still need help?</h2>
+    <h2 class="text-h1 mb-4" data-split="words">Still have questions?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">
-      Our team responds within 2 hours on business days.
+      Tell us about your project and we'll send a clear, no-obligation quote in USD or CAD.
+      Our team replies during business hours, Mon–Fri 8am–7pm PT.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="/contact" class="btn btn-gradient btn-lg" data-magnetic>Contact Us</a>
-      <a href="/book"    class="btn btn-secondary btn-lg" data-magnetic>Book a Repair</a>
+      <a href="/start-project" class="btn btn-gradient btn-lg" data-magnetic>Get a Free Quote</a>
+      <a href="/contact"       class="btn btn-secondary btn-lg" data-magnetic>Contact Us</a>
     </div>
   </div>
 </section>

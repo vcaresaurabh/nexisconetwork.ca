@@ -55,7 +55,7 @@ $body = mail_template([
     <p><strong>Audience:</strong><br>" . nl2br(htmlspecialchars($audience, ENT_QUOTES, 'UTF-8')) . "</p>
     ",
 ]);
-// TODO: send_mail('partners@nexisconetwork.ca', 'Nexisco Network', "Partner Application: {$business}", $body);
+// NOTE (owner): send_mail('partners@nexisconetwork.ca', 'Nexisco Network', "Partner Application: {$business}", $body);
 
 if (defined('APP_DEBUG') && APP_DEBUG) {
     $log = date('Y-m-d H:i:s') . " | PARTNER | {$name} | {$business} | {$email}\n";

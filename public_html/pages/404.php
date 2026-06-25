@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../includes/helpers.php';
+http_response_code(404);
 $page_title       = '404 — Page Not Found | Nexisco Network';
-$page_description = 'The page you\'re looking for doesn\'t exist. Head back to Nexisco Network.';
+$page_description = 'This page has moved or no longer exists. Explore our services, portfolio, or start a project with Nexisco Network.';
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -25,14 +26,16 @@ require_once __DIR__ . '/../partials/navbar.php';
          data-text="404" style="color:var(--accent);opacity:0.9" aria-label="404 — Page not found">
       404
     </div>
-    <h1 class="text-h2 mb-4">Page Not Found</h1>
+    <h1 class="text-h2 mb-4">This Page Took a Wrong Turn</h1>
     <p class="text-lg mb-10" style="color:var(--text-secondary)">
-      The page you're looking for has gone missing — like a file after a hard drive crash.
-      Don't worry, we can help.
+      The page you're after has moved or no longer exists. Let's get you back on track —
+      explore what we build for clients across the USA, Canada, and worldwide.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="/"        class="btn btn-gradient"  data-magnetic>Back to Home</a>
-      <a href="/services" class="btn btn-secondary" data-magnetic>Browse Services</a>
+      <a href="/start-project" class="btn btn-gradient"  data-magnetic>Get a Free Quote</a>
+      <a href="/"              class="btn btn-secondary" data-magnetic>Back to Home</a>
+      <a href="/services"      class="btn btn-secondary" data-magnetic>Our Services</a>
+      <a href="/portfolio"     class="btn btn-secondary" data-magnetic>View Portfolio</a>
     </div>
   </div>
 </section>

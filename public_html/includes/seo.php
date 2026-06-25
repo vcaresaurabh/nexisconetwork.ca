@@ -11,10 +11,10 @@ class Seo {
         $schema = [
             '@context'  => 'https://schema.org',
             '@type'     => 'Organization',
-            'name'      => 'Nexisco Network Inc.',
-            'legalName' => 'Nexisco Network Inc.',
+            'name'      => 'Nexisco Network',
+            'legalName' => 'Nexisco Network',
             'url'       => 'https://nexisconetwork.ca',
-            'logo'      => 'https://nexisconetwork.ca/assets/img/og-image.png',
+            'logo'      => 'https://nexisconetwork.ca/assets/img/logo.png',
             'sameAs'    => [],
             'address'   => [
                 '@type'           => 'PostalAddress',
@@ -26,32 +26,34 @@ class Seo {
             ],
             'contactPoint' => [[
                 '@type'             => 'ContactPoint',
-                'telephone'         => '+1-825-771-7727',
+                'telephone'         => '+1-888-909-9466',
                 'contactType'       => 'customer service',
                 'email'             => 'support@nexisconetwork.ca',
-                'areaServed'        => 'CA',
+                'areaServed'        => ['US', 'CA', 'Worldwide'],
                 'availableLanguage' => ['English'],
             ]],
         ];
         return self::tag($schema);
     }
 
-    /* ── LocalBusiness schema ─────────────────────────────────── */
-    public static function local_business(): string {
+    /* ── ProfessionalService schema (global digital agency) ───── */
+    public static function professional_service(): string {
         $schema = [
             '@context'    => 'https://schema.org',
-            '@type'       => ['LocalBusiness', 'ComputerStore'],
-            'name'        => 'Nexisco Network Inc.',
-            'legalName'   => 'Nexisco Network Inc.',
-            'description' => 'Professional IT services in Canada. Virus removal, PC repair, data recovery, network setup, remote support, and business IT solutions. Headquartered in Edmonton, Alberta.',
+            '@type'       => 'ProfessionalService',
+            '@id'         => 'https://nexisconetwork.ca/#agency',
+            'name'        => 'Nexisco Network',
+            'legalName'   => 'Nexisco Network',
+            'description' => 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce solutions for businesses in the US, Canada, and worldwide.',
             'url'         => 'https://nexisconetwork.ca',
-            'telephone'   => '+1-825-771-7727',
+            'telephone'   => '+1-888-909-9466',
             'email'       => 'support@nexisconetwork.ca',
             'image'       => 'https://nexisconetwork.ca/assets/img/og-image.png',
+            'logo'        => 'https://nexisconetwork.ca/assets/img/logo.png',
             'priceRange'  => '$$',
-            'currenciesAccepted' => 'CAD',
-            'paymentAccepted'    => 'Cash, Credit Card, Debit, Interac e-Transfer',
-            'areaServed'         => 'Canada',
+            'currenciesAccepted' => 'USD, CAD',
+            'paymentAccepted'    => 'Credit Card, Debit Card, Online Payment, Bank Transfer',
+            'areaServed'         => ['US', 'CA', 'Worldwide'],
             'address' => [
                 '@type'           => 'PostalAddress',
                 'streetAddress'   => '1404, 49A Street NW',
@@ -60,22 +62,22 @@ class Seo {
                 'postalCode'      => 'T6L 6H6',
                 'addressCountry'  => 'CA',
             ],
-            'geo' => [
-                '@type'     => 'GeoCoordinates',
-                'latitude'  => 53.5461,
-                'longitude' => -113.4938,
-            ],
-            'openingHoursSpecification' => [
-                ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => ['Monday','Tuesday','Wednesday','Thursday','Friday'], 'opens' => '09:00', 'closes' => '18:00'],
-                ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => 'Saturday', 'opens' => '10:00', 'closes' => '16:00'],
-            ],
-            'aggregateRating' => [
-                '@type'       => 'AggregateRating',
-                'ratingValue' => '4.9',
-                'reviewCount' => '247',
+            'hasOfferCatalog' => [
+                '@type' => 'OfferCatalog',
+                'name'  => 'Digital Services',
+                'itemListElement' => [
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Web Development',        'url' => 'https://nexisconetwork.ca/services/web-development']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Digital Marketing',      'url' => 'https://nexisconetwork.ca/services/digital-marketing']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Ecommerce Development',  'url' => 'https://nexisconetwork.ca/services/ecommerce-development']],
+                ],
             ],
         ];
         return self::tag($schema);
+    }
+
+    /* Backwards-compatible alias (some pages still call local_business()). */
+    public static function local_business(): string {
+        return self::professional_service();
     }
 
     /* ── Service schema ───────────────────────────────────────── */
@@ -84,18 +86,12 @@ class Seo {
             '@context'    => 'https://schema.org',
             '@type'       => 'Service',
             'name'        => $service['name'],
+            'serviceType' => $service['name'],
             'description' => $service['description'] ?? $service['tagline'] ?? '',
-            'provider'    => ['@type' => 'Organization', 'name' => 'Nexisco Network Inc.'],
-            'areaServed'  => 'Canada',
+            'provider'    => ['@type' => 'Organization', 'name' => 'Nexisco Network'],
+            'areaServed'  => ['US', 'CA', 'Worldwide'],
             'url'         => 'https://nexisconetwork.ca/services/' . ($service['slug'] ?? ''),
         ];
-        if (!empty($service['price_from'])) {
-            $schema['offers'] = [
-                '@type'         => 'Offer',
-                'price'         => $service['price_from'],
-                'priceCurrency' => 'CAD',
-            ];
-        }
         return self::tag($schema);
     }
 

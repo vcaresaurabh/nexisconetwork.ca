@@ -2,7 +2,7 @@
 /**
  * Nexisco Network — Glassmorphic Navbar
  * Transparent on top → frosted-glass on scroll (handled by app.js)
- * Desktop: horizontal nav with services mega-dropdown
+ * Desktop: horizontal nav with services dropdown (3 pillars)
  * Mobile: full-screen drawer
  */
 require_once __DIR__ . '/../data/services.php';
@@ -13,39 +13,20 @@ $services = $SERVICES ?? [];
   <nav class="flex items-center justify-between max-w-[1400px] mx-auto" aria-label="Main navigation">
 
     <!-- ── Logo ──────────────────────────────────────────────── -->
-    <a href="/" class="flex items-center gap-3 group" aria-label="Nexisco Network — Home">
-      <!-- N-shaped network graph logo mark -->
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"
-           class="transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
-        <defs>
-          <linearGradient id="logo-lg" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#14B8A6"/>
-            <stop offset="100%" stop-color="#0891B2"/>
-          </linearGradient>
-          <linearGradient id="logo-ng" x1="9" y1="8" x2="27" y2="28" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#2DD4BF"/>
-            <stop offset="100%" stop-color="#0891B2"/>
-          </linearGradient>
-        </defs>
-        <!-- N strokes -->
-        <line x1="9" y1="28" x2="9" y2="8"  stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="9" y1="8"  x2="27" y2="28" stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
-        <line x1="27" y1="8" x2="27" y2="28" stroke="url(#logo-lg)" stroke-width="2.2" stroke-linecap="round"/>
-        <!-- Corner nodes -->
-        <circle cx="9"  cy="8"  r="2.5" fill="url(#logo-ng)"/>
-        <circle cx="9"  cy="28" r="2"   fill="#06B6D4" opacity="0.85"/>
-        <circle cx="27" cy="8"  r="2"   fill="#14B8A6" opacity="0.85"/>
-        <circle cx="27" cy="28" r="2.5" fill="url(#logo-ng)"/>
-        <!-- Centre pulse node -->
-        <circle cx="18" cy="18" r="1.5" fill="#06B6D4" opacity="0.55"/>
-      </svg>
-      <span class="font-semibold text-[1.125rem] tracking-tight" style="font-family:'General Sans',sans-serif">
-        Nexisco <span style="color:var(--accent)">Network</span>
-      </span>
+    <a href="/" class="flex items-center group" aria-label="Nexisco Network — Home">
+      <img src="/assets/img/logo.png?v=2"
+           srcset="/assets/img/logo.png?v=2 1x, /assets/img/logo@2x.png?v=2 2x, /assets/img/logo@3x.png?v=2 3x"
+           alt="Nexisco Network"
+           width="360" height="166"
+           class="h-10 md:h-12 lg:h-14 w-auto transition-transform duration-300 group-hover:scale-[1.03]"
+           style="object-fit:contain"
+           decoding="async">
     </a>
 
     <!-- ── Desktop Nav ───────────────────────────────────────── -->
     <ul class="hidden lg:flex items-center gap-8 list-none" role="list">
+
+      <li><a href="/" class="nav-link py-2">Home</a></li>
 
       <!-- Services Dropdown -->
       <li class="relative group">
@@ -58,11 +39,11 @@ $services = $SERVICES ?? [];
         </button>
 
         <!-- Mega dropdown -->
-        <div class="nav-megamenu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[640px] rounded-2xl p-4
+        <div class="nav-megamenu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-2xl p-4
                     opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0
                     transition-all duration-300 z-50"
              role="menu">
-          <div class="grid grid-cols-3 gap-2">
+          <div class="grid grid-cols-1 gap-2">
             <?php foreach ($services as $s): ?>
             <a href="/services/<?= htmlspecialchars($s['slug'], ENT_QUOTES, 'UTF-8') ?>"
                class="nav-megamenu-item flex items-center gap-3 p-3 rounded-xl transition-colors duration-200 group/item"
@@ -87,28 +68,29 @@ $services = $SERVICES ?? [];
           </div>
           <div class="border-t mt-3 pt-3" style="border-color:rgba(15,23,42,0.08)">
             <a href="/services" class="text-sm text-[var(--accent)] hover:underline flex items-center gap-1">
-              View all 9 services →
+              View all services →
             </a>
           </div>
         </div>
       </li>
 
-      <li><a href="/membership" class="nav-link py-2">Membership</a></li>
-      <li><a href="/about"      class="nav-link py-2">About</a></li>
-      <li><a href="/faq"        class="nav-link py-2">FAQ</a></li>
-      <li><a href="/contact"    class="nav-link py-2">Contact</a></li>
+      <li><a href="/portfolio" class="nav-link py-2">Portfolio</a></li>
+      <li><a href="/pricing"   class="nav-link py-2">Pricing</a></li>
+      <li><a href="/about"     class="nav-link py-2">About</a></li>
+      <li><a href="/faq"       class="nav-link py-2">FAQ</a></li>
+      <li><a href="/contact"   class="nav-link py-2">Contact</a></li>
     </ul>
 
     <!-- ── Desktop CTAs ──────────────────────────────────────── -->
     <div class="hidden lg:flex items-center gap-3">
-      <a href="tel:+18257717727" class="nav-link text-sm py-2" aria-label="Call us">
+      <a href="tel:+18889099466" class="nav-link text-sm py-2" aria-label="Call us">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="1.5" stroke-linecap="round" aria-hidden="true" class="inline mr-1.5">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.5h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
         </svg>
-        (825) 771-7727
+        +1 (888) 909-9466
       </a>
-      <a href="/book" class="btn btn-primary text-sm" data-magnetic>Book a Repair</a>
+      <a href="/start-project" class="btn btn-primary text-sm" data-magnetic>Get a Free Quote</a>
     </div>
 
     <!-- ── Mobile Hamburger ──────────────────────────────────── -->
@@ -130,15 +112,14 @@ $services = $SERVICES ?? [];
      x-data>
 
   <div class="flex items-center justify-between p-6 border-b" style="border-color:var(--border-subtle)">
-    <a href="/" class="flex items-center gap-2" aria-label="Home">
-      <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-        <path d="M4 30 L4 6 L18 18 L32 6 L32 30" stroke="#0891B2" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="18" cy="18" r="2.5" fill="#4F46E5"/>
-      </svg>
-      <span class="font-semibold" style="font-family:'General Sans',sans-serif">
-        Nexisco <span style="color:var(--accent)">Network</span>
-      </span>
+    <a href="/" class="flex items-center" aria-label="Home">
+      <img src="/assets/img/logo.png?v=2"
+           srcset="/assets/img/logo.png?v=2 1x, /assets/img/logo@2x.png?v=2 2x, /assets/img/logo@3x.png?v=2 3x"
+           alt="Nexisco Network"
+           width="360" height="166"
+           class="h-10 w-auto"
+           style="object-fit:contain"
+           decoding="async">
     </a>
     <button id="menu-close" class="p-2 rounded-lg hover:bg-slate-900/5"
             aria-label="Close navigation menu">
@@ -151,7 +132,8 @@ $services = $SERVICES ?? [];
   <nav class="flex-1 overflow-y-auto p-6 space-y-1" aria-label="Mobile navigation links">
     <a href="/"          class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Home</a>
     <a href="/services"  class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Services</a>
-    <a href="/membership"class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Membership</a>
+    <a href="/portfolio" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Portfolio</a>
+    <a href="/pricing"   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Pricing</a>
     <a href="/about"     class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">About</a>
     <a href="/faq"       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">FAQ</a>
     <a href="/contact"   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Contact</a>
@@ -169,10 +151,10 @@ $services = $SERVICES ?? [];
   </nav>
 
   <div class="p-6 border-t space-y-3" style="border-color:var(--border-subtle)">
-    <a href="tel:+18257717727" class="btn btn-secondary w-full text-center">
-      Call (825) 771-7727
+    <a href="tel:+18889099466" class="btn btn-secondary w-full text-center">
+      Call +1 (888) 909-9466
     </a>
-    <a href="/book" class="btn btn-gradient w-full text-center">Book a Repair</a>
+    <a href="/start-project" class="btn btn-gradient w-full text-center">Get a Free Quote</a>
   </div>
 </div>
 

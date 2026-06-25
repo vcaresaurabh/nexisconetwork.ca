@@ -108,15 +108,9 @@ function json_response(array $data, int $status = 200): never {
 /* ── Service slug whitelist ──────────────────────────────────── */
 function valid_service_slug(string $slug): bool {
     $valid = [
-        'virus-malware-removal',
-        'pc-laptop-repair',
-        'data-recovery',
-        'network-wifi-setup',
-        'software-installation',
-        'remote-support',
-        'business-it-support',
-        'hardware-upgrades',
-        'smart-home-iot',
+        'web-development',
+        'digital-marketing',
+        'ecommerce-development',
     ];
     return in_array($slug, $valid, true);
 }

@@ -54,3 +54,15 @@ error_log
 # public_html/assets/img/hero/*.webp
 # public_html/assets/video/*.mp4
 # public_html/assets/video/*.webm
+
+# Duplicate-project export — NOT part of this repo
+aegisitsolutions.zip
+/aegisitsolutions/
+
+# Local AI tooling / skill caches — not site code
+.agents/
+.claude/
+skills-lock.json
+
+# Loose design screenshots / mockups (not in the asset pipeline)
+nexisco-2.png

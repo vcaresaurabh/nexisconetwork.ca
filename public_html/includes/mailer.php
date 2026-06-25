@@ -34,7 +34,7 @@ function send_mail(array $params): bool {
         $mail->Port        = $smtp['port']     ?? 587;
         $mail->CharSet     = PHPMailer::CHARSET_UTF8;
 
-        $mail->setFrom($smtp['from_address'] ?? 'noreply@nexisconetwork.ca', $smtp['from_name'] ?? 'Nexisco Network Inc.');
+        $mail->setFrom($smtp['from_address'] ?? 'noreply@nexisconetwork.ca', $smtp['from_name'] ?? 'Nexisco Network');
         $mail->addAddress($params['to'], $params['to_name'] ?? '');
 
         if (!empty($params['reply_to'])) {
@@ -123,14 +123,14 @@ function mail_template(array $data): string {
     <tr>
       <td style="padding:24px 40px;border-top:1px solid rgba(15,23,42,0.08);background:#F8FAFC">
         <p style="font-size:12px;color:#64748B;margin:0;line-height:1.6">
-          You're receiving this email from Nexisco Network Inc. because you requested a service or opted in to commercial communications. This message complies with Canada's Anti-Spam Legislation (CASL).<br><br>
-          <strong style="color:#475569">Nexisco Network Inc.</strong><br>
+          You're receiving this email from Nexisco Network because you requested a service or opted in to commercial communications. This message complies with Canada's Anti-Spam Legislation (CASL).<br><br>
+          <strong style="color:#475569">Nexisco Network</strong><br>
           1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada<br>
-          Phone: +1 (825) 771-7727 · Email: support@nexisconetwork.ca<br><br>
+          Phone: +1 (888) 909-9466 · Email: support@nexisconetwork.ca<br><br>
           <a href="https://nexisconetwork.ca/opt-in-opt-out" style="color:#0891B2;text-decoration:none">Unsubscribe</a> ·
           <a href="https://nexisconetwork.ca/privacy" style="color:#0891B2;text-decoration:none">Privacy Policy</a> ·
           <a href="https://nexisconetwork.ca/terms" style="color:#0891B2;text-decoration:none">Terms</a><br><br>
-          © {$year} Nexisco Network Inc. All rights reserved.
+          © {$year} Nexisco Network All rights reserved.
         </p>
       </td>
     </tr>

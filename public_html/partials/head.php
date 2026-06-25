@@ -3,12 +3,12 @@
  * Nexisco Network — <head> partial
  * Loaded by every page. $seo and $page_title must be set before including.
  */
-$page_title       = $page_title       ?? 'Nexisco Network — Smart IT. Seamless Support.';
-$page_description = $page_description ?? 'Professional IT services in Canada. Virus & malware removal, PC & laptop repair, data recovery, network & WiFi setup, and managed business IT. Book online — same-day service available.';
+$page_title       = $page_title       ?? 'Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency';
+$page_description = $page_description ?? 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce solutions for businesses in the US, Canada, and worldwide.';
 $page_canonical   = $page_canonical   ?? 'https://nexisconetwork.ca' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
 $og_image         = $og_image         ?? 'https://nexisconetwork.ca/assets/img/og-image.png';
 $theme_color      = '#0891B2';
-$page_keywords    = $page_keywords    ?? 'IT services Canada, computer repair Toronto, virus removal, data recovery, laptop repair, network setup, WiFi installation, PC tune-up, business IT support, managed IT services, smart home setup, remote tech support, Nexisco Network';
+$page_keywords    = $page_keywords    ?? 'web development, web design, digital marketing agency, SEO, PPC, social media marketing, ecommerce development, Shopify, WooCommerce, conversion optimization, branding, Nexisco Network';
 $page_type        = $page_type        ?? 'website'; // override per page (article, service, etc.)
 
 // CSRF token
@@ -54,7 +54,7 @@ if (empty($_SESSION['csrf_token'])) {
   <meta property="og:image:type"  content="image/png">
   <meta property="og:image:width"  content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt"   content="Nexisco Network — Smart IT, Seamless Support across Canada">
+  <meta property="og:image:alt"   content="Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency">
   <meta property="og:locale"      content="en_CA">
 
   <!-- ── Twitter / X Card ──────────────────────────────────── -->
@@ -64,7 +64,7 @@ if (empty($_SESSION['csrf_token'])) {
   <meta name="twitter:title"       content="<?= htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="twitter:description" content="<?= htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="twitter:image"       content="<?= htmlspecialchars($og_image, ENT_QUOTES, 'UTF-8') ?>">
-  <meta name="twitter:image:alt"   content="Nexisco Network — Smart IT services across Canada">
+  <meta name="twitter:image:alt"   content="Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency">
 
   <!-- ── Canadian Geo Meta ─────────────────────────────────── -->
   <meta name="geo.region"     content="CA-AB">
@@ -76,10 +76,15 @@ if (empty($_SESSION['csrf_token'])) {
   <meta name="DC.language"    content="en-CA">
 
   <!-- ── Favicon Set ───────────────────────────────────────── -->
-  <link rel="icon"             href="/favicon.ico" sizes="any">
-  <link rel="icon"             href="/assets/img/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-  <link rel="manifest"         href="/site.webmanifest">
+  <link rel="icon"             href="/favicon.ico?v=2" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16"   href="/assets/img/favicon-16.png?v=2">
+  <link rel="icon" type="image/png" sizes="32x32"   href="/assets/img/favicon-32.png?v=2">
+  <link rel="icon" type="image/png" sizes="48x48"   href="/assets/img/favicon-48.png?v=2">
+  <link rel="icon" type="image/png" sizes="96x96"   href="/assets/img/favicon-96.png?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png?v=2">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/img/icon-512.png?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png?v=2">
+  <link rel="manifest"         href="/site.webmanifest?v=2">
   <meta name="msapplication-TileColor" content="#FAFBFC">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -96,7 +101,7 @@ if (empty($_SESSION['csrf_token'])) {
   <link rel="preconnect"   href="https://cdn.jsdelivr.net" crossorigin>
 
   <!-- ── Critical CSS preload ─────────────────────────────── -->
-  <link rel="preload" href="/assets/css/app.css" as="style">
+  <link rel="preload" href="/assets/css/app.css?v=<?= defined('ASSET_VERSION') ? ASSET_VERSION : '1' ?>" as="style">
 
   <!-- ── Google Fonts (display=swap for fast text render) ──── -->
   <?php
@@ -129,7 +134,7 @@ if (empty($_SESSION['csrf_token'])) {
   </style>
 
   <!-- ── Compiled Tailwind CSS ─────────────────────────────── -->
-  <link rel="stylesheet" href="/assets/css/app.css">
+  <link rel="stylesheet" href="/assets/css/app.css?v=<?= defined('ASSET_VERSION') ? ASSET_VERSION : '1' ?>">
 
   <!-- ── CSRF Token for JS fetch() calls ───────────────────── -->
   <meta name="csrf-token" content="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
@@ -153,26 +158,25 @@ if (empty($_SESSION['csrf_token'])) {
     body { overflow: hidden; } /* unlocked by preloader.js */
   </style>
 
-  <!-- ── Structured Data: Organization / LocalBusiness ────── -->
+  <!-- ── Structured Data: ProfessionalService (global digital agency) ── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://nexisconetwork.ca/#business",
-    "name": "Nexisco Network Inc.",
-    "legalName": "Nexisco Network Inc.",
+    "@type": "ProfessionalService",
+    "@id": "https://nexisconetwork.ca/#agency",
+    "name": "Nexisco Network",
+    "legalName": "Nexisco Network",
     "alternateName": "Nexisco",
-    "description": "Professional IT services across Canada — virus & malware removal, PC & laptop repair, data recovery, network setup, and managed business IT. Headquartered in Edmonton, Alberta.",
+    "description": "Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce development for businesses in the US, Canada, and worldwide.",
     "url": "https://nexisconetwork.ca",
     "logo": "https://nexisconetwork.ca/assets/img/logo.png",
     "image": "https://nexisconetwork.ca/assets/img/og-image.png",
-    "telephone": "+1-825-771-7727",
+    "telephone": "+1-888-909-9466",
     "email": "support@nexisconetwork.ca",
     "priceRange": "$$",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Canada"
-    },
+    "currenciesAccepted": "USD, CAD",
+    "paymentAccepted": "Credit Card, Debit Card, Online Payment, Bank Transfer",
+    "areaServed": ["US", "CA", "Worldwide"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1404, 49A Street NW",
@@ -188,28 +192,26 @@ if (empty($_SESSION['csrf_token'])) {
     },
     "contactPoint": [{
       "@type": "ContactPoint",
-      "telephone": "+1-825-771-7727",
+      "telephone": "+1-888-909-9466",
       "contactType": "customer service",
       "email": "support@nexisconetwork.ca",
-      "areaServed": "CA",
+      "areaServed": ["US", "CA", "Worldwide"],
       "availableLanguage": ["en"]
     }],
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-      "opens": "08:00",
-      "closes": "21:00"
-    }],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Digital Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development", "url": "https://nexisconetwork.ca/services/web-development" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing", "url": "https://nexisconetwork.ca/services/digital-marketing" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ecommerce Development", "url": "https://nexisconetwork.ca/services/ecommerce-development" } }
+      ]
+    },
     "sameAs": [
       "https://www.facebook.com/NexiscoNetwork",
       "https://www.linkedin.com/company/nexisco-network",
       "https://twitter.com/NexiscoNetwork"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "247"
-    }
+    ]
   }
   </script>
 
@@ -232,6 +234,17 @@ if (empty($_SESSION['csrf_token'])) {
 
   <?php if (!empty($extra_jsonld)) echo $extra_jsonld; ?>
   <?php if (!empty($extra_head)) echo $extra_head; ?>
+
+  <?php /* Google Analytics 4 — only emitted when a real Measurement ID is set in config */ ?>
+  <?php if (defined('ANALYTICS_ID') && ANALYTICS_ID !== ''): $gid = htmlspecialchars(ANALYTICS_ID, ENT_QUOTES, 'UTF-8'); ?>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<?= $gid ?>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<?= $gid ?>');
+  </script>
+  <?php endif; ?>
 </head>
 <body class="bg-[#FAFBFC] text-[#0F172A] antialiased overflow-x-hidden">
 
@@ -240,30 +253,11 @@ if (empty($_SESSION['csrf_token'])) {
 
 <!-- ── Preloader ──────────────────────────────────────────────── -->
 <div id="preloader" role="status" aria-label="Loading Nexisco Network">
-  <svg id="preloader-logo" width="64" height="64" viewBox="0 0 64 64" fill="none"
-       xmlns="http://www.w3.org/2000/svg" style="opacity:0" aria-hidden="true">
-    <defs>
-      <linearGradient id="pre-lg" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#14B8A6"/>
-        <stop offset="100%" stop-color="#0891B2"/>
-      </linearGradient>
-      <linearGradient id="pre-ng" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#2DD4BF"/>
-        <stop offset="100%" stop-color="#0891B2"/>
-      </linearGradient>
-    </defs>
-    <!-- N strokes -->
-    <line x1="16" y1="50" x2="16" y2="14" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
-    <line x1="16" y1="14" x2="48" y2="50" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
-    <line x1="48" y1="14" x2="48" y2="50" stroke="url(#pre-lg)" stroke-width="3.5" stroke-linecap="round"/>
-    <!-- Corner nodes -->
-    <circle cx="16" cy="14" r="4.5" fill="url(#pre-ng)"/>
-    <circle cx="16" cy="50" r="3.5" fill="#06B6D4" opacity="0.85"/>
-    <circle cx="48" cy="14" r="3.5" fill="#14B8A6" opacity="0.85"/>
-    <circle cx="48" cy="50" r="4.5" fill="url(#pre-ng)"/>
-    <!-- Centre pulse -->
-    <circle cx="32" cy="32" r="2.5" fill="#06B6D4" opacity="0.55"/>
-  </svg>
+  <img id="preloader-logo" src="/assets/img/logo-mark.png"
+       alt="Nexisco Network"
+       width="96" height="96"
+       style="opacity:0;width:96px;height:96px;object-fit:contain"
+       decoding="async">
 
   <div class="preloader-bar-track" style="width:200px;height:2px;background:rgba(15,23,42,0.08);border-radius:1px;overflow:hidden">
     <div id="preloader-bar-fill" class="preloader-bar-fill" style="height:100%;width:0%;background:linear-gradient(90deg,#0891B2,#4F46E5);border-radius:1px;transition:width 0.1s ease"></div>
