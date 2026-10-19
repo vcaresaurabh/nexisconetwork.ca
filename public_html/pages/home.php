@@ -14,7 +14,7 @@ require_once __DIR__ . '/../data/portfolio.php';
 require_once __DIR__ . '/../data/faqs.php';
 
 $page_title       = 'Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency';
-$page_description = 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce solutions for businesses in the US, Canada, and worldwide.';
+$page_description = 'Nexisco Network is an ' . business('positioning') . ', delivering web development, digital marketing, and ecommerce development.';
 $page_canonical   = 'https://nexisconetwork.ca/';
 
 // Homepage FAQs (first 5 from General category)
@@ -33,10 +33,7 @@ foreach (['web', 'marketing', 'ecommerce'] as $cat) {
 $preview_plan_ids = ['starter', 'pro', 'advanced'];
 $preview_plans = array_values(array_filter($PRICING_PLANS, fn($p) => in_array($p['id'], $preview_plan_ids, true)));
 
-$extra_head = Seo::organization() . Seo::professional_service();
-if (!empty($home_faqs)) {
-    $extra_head .= Seo::faq_page($home_faqs);
-}
+$extra_head = !empty($home_faqs) ? Seo::faq_page($home_faqs) : '';
 
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
@@ -112,7 +109,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <!-- Live status pill -->
       <div data-anim="fade-up" class="hero-status mb-6">
         <span class="pulse-dot"></span>
-        <span class="text-accent-font">Global digital agency · Serving the US, Canada &amp; worldwide</span>
+        <span class="text-accent-font"><?= e(business('positioning')) ?></span>
       </div>
 
       <!-- Headline -->
@@ -131,7 +128,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         Expert
         <span class="typewriter" id="hero-typewriter">web development</span>
         for ambitious brands.<br>
-        High-performing websites, data-driven marketing, and ecommerce stores that sell — in the US, Canada &amp; worldwide.
+        High-performing websites, data-driven marketing, and ecommerce stores that sell — for businesses in Canada and the US.
       </p>
 
       <!-- CTAs -->
@@ -144,10 +141,10 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div data-anim="fade-up" class="flex flex-wrap gap-3 mt-8">
         <?php
         $trust = [
-          ['🌎', 'Serving the US &amp; Canada'],
+          ['🌎', 'Serving Canada &amp; the US'],
           ['💳', 'Billed in USD &amp; CAD'],
           ['🎯', 'Results-Focused'],
-          ['🌍', 'Global Delivery'],
+          ['💻', 'Remote Delivery'],
         ];
         foreach ($trust as [$icon, $label]): ?>
         <span class="text-xs px-3 py-2 rounded-full inline-flex items-center gap-1.5 text-accent-font font-semibold"
@@ -188,9 +185,9 @@ require_once __DIR__ . '/../partials/navbar.php';
       <?php
       $marquee = [
         'Web Development', 'UI/UX', 'SEO', 'Google Ads', 'Social Media', 'Shopify',
-        'WooCommerce', 'Conversion Optimization', 'Email Marketing', 'Branding', 'Global Clients', 'USD & CAD',
+        'WooCommerce', 'Conversion Optimization', 'Email Marketing', 'Branding', 'Canada & US', 'USD & CAD',
         'Web Development', 'UI/UX', 'SEO', 'Google Ads', 'Social Media', 'Shopify',
-        'WooCommerce', 'Conversion Optimization', 'Email Marketing', 'Branding', 'Global Clients', 'USD & CAD',
+        'WooCommerce', 'Conversion Optimization', 'Email Marketing', 'Branding', 'Canada & US', 'USD & CAD',
       ];
       foreach ($marquee as $item): ?>
       <span style="display:inline-flex;align-items:center;gap:0.75rem;white-space:nowrap;font-size:0.8125rem;font-weight:500;letter-spacing:0.05em;color:var(--text-tertiary)">
@@ -223,7 +220,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Our Track Record</p>
       <h2>Results that <span class="text-gradient">compound</span></h2>
-      <p>Measurable outcomes for brands, startups, and growing businesses worldwide.</p>
+      <p>Web development, digital marketing, and ecommerce for businesses in Canada and the US.</p>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8" data-stagger data-stagger-delay="0.1">
@@ -231,7 +228,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       // Factual value-stats. To show real numeric figures instead, set verifiable
       // values in config/site-stats.php and wire them here.
       $value_stats = [
-        ['big' => 'US · CA · Worldwide', 'sub' => 'Clients served across borders'],
+        ['big' => 'Canada · US',         'sub' => 'Serving ' . e(business('service_area'))],
         ['big' => '3 Core Services',     'sub' => 'Web, marketing &amp; ecommerce, one team'],
         ['big' => 'USD &amp; CAD',       'sub' => 'Billed in your currency'],
         ['big' => 'Senior Specialists',  'sub' => 'Design, development &amp; marketing experts'],
@@ -320,8 +317,8 @@ require_once __DIR__ . '/../partials/navbar.php';
 
         <div class="floating-badge rounded-2xl px-5 py-4 absolute -right-4 top-12"
              data-anim="fade-up" style="max-width:180px">
-          <div class="stat-number text-3xl leading-none">🌍</div>
-          <div class="text-xs mt-2 font-medium" style="color:var(--text-secondary)">Global delivery<br>across time zones</div>
+          <div class="stat-number text-3xl leading-none">💻</div>
+          <div class="text-xs mt-2 font-medium" style="color:var(--text-secondary)">Work delivered<br>online</div>
         </div>
 
         <div class="floating-badge rounded-2xl px-5 py-4 absolute -left-4 bottom-16"
@@ -351,7 +348,7 @@ require_once __DIR__ . '/../partials/navbar.php';
           ['icon' => '🎯', 'title' => 'Conversion-Focused Design',  'desc' => 'Every page and campaign is built to drive a measurable business outcome.'],
           ['icon' => '📊', 'title' => 'Data-Driven Marketing',      'desc' => 'We test, measure, and optimize so your budget compounds over time.'],
           ['icon' => '📈', 'title' => 'Transparent Reporting',      'desc' => 'Live dashboards and plain-English monthly reports — no vanity metrics.'],
-          ['icon' => '🌍', 'title' => 'Global Delivery',           'desc' => 'Remote-friendly delivery for clients in the US, Canada, and worldwide.'],
+          ['icon' => '💻', 'title' => 'Remote Delivery',           'desc' => 'Work is delivered online for businesses in Canada and the US.'],
           ['icon' => '🤝', 'title' => 'Dedicated Project Manager',  'desc' => 'One point of contact who keeps your project on time and on scope.'],
         ];
         ?>
@@ -555,7 +552,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Why Nexisco</p>
       <h2>Why clients <span class="text-gradient">choose Nexisco</span></h2>
-      <p>Senior talent, conversion-focused work, and transparent delivery — across the US, Canada, and worldwide.</p>
+      <p>Conversion-focused work and transparent delivery — for businesses in Canada and the US.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger data-stagger-delay="0.08">
@@ -564,7 +561,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         ['icon' => '🧠', 'title' => 'Senior-level talent',      'desc' => 'Your work is handled by specialists — not juniors learning on the job.'],
         ['icon' => '🎯', 'title' => 'Conversion-focused builds', 'desc' => 'Every site and campaign is designed to turn visitors into customers.'],
         ['icon' => '📊', 'title' => 'Transparent reporting',     'desc' => 'Clear metrics and plain-English updates — no jargon, no vanity numbers.'],
-        ['icon' => '🌍', 'title' => 'Global, on-time delivery',  'desc' => 'Remote-friendly delivery across time zones, on schedule.'],
+        ['icon' => '💻', 'title' => 'Remote delivery',           'desc' => 'Work is delivered online, on a timeline confirmed in your proposal.'],
       ];
       foreach ($why_cards as $c): ?>
       <div class="glass rounded-2xl p-6 h-full">
@@ -657,7 +654,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="flex flex-wrap justify-center gap-6 mt-10 text-sm"
            style="color:var(--text-tertiary)" data-anim="fade-up">
         <span>✓ Free consultation</span>
-        <span>✓ Global delivery</span>
+        <span>✓ Work delivered online</span>
         <span>✓ USD &amp; CAD</span>
       </div>
     </div>

@@ -58,7 +58,7 @@
 
             <p class="text-xs mt-3" style="color:var(--text-tertiary)">
               By subscribing you expressly consent to receive commercial electronic messages from
-              Nexisco Network. You may unsubscribe at any time.
+              <?= e(business('legal_name')) ?> You may unsubscribe at any time.
               <a href="/privacy" class="underline hover:text-slate-900">Privacy Policy</a>.
             </p>
             <p data-form-msg class="text-sm mt-2" aria-live="polite"></p>
@@ -83,30 +83,28 @@
                  decoding="async" loading="lazy">
           </a>
           <p class="text-sm mb-5 max-w-xs leading-relaxed" style="color:var(--text-secondary)">
-            Web. Marketing. Ecommerce. Growth, engineered. A global digital agency for businesses in the US, Canada, and worldwide.
+            Web. Marketing. Ecommerce. Growth, engineered. An <?= e(business('positioning')) ?>.
           </p>
           <!-- Contact info -->
           <address class="not-italic text-sm space-y-2" style="color:var(--text-secondary)">
             <div>
-              <a href="tel:+18889099466" class="hover:text-slate-900 transition-colors">
-                📞 +1 (888) 909-9466
+              <a href="<?= e(business_tel_href()) ?>" class="hover:text-slate-900 transition-colors">
+                📞 <?= e(business('phone')) ?>
               </a>
             </div>
             <div>
-              <a href="mailto:support@nexisconetwork.ca" class="hover:text-slate-900 transition-colors">
-                ✉️ support@nexisconetwork.ca
+              <a href="<?= e(business_mailto()) ?>" class="hover:text-slate-900 transition-colors">
+                ✉️ <?= e(business('email')) ?>
               </a>
             </div>
             <div class="leading-relaxed">
-              📍 1404, 49A Street NW<br>
-              Edmonton, Alberta T6L 6H6, Canada
+              📍 Registered office: <?= e(business_address(true)) ?>
             </div>
             <div class="leading-relaxed pt-1" style="color:var(--text-tertiary)">
-              🕑 Mon–Fri 8am–7pm PT · Sat 9am–5pm PT<br>
-              Support: 9am–8pm, 7 days
+              🕑 Hours: <?= e(business('hours')) ?> (<?= e(business('time_zone_label')) ?>)
             </div>
             <div class="leading-relaxed pt-1" style="color:var(--text-tertiary)">
-              🌍 We work across time zones to support clients in the US, Canada, and worldwide.
+              💻 Work is delivered online for <?= e(business('service_area')) ?>.
             </div>
           </address>
         </div>
@@ -178,8 +176,9 @@
         </div>
 
         <div class="text-xs text-center md:text-right" style="color:var(--text-tertiary)">
-          <p>© <?= date('Y') ?> Nexisco Network All rights reserved.</p>
-          <p class="mt-1">Serving clients in the US, Canada &amp; worldwide. Payments in USD &amp; CAD; applicable taxes added where required.</p>
+          <p>© <?= date('Y') ?> <?= e(business('legal_name')) ?> All rights reserved.</p>
+          <p class="mt-1"><?= e(business_registration_line()) ?></p>
+          <p class="mt-1">Serving <?= e(business('service_area')) ?>. Payments in USD &amp; CAD; applicable taxes added where required.</p>
         </div>
       </div>
 

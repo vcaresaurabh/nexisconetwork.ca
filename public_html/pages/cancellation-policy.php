@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Cancellation Policy | Nexisco Network';
-$page_description = 'How to cancel a project engagement or monthly retainer with Nexisco Network, our global digital agency. Notice periods, fees for work in progress, deposits, and how cancellation relates to refunds.';
+$page_description = 'How to cancel a project engagement or monthly retainer with Nexisco Network, an ' . business('positioning') . '. Notice periods, fees for work in progress, deposits, and how cancellation relates to refunds.';
 $page_canonical   = 'https://nexisconetwork.ca/cancellation-policy';
 $last_updated     = 'June 18, 2026';
 require_once __DIR__ . '/../partials/head.php';
@@ -24,7 +24,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <p><em>This Cancellation Policy is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
 
-      <p><em>This Cancellation Policy ("Policy") is issued by Nexisco Network, a digital agency based in Canada with its registered office at 1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada ("Nexisco Network", "we", "our", "us"). We are a global digital agency serving clients in the United States, Canada, and worldwide on a remote-friendly basis. This Policy forms part of our <a href="/terms">Terms of Service</a> and should be read together with our <a href="/refund-policy">Refund Policy</a>. Capitalized terms used here have the meanings given in the Terms of Service.</em></p>
+      <p><em>This Cancellation Policy ("Policy") is issued by Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "we", "our", "us"). We are an <?= e(business('positioning')) ?>, and our work is delivered online. This Policy forms part of our <a href="/terms">Terms of Service</a> and should be read together with our <a href="/refund-policy">Refund Policy</a>. Capitalized terms used here have the meanings given in the Terms of Service.</em></p>
 
       <h2>1. Scope</h2>
       <p>This Policy explains how you may cancel an engagement with us and what happens to fees, deposits, and work in progress when you do. It applies to two kinds of engagement:</p>
@@ -35,7 +35,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>Where a specific SOW or order form sets different cancellation terms, the terms of that document control to the extent of any conflict with this Policy.</p>
 
       <h2>2. How to Cancel</h2>
-      <p>To cancel a project engagement or a monthly retainer, send written notice to <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a> from the email address associated with your account, and quote your project name or invoice number. Cancellation takes effect on the date we receive your written notice (or a later date that you specify in that notice). Verbal or phone cancellations are not effective until confirmed by us in writing.</p>
+      <p>To cancel a project engagement or a monthly retainer, send written notice to <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a> from the email address associated with your account, and quote your project name or invoice number. Cancellation takes effect on the date we receive your written notice (or a later date that you specify in that notice). Verbal or phone cancellations are not effective until confirmed by us in writing.</p>
 
       <h2>3. Cancelling a Project Engagement</h2>
       <ul>
@@ -70,13 +70,14 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <h2>10. Questions and Notices</h2>
       <p>To cancel, request a pause, or ask a question about this Policy, contact us:</p>
+      <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Nexisco Network</strong><br>
-        1404, 49A Street NW<br>
-        Edmonton, Alberta T6L 6H6<br>
-        Canada<br>
-        Phone: <a href="tel:+18889099466">+1 (888) 909-9466</a><br>
-        Email: <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a>
+        <strong><?= e(business('legal_name')) ?></strong><br>
+        <?= e($reg_office['street']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['country']) ?><br>
+        Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
+        Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a>
       </address>
     </div>
   </div>

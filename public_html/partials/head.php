@@ -3,8 +3,10 @@
  * Nexisco Network — <head> partial
  * Loaded by every page. $seo and $page_title must be set before including.
  */
+require_once __DIR__ . '/../includes/seo.php';
+
 $page_title       = $page_title       ?? 'Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency';
-$page_description = $page_description ?? 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce solutions for businesses in the US, Canada, and worldwide.';
+$page_description = $page_description ?? business('brand_name') . ' is an ' . business('positioning') . ', delivering web development, digital marketing, and ecommerce development.';
 $page_canonical   = $page_canonical   ?? 'https://nexisconetwork.ca' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
 $og_image         = $og_image         ?? 'https://nexisconetwork.ca/assets/img/og-image.png';
 $theme_color      = '#0891B2';
@@ -35,8 +37,6 @@ if (empty($_SESSION['csrf_token'])) {
   <meta name="googlebot"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="bingbot"     content="index, follow">
   <meta name="rating"      content="general">
-  <meta name="distribution" content="global">
-  <meta name="revisit-after" content="7 days">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="<?= $theme_color ?>">
   <meta name="color-scheme" content="light">
@@ -59,8 +59,6 @@ if (empty($_SESSION['csrf_token'])) {
 
   <!-- ── Twitter / X Card ──────────────────────────────────── -->
   <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:site"        content="@NexiscoNetwork">
-  <meta name="twitter:creator"     content="@NexiscoNetwork">
   <meta name="twitter:title"       content="<?= htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="twitter:description" content="<?= htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="twitter:image"       content="<?= htmlspecialchars($og_image, ENT_QUOTES, 'UTF-8') ?>">
@@ -70,8 +68,6 @@ if (empty($_SESSION['csrf_token'])) {
   <meta name="geo.region"     content="CA-AB">
   <meta name="geo.country"    content="Canada">
   <meta name="geo.placename"  content="Edmonton, Alberta">
-  <meta name="geo.position"   content="53.5461;-113.4938">
-  <meta name="ICBM"           content="53.5461, -113.4938">
   <meta name="DC.title"       content="<?= htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="DC.language"    content="en-CA">
 
@@ -158,79 +154,9 @@ if (empty($_SESSION['csrf_token'])) {
     body { overflow: hidden; } /* unlocked by preloader.js */
   </style>
 
-  <!-- ── Structured Data: ProfessionalService (global digital agency) ── -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "@id": "https://nexisconetwork.ca/#agency",
-    "name": "Nexisco Network",
-    "legalName": "Nexisco Network",
-    "alternateName": "Nexisco",
-    "description": "Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce development for businesses in the US, Canada, and worldwide.",
-    "url": "https://nexisconetwork.ca",
-    "logo": "https://nexisconetwork.ca/assets/img/logo.png",
-    "image": "https://nexisconetwork.ca/assets/img/og-image.png",
-    "telephone": "+1-888-909-9466",
-    "email": "support@nexisconetwork.ca",
-    "priceRange": "$$",
-    "currenciesAccepted": "USD, CAD",
-    "paymentAccepted": "Credit Card, Debit Card, Online Payment, Bank Transfer",
-    "areaServed": ["US", "CA", "Worldwide"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "1404, 49A Street NW",
-      "addressLocality": "Edmonton",
-      "addressRegion": "AB",
-      "postalCode": "T6L 6H6",
-      "addressCountry": "CA"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 53.5461,
-      "longitude": -113.4938
-    },
-    "contactPoint": [{
-      "@type": "ContactPoint",
-      "telephone": "+1-888-909-9466",
-      "contactType": "customer service",
-      "email": "support@nexisconetwork.ca",
-      "areaServed": ["US", "CA", "Worldwide"],
-      "availableLanguage": ["en"]
-    }],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Digital Services",
-      "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development", "url": "https://nexisconetwork.ca/services/web-development" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Marketing", "url": "https://nexisconetwork.ca/services/digital-marketing" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ecommerce Development", "url": "https://nexisconetwork.ca/services/ecommerce-development" } }
-      ]
-    },
-    "sameAs": [
-      "https://www.facebook.com/NexiscoNetwork",
-      "https://www.linkedin.com/company/nexisco-network",
-      "https://twitter.com/NexiscoNetwork"
-    ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://nexisconetwork.ca/#website",
-    "url": "https://nexisconetwork.ca",
-    "name": "Nexisco Network",
-    "publisher": { "@id": "https://nexisconetwork.ca/#business" },
-    "inLanguage": "en-CA",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://nexisconetwork.ca/services?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
+  <!-- ── Structured Data: one organization block + WebSite (from config/business.php) ── -->
+  <?= Seo::organization() ?>
+  <?= Seo::website() ?>
 
   <?php if (!empty($extra_jsonld)) echo $extra_jsonld; ?>
   <?php if (!empty($extra_head)) echo $extra_head; ?>

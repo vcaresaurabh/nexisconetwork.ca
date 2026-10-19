@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Disclaimer | Nexisco Network';
-$page_description = 'Legal disclaimer for Nexisco Network, a global digital agency. Marketing and SEO results vary and are not guaranteed; performance depends on third-party platforms; website content is general information, not professional advice.';
+$page_description = 'Legal disclaimer for Nexisco Network, an ' . business('positioning') . '. Marketing and SEO results vary and are not guaranteed; performance depends on third-party platforms; website content is general information, not professional advice.';
 $page_canonical   = 'https://nexisconetwork.ca/disclaimer';
 $last_updated     = 'June 18, 2026';
 require_once __DIR__ . '/../partials/head.php';
@@ -24,7 +24,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <p><em>This Disclaimer is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
 
-      <p><em>This Disclaimer is issued by Nexisco Network, a digital agency based in Canada with its registered office at 1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada ("Nexisco Network", "we", "our", "us"). Nexisco Network is a global digital agency serving clients across the United States, Canada, and worldwide on a remote-friendly basis. This Disclaimer applies to all visitors to and users of <a href="https://nexisconetwork.ca">nexisconetwork.ca</a> and to our web development, digital marketing, and ecommerce development services.</em></p>
+      <p><em>This Disclaimer is issued by Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "we", "our", "us"). Nexisco Network is an <?= e(business('positioning')) ?>, and our work is delivered online. This Disclaimer applies to all visitors to and users of <a href="https://nexisconetwork.ca">nexisconetwork.ca</a> and to our web development, digital marketing, and ecommerce development services.</em></p>
 
       <h2>1. General Information Only</h2>
       <p>The information published on this website — including our blog, guides, case studies, and resource articles — is provided for general informational purposes only. While we make reasonable efforts to keep our content accurate and current, we make no representations or warranties of any kind, express or implied, about the accuracy, completeness, reliability, suitability, or availability of any information, products, or services described on the website. Any reliance you place on such information is strictly at your own risk.</p>
@@ -55,13 +55,14 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>This Disclaimer is governed by the laws of the Province of Alberta and the federal laws of Canada applicable therein, without regard to conflict-of-laws principles. This does not affect any mandatory consumer-protection or data-protection rights you may have under the laws of your own country or region.</p>
 
       <h2>10. Contact</h2>
+      <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Nexisco Network</strong><br>
-        1404, 49A Street NW<br>
-        Edmonton, Alberta T6L 6H6<br>
-        Canada<br>
-        Phone: <a href="tel:+18889099466">+1 (888) 909-9466</a><br>
-        Email: <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a>
+        <strong><?= e(business('legal_name')) ?></strong><br>
+        <?= e($reg_office['street']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['country']) ?><br>
+        Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
+        Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a>
       </address>
     </div>
   </div>

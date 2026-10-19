@@ -67,6 +67,12 @@ function mail_template(array $data): string {
     $body      = $data['body'] ?? ''; // Allow HTML in body
     $year      = date('Y');
 
+    // Footer identity block — read from config/business.php via helpers.php
+    $legal_name = e(business('legal_name'));
+    $address    = e(business_address(true));
+    $phone      = e(business('phone'));
+    $email      = e(business('email'));
+
     $cta = '';
     if (!empty($data['cta_url']) && !empty($data['cta_text'])) {
         $url  = htmlspecialchars($data['cta_url'],  ENT_QUOTES, 'UTF-8');
@@ -123,14 +129,14 @@ function mail_template(array $data): string {
     <tr>
       <td style="padding:24px 40px;border-top:1px solid rgba(15,23,42,0.08);background:#F8FAFC">
         <p style="font-size:12px;color:#64748B;margin:0;line-height:1.6">
-          You're receiving this email from Nexisco Network because you requested a service or opted in to commercial communications. This message complies with Canada's Anti-Spam Legislation (CASL).<br><br>
-          <strong style="color:#475569">Nexisco Network</strong><br>
-          1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada<br>
-          Phone: +1 (888) 909-9466 · Email: support@nexisconetwork.ca<br><br>
+          You're receiving this email from {$legal_name} because you requested a service or opted in to commercial communications. This message complies with Canada's Anti-Spam Legislation (CASL).<br><br>
+          <strong style="color:#475569">{$legal_name}</strong><br>
+          {$address}<br>
+          Phone: {$phone} · Email: {$email}<br><br>
           <a href="https://nexisconetwork.ca/opt-in-opt-out" style="color:#0891B2;text-decoration:none">Unsubscribe</a> ·
           <a href="https://nexisconetwork.ca/privacy" style="color:#0891B2;text-decoration:none">Privacy Policy</a> ·
           <a href="https://nexisconetwork.ca/terms" style="color:#0891B2;text-decoration:none">Terms</a><br><br>
-          © {$year} Nexisco Network All rights reserved.
+          © {$year} {$legal_name} All rights reserved.
         </p>
       </td>
     </tr>

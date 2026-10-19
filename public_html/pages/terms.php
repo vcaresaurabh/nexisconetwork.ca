@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Terms of Service | Nexisco Network';
-$page_description = 'Terms of Service for Nexisco Network — a global digital agency offering web development, digital marketing, and ecommerce development. Governing law: Province of Alberta, Canada.';
+$page_description = 'Terms of Service for Nexisco Network, an ' . business('positioning') . ', offering web development, digital marketing, and ecommerce development. Governing law: Province of Alberta, Canada.';
 $page_canonical   = 'https://nexisconetwork.ca/terms';
 $last_updated     = 'June 18, 2026';
 require_once __DIR__ . '/../partials/head.php';
@@ -22,7 +22,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow">
     <div class="glass rounded-3xl p-8 md:p-12 prose-legal">
 
-      <p><em>These Terms of Service ("Terms") form a binding agreement between you ("you", "Client") and Nexisco Network, a digital agency based in Canada with its registered office at 1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada ("Nexisco Network", "Company", "we", "our", "us"). We are a digital agency serving clients in the United States, Canada, and worldwide. Please read these Terms carefully before engaging our services. We recommend you have your own legal advisor review any agreement before signing; nothing on this page is legal advice.</em></p>
+      <p><em>These Terms of Service ("Terms") form a binding agreement between you ("you", "Client") and Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "Company", "we", "our", "us"). We are an <?= e(business('positioning')) ?>, and our work is delivered online. Please read these Terms carefully before engaging our services. We recommend you have your own legal advisor review any agreement before signing; nothing on this page is legal advice.</em></p>
 
       <h2>1. Scope of Services</h2>
       <p>Nexisco Network provides three categories of professional services: <strong>web development</strong>, <strong>digital marketing</strong>, and <strong>ecommerce development</strong>. Within these pillars we deliver capabilities such as website design and build, search engine optimization, paid media (including search and social advertising), social media, email marketing, content, conversion optimization, online store design and build, and related branding and UI/UX work. These Terms govern every engagement unless a separately signed agreement expressly states otherwise. Where a signed proposal, statement of work, or quote (a "Proposal") conflicts with these Terms, the Proposal controls for that engagement.</p>
@@ -33,7 +33,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <li>Quotes and Proposals are valid for thirty (30) calendar days from the date issued unless stated otherwise.</li>
         <li>Acceptance occurs when you sign the Proposal, confirm acceptance in writing (including by email), or pay the initial invoice or deposit — whichever comes first.</li>
         <li>The signed or accepted Proposal, together with these Terms, governs the scope of work. Anything not described in the Proposal is out of scope and may be quoted separately as a change request.</li>
-        <li>We work remotely with clients across time zones and coordinate around mutually workable hours.</li>
+        <li>Work is delivered online. We schedule calls and reviews at mutually workable times, normally within our business hours (<?= e(business('hours')) ?>).</li>
       </ul>
 
       <h2>3. Payment Terms</h2>
@@ -98,20 +98,21 @@ require_once __DIR__ . '/../partials/navbar.php';
         <li><strong>Consent.</strong> We send commercial electronic messages only with your express consent, in line with Canada's Anti-Spam Legislation (CASL) and applicable communication laws in your jurisdiction. We do not sell your contact details, and we do not share them with third parties for their own marketing.</li>
         <li><strong>What you may receive.</strong> Project updates, invoices, and other transactional messages relating to your engagement, and — where you opt in — newsletters, offers, and agency news.</li>
         <li><strong>Frequency &amp; rates.</strong> Message frequency varies by communication type. For SMS, standard message and data rates may apply depending on your carrier; international rates may differ.</li>
-        <li><strong>Opting out.</strong> You can unsubscribe from email at any time using the link in every commercial message, or stop SMS by replying <strong>"STOP"</strong>. For help, reply <strong>"HELP"</strong> or contact us at <a href="tel:+18889099466">+1 (888) 909-9466</a> or <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a>. See our <a href="/opt-in-opt-out">Opt-In / Opt-Out</a> page for full details.</li>
+        <li><strong>Opting out.</strong> You can unsubscribe from email at any time using the link in every commercial message, or stop SMS by replying <strong>"STOP"</strong>. For help, reply <strong>"HELP"</strong> or contact us at <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a> or <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a>. See our <a href="/opt-in-opt-out">Opt-In / Opt-Out</a> page for full details.</li>
       </ul>
 
       <h2>14. Changes to These Terms</h2>
       <p>We may update these Terms from time to time. The "Last updated" date at the top of this page reflects the latest revision. Continued use of our Services after a change takes effect constitutes acceptance of the revised Terms. Where changes are material, we will provide reasonable notice by email or a prominent notice on the Site. These Terms, together with our <a href="/privacy">Privacy Policy</a>, <a href="/refund-policy">Refund Policy</a>, <a href="/cancellation-policy">Cancellation Policy</a>, <a href="/cookie-policy">Cookie Policy</a>, and <a href="/disclaimer">Disclaimer</a>, form the entire agreement between the parties and supersede prior communications on the same subject. If any provision is held invalid or unenforceable, the remaining provisions continue in full force and effect.</p>
 
       <h2>15. Contact</h2>
+      <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Nexisco Network</strong><br>
-        1404, 49A Street NW<br>
-        Edmonton, Alberta T6L 6H6<br>
-        Canada<br>
-        Phone: <a href="tel:+18889099466">+1 (888) 909-9466</a><br>
-        Email: <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a><br>
+        <strong><?= e(business('legal_name')) ?></strong><br>
+        <?= e($reg_office['street']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['country']) ?><br>
+        Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
+        Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a><br>
         Start a project: <a href="/start-project">Get a Free Quote</a>
       </address>
 

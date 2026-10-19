@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../data/services.php';
 
 $page_title       = 'Start a Project — Get a Free Quote | Nexisco Network';
-$page_description = 'Tell us about your project and get a free quote in USD or CAD. Web development, digital marketing, and ecommerce for clients in the US, Canada, and worldwide.';
+$page_description = 'Tell us about your project and get a free quote in USD or CAD. Web development, digital marketing, and ecommerce for businesses in Canada and the US.';
 $page_canonical   = 'https://nexisconetwork.ca/start-project';
 
 // Map slug → label for preselect
@@ -41,7 +41,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <h1 class="text-display mb-4 max-w-2xl" data-split="words">Get a free quote.</h1>
     <p class="text-lg max-w-xl" style="color:var(--text-secondary)" data-anim="fade-up">
       Tell us about your goals and we'll reply with a clear, no-obligation quote in USD or CAD.
-      We work with clients in the US, Canada, and worldwide.
+      We work with businesses in Canada and the US.
     </p>
   </div>
 </section>
@@ -81,8 +81,8 @@ require_once __DIR__ . '/../partials/navbar.php';
         <?php endforeach; ?>
 
         <div class="glass rounded-2xl p-5 text-sm" style="color:var(--text-secondary)">
-          Prefer to talk? Call <a href="tel:+18889099466" class="font-medium hover:text-[var(--accent)]">+1 (888) 909-9466</a>
-          or email <a href="mailto:support@nexisconetwork.ca" class="font-medium hover:text-[var(--accent)]">support@nexisconetwork.ca</a>.
+          Prefer to talk? Call <a href="<?= e(business_tel_href()) ?>" class="font-medium hover:text-[var(--accent)]"><?= e(business('phone')) ?></a>
+          or email <a href="<?= e(business_mailto()) ?>" class="font-medium hover:text-[var(--accent)]"><?= e(business('email')) ?></a>.
         </div>
       </div>
 
@@ -115,7 +115,7 @@ require_once __DIR__ . '/../partials/navbar.php';
               </div>
               <div>
                 <label for="pf-country" class="form-label">Country</label>
-                <input type="text" id="pf-country" name="country" class="form-input" placeholder="United States, Canada, …" autocomplete="country-name">
+                <input type="text" id="pf-country" name="country" class="form-input" placeholder="Canada or United States" autocomplete="country-name">
               </div>
             </div>
 

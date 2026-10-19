@@ -25,7 +25,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p><em>This Refund Policy is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
 
       <h2>1. About This Policy</h2>
-      <p>This Refund Policy ("Policy") is issued by Nexisco Network, a digital agency based in Canada with its registered office at 1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada ("Nexisco Network", "we", "our", "us"). We are a global digital agency serving clients across the United States, Canada, and worldwide, delivering web development, digital marketing, and ecommerce development on a remote-friendly basis across multiple time zones. This Policy forms part of, and should be read together with, our <a href="/terms">Terms of Service</a> and our <a href="/cancellation-policy">Cancellation Policy</a>. Where a term is defined in those documents, it carries the same meaning here.</p>
+      <p>This Refund Policy ("Policy") is issued by Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "we", "our", "us"). We are an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. This Policy forms part of, and should be read together with, our <a href="/terms">Terms of Service</a> and our <a href="/cancellation-policy">Cancellation Policy</a>. Where a term is defined in those documents, it carries the same meaning here.</p>
 
       <h2>2. Digital Professional Services — No Physical Returns</h2>
       <p>Everything we sell is a <strong>digital professional service</strong>: design, strategy, development, marketing, and the deliverables produced through that work. There is <strong>no physical product, no shipment, and nothing to return or ship back</strong>. Because our services involve skilled labour, time, and tooling committed specifically to your project, refunds are assessed based on the work performed rather than on a "return" of goods.</p>
@@ -71,7 +71,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>We accept payment in U.S. dollars (USD) and Canadian dollars (CAD). <strong>Any refund is issued in the same currency in which you originally paid</strong>, to the original payment method where possible. We are not responsible for differences in value caused by currency-exchange fluctuations between the date of payment and the date of refund, or for fees charged by your bank, card issuer, or payment provider.</p>
 
       <h2>8. How to Request a Refund</h2>
-      <p>To request a refund, email <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a> with your project name, invoice or payment reference, and the reason for your request. We will acknowledge your request, review the work completed and any committed costs, and respond with a clear breakdown of any refundable amount.</p>
+      <p>To request a refund, email <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a> with your project name, invoice or payment reference, and the reason for your request. We will acknowledge your request, review the work completed and any committed costs, and respond with a clear breakdown of any refundable amount.</p>
 
       <h2>9. Processing Time</h2>
       <p>Once a refund is approved, we typically process it within <strong>5–10 business days</strong>. The time it takes for the funds to appear in your account depends on your bank, card issuer, or payment provider and may take additional days beyond our processing window.</p>
@@ -90,14 +90,15 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <h2>14. Contact Us</h2>
       <p>For questions about this Policy or a specific refund, please contact us:</p>
+      <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Nexisco Network</strong><br>
-        1404, 49A Street NW<br>
-        Edmonton, Alberta T6L 6H6<br>
-        Canada<br>
-        Phone: <a href="tel:+18889099466">+1 (888) 909-9466</a><br>
-        Email: <a href="mailto:support@nexisconetwork.ca">support@nexisconetwork.ca</a><br>
-        Hours: Mon–Fri 8am–7pm PT · Sat 9am–5pm PT.
+        <strong><?= e(business('legal_name')) ?></strong><br>
+        <?= e($reg_office['street']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['country']) ?><br>
+        Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
+        Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a><br>
+        Hours: <?= e(business('hours')) ?>
       </address>
 
       <p class="text-sm" style="color:var(--text-tertiary)">Related: <a href="/terms">Terms of Service</a> · <a href="/cancellation-policy">Cancellation Policy</a> · <a href="/start-project">Get a Free Quote</a></p>

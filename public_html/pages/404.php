@@ -29,7 +29,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <h1 class="text-h2 mb-4">This Page Took a Wrong Turn</h1>
     <p class="text-lg mb-10" style="color:var(--text-secondary)">
       The page you're after has moved or no longer exists. Let's get you back on track —
-      explore what we build for clients across the USA, Canada, and worldwide.
+      explore our services for businesses in Canada and the US.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
       <a href="/start-project" class="btn btn-gradient"  data-magnetic>Get a Free Quote</a>

@@ -12,7 +12,7 @@ foreach ($FAQS as $cat) {
 }
 
 $page_title       = 'FAQ | Nexisco Network — Digital Agency Questions Answered';
-$page_description = 'Answers about Nexisco Network\'s web development, digital marketing, and ecommerce services — process, timelines, USD/CAD pricing, ownership, and working with clients worldwide.';
+$page_description = 'Answers about Nexisco Network\'s web development, digital marketing, and ecommerce services — process, timelines, USD/CAD pricing, ownership, and working with ' . business('service_area') . '.';
 $page_canonical   = 'https://nexisconetwork.ca/faq';
 $extra_head       = Seo::faq_page($all_faqs);
 
@@ -33,7 +33,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
       Everything you need to know about working with Nexisco Network on web development,
       digital marketing, and ecommerce — from our process and timelines to USD/CAD pricing.
-      We partner with clients across the US, Canada, and worldwide.
+      We serve <?= e(business('service_area')) ?>, and work is delivered online.
       Still stuck? <a href="/contact" class="underline hover:text-[var(--accent)] transition-colors">Reach out</a>
       or <a href="/start-project" class="underline hover:text-[var(--accent)] transition-colors">get a free quote</a>.
     </p>
@@ -121,7 +121,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <h2 class="text-h1 mb-4" data-split="words">Still have questions?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">
       Tell us about your project and we'll send a clear, no-obligation quote in USD or CAD.
-      Our team replies during business hours, Mon–Fri 8am–7pm PT.
+      We reply during business hours, <?= e(business('hours')) ?>.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
       <a href="/start-project" class="btn btn-gradient btn-lg" data-magnetic>Get a Free Quote</a>

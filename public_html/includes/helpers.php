@@ -9,6 +9,45 @@ function e(mixed $value): string {
     return htmlspecialchars((string)$value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+/* ── Business details (config/business.php) ──────────────────── */
+function business(?string $key = null): mixed {
+    static $biz = null;
+    $biz ??= require __DIR__ . '/../config/business.php';
+    return $key === null ? $biz : ($biz[$key] ?? null);
+}
+
+/** "1404, 49A Street NW, Edmonton, AB T6L 6H6" — add ", Canada" with $with_country. */
+function business_address(bool $with_country = false): string {
+    $o = business('registered_office');
+    $line = "{$o['street']}, {$o['city']}, {$o['region']} {$o['postal_code']}";
+    return $with_country ? "{$line}, {$o['country']}" : $line;
+}
+
+function business_tel_href(): string {
+    return 'tel:' . business('phone_e164');
+}
+
+function business_mailto(?string $email = null): string {
+    return 'mailto:' . ($email ?? business('email'));
+}
+
+/** Legal identification sentence used at the top of every legal page. */
+function business_identity(): string {
+    return sprintf(
+        '%s ("%s", "we", "us"), an %s corporation (Corporate Access Number %s) with its registered office at %s',
+        business('legal_name'), business('brand_name'), business('jurisdiction_short'),
+        business('corporate_access_no'), business_address()
+    );
+}
+
+/** Footer registration line: "Alberta Corporate Access Number … · Registered office: …". */
+function business_registration_line(): string {
+    return sprintf(
+        '%s Corporate Access Number %s · Registered office: %s',
+        business('jurisdiction_short'), business('corporate_access_no'), business_address()
+    );
+}
+
 /* ── Asset URL helper ────────────────────────────────────────── */
 function asset(string $path): string {
     $v = defined('ASSET_VERSION') ? '?v=' . ASSET_VERSION : '';

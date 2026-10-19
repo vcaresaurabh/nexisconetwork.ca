@@ -10,9 +10,8 @@ require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/seo.php';
 
 $page_title       = 'About Nexisco Network — Building Digital Experiences That Drive Growth';
-$page_description = 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce development for clients in the US, Canada, and worldwide — billed in USD or CAD.';
+$page_description = 'Nexisco Network is an ' . business('positioning') . ', offering web development, digital marketing, and ecommerce development — work is delivered online and billed in USD or CAD.';
 $page_canonical   = 'https://nexisconetwork.ca/about';
-$extra_head       = Seo::organization();
 
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
@@ -37,7 +36,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       Building digital experiences<br>that drive growth.
     </h1>
     <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
-      Nexisco Network is a global digital agency. We design, market, and scale brands through
+      Nexisco Network is an <?= e(business('positioning')) ?>. We design, market, and scale brands through
       three things done exceptionally well — web development, digital marketing, and ecommerce development.
     </p>
   </div>
@@ -66,8 +65,8 @@ require_once __DIR__ . '/../partials/navbar.php';
             before work begins.
           </p>
           <p data-anim="fade-up">
-            We serve clients in the United States, Canada, and worldwide, working remotely across
-            time zones. Invoices are billed in <strong style="color:var(--text-primary)">USD or CAD</strong>,
+            We serve <?= e(business('service_area')) ?>, and all work is delivered online.
+            Invoices are billed in <strong style="color:var(--text-primary)">USD or CAD</strong>,
             and all transactions are processed securely with encryption.
           </p>
         </div>
@@ -85,7 +84,7 @@ require_once __DIR__ . '/../partials/navbar.php';
           $model = [
             ['icon' => '🗂️', 'title' => 'Project or monthly',  'desc' => 'One-time projects or recurring monthly plans — whichever fits your goals.'],
             ['icon' => '📅', 'title' => 'Upfront or milestones','desc' => 'Pay upfront, or across an agreed milestone schedule for larger builds.'],
-            ['icon' => '🌍', 'title' => 'Global delivery',      'desc' => 'Clients in the US, Canada & worldwide, served remotely across time zones.'],
+            ['icon' => '🌍', 'title' => 'Remote delivery',      'desc' => 'Work is delivered online for ' . e(business('service_area')) . '.'],
             ['icon' => '💳', 'title' => 'USD &amp; CAD',        'desc' => 'Major credit &amp; debit cards, PayPal, and bank/wire transfer — billed in your currency.'],
             ['icon' => '🔒', 'title' => 'Secure by default',    'desc' => 'All transactions are processed securely with encryption.'],
           ];
@@ -225,7 +224,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto" data-stagger data-stagger-delay="0.1">
       <?php
       $value_stats = [
-        ['big' => 'Global Delivery',   'sub' => 'Clients in the US, Canada &amp; worldwide, served remotely'],
+        ['big' => 'Remote Delivery',   'sub' => 'Work is delivered online for ' . e(business('service_area'))],
         ['big' => 'Full-Service Team', 'sub' => 'Web, marketing &amp; ecommerce specialists under one roof'],
       ];
       foreach ($value_stats as $s): ?>
@@ -258,7 +257,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         ['icon' => '🤝', 'title' => 'Client-Centered Approach',   'desc' => 'A dedicated point of contact, clear communication, and your goals at the center of every decision.'],
         ['icon' => '📈', 'title' => 'Results That Matter',        'desc' => 'We measure what counts and report it in plain English — built to drive real business outcomes.'],
         ['icon' => '🚀', 'title' => 'Scalable Solutions',         'desc' => 'Whether a one-time project or ongoing monthly plan, our work is built to grow with you.'],
-        ['icon' => '🌍', 'title' => 'Global Delivery',            'desc' => 'Remote-friendly delivery for clients in the US, Canada, and worldwide — across time zones, billed in USD or CAD.'],
+        ['icon' => '🌍', 'title' => 'Remote Delivery',            'desc' => 'Work is delivered online for ' . business('service_area') . ' — billed in USD or CAD.'],
       ];
       foreach ($reasons as $r): ?>
       <div class="glass rounded-2xl p-8">
@@ -284,15 +283,15 @@ require_once __DIR__ . '/../partials/navbar.php';
       <!-- Text -->
       <div>
         <div class="label-tag mb-4" data-anim="fade-up">Company Details</div>
-        <h2 class="text-h1 mb-5" data-split="words">A global agency,<br>rooted in Canada.</h2>
+        <h2 class="text-h1 mb-5" data-split="words">Based in Edmonton,<br>serving Canada and the US.</h2>
         <div class="space-y-4 text-base leading-relaxed" style="color:var(--text-secondary)">
           <p data-anim="fade-up">
-            Nexisco Network was established in 2026 and is headquartered in Edmonton, Alberta, Canada.
-            From day one, we built for the web — partnering with clients far beyond our home city.
+            Nexisco Network was incorporated in Alberta on <?= e(business('incorporated')) ?> as
+            <?= e(business('legal_name')) ?>, with its registered office in Edmonton, Alberta, Canada.
           </p>
           <p data-anim="fade-up">
-            Today we serve businesses in the United States, Canada, and around the world, delivering remotely
-            across time zones. Wherever you are, you get the same senior-level craft and clear communication.
+            We are an <?= e(business('positioning')) ?>. All work is delivered online, with a fixed
+            quote and clear communication wherever you are.
           </p>
         </div>
         <div class="flex flex-wrap gap-4 mt-8" data-anim="fade-up">
@@ -306,10 +305,12 @@ require_once __DIR__ . '/../partials/navbar.php';
         <dl class="space-y-5">
           <?php
           $details = [
-            ['k' => 'Legal entity', 'v' => 'Nexisco Network'],
-            ['k' => 'Established',   'v' => '2026'],
-            ['k' => 'Headquarters',  'v' => '1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada'],
-            ['k' => 'Reach',         'v' => 'US, Canada &amp; worldwide — remote-friendly, across time zones'],
+            ['k' => 'Legal entity',      'v' => e(business('legal_name'))],
+            ['k' => 'Incorporated',      'v' => 'In Alberta on ' . e(business('incorporated'))],
+            ['k' => 'Registration',      'v' => 'Alberta Corporate Access Number ' . e(business('corporate_access_no'))],
+            ['k' => 'Director',          'v' => e(business('director'))],
+            ['k' => 'Registered office', 'v' => e(business_address(true))],
+            ['k' => 'Service area',      'v' => 'Canada and the US — work is delivered online'],
             ['k' => 'Billing',       'v' => 'USD &amp; CAD'],
             ['k' => 'Governing law', 'v' => 'Province of Alberta, Canada'],
           ];
@@ -324,13 +325,13 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="mt-6 space-y-2 text-sm" style="color:var(--text-secondary)">
           <p>
             <span style="color:var(--text-tertiary)">Phone:</span>
-            <a href="tel:+18889099466" class="font-medium hover:underline" style="color:var(--accent)">+1 (888) 909-9466</a>
+            <a href="<?= e(business_tel_href()) ?>" class="font-medium hover:underline" style="color:var(--accent)"><?= e(business('phone')) ?></a>
           </p>
           <p>
             <span style="color:var(--text-tertiary)">Email:</span>
-            <a href="mailto:support@nexisconetwork.ca" class="font-medium hover:underline" style="color:var(--accent)">support@nexisconetwork.ca</a>
+            <a href="<?= e(business_mailto()) ?>" class="font-medium hover:underline" style="color:var(--accent)"><?= e(business('email')) ?></a>
           </p>
-          <p><span style="color:var(--text-tertiary)">Hours:</span> Mon–Fri 8am–7pm PT · Sat 9am–5pm PT</p>
+          <p><span style="color:var(--text-tertiary)">Hours:</span> <?= e(business('hours')) ?></p>
           <p class="text-xs pt-1" style="color:var(--text-tertiary)">PIPEDA &amp; CASL compliant.</p>
         </div>
       </div>
@@ -356,7 +357,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         ['icon' => '🎨', 'title' => 'Design &amp; UI/UX',    'desc' => 'Brand-aligned interfaces and experiences designed to convert.'],
         ['icon' => '💻', 'title' => 'Web Development',       'desc' => 'Fast, accessible, SEO-ready builds on modern stacks.'],
         ['icon' => '📈', 'title' => 'Digital Marketing',     'desc' => 'SEO, paid ads, social, and email that grow your pipeline.'],
-        ['icon' => '🛒', 'title' => 'Ecommerce',             'desc' => 'Shopify &amp; WooCommerce stores built to sell.'],
+        ['icon' => '🛒', 'title' => 'Ecommerce',             'desc' => 'Shopify & WooCommerce stores built to sell.'],
       ];
       foreach ($disciplines as $d): ?>
       <div class="glass rounded-2xl p-8 text-center">

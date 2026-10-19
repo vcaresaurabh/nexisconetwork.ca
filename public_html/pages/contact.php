@@ -3,9 +3,8 @@ require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/seo.php';
 
 $page_title       = 'Contact Us | Nexisco Network';
-$page_description = 'Get in touch with Nexisco Network — a global digital agency for web, marketing & ecommerce. We work with clients in the US, Canada, and worldwide. Payments in USD & CAD.';
+$page_description = 'Get in touch with Nexisco Network, an ' . business('positioning') . ' — web, marketing & ecommerce. Payments in USD & CAD.';
 $page_canonical   = 'https://nexisconetwork.ca/contact';
-$extra_head       = Seo::professional_service();
 
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
@@ -25,8 +24,9 @@ require_once __DIR__ . '/../partials/navbar.php';
     <div class="label-tag mb-4" data-anim="fade-up">Contact</div>
     <h1 class="text-display mb-4 max-w-2xl" data-split="words">Let's talk growth.</h1>
     <p class="text-xl max-w-xl" style="color:var(--text-secondary)" data-anim="fade-up">
-      Questions, quotes, or advice on web, marketing, or ecommerce — we respond within 2 business hours.
-      We work with clients in the US, Canada, and around the world. Payments accepted in USD and CAD.
+      Questions, quotes, or advice on web, marketing, or ecommerce — we respond <?= e(business('response_time')) ?>
+      during business hours (<?= e(business('hours')) ?>). We serve <?= e(business('service_area')) ?>, and work is
+      delivered online. Payments accepted in USD and CAD.
     </p>
   </div>
 </section>
@@ -43,13 +43,13 @@ require_once __DIR__ . '/../partials/navbar.php';
         <?php
         $channels = [
           ['icon' => 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
-            'label' => 'Phone', 'value' => '+1 (888) 909-9466', 'href' => 'tel:+18889099466'],
+            'label' => 'Phone', 'value' => business('phone'), 'href' => business_tel_href()],
           ['icon' => 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
-            'label' => 'Email', 'value' => 'support@nexisconetwork.ca', 'href' => 'mailto:support@nexisconetwork.ca'],
+            'label' => 'Email', 'value' => business('email'), 'href' => business_mailto()],
           ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
-            'label' => 'Hours', 'value' => 'Mon–Fri 8am–7pm PT · Sat 9am–5pm PT', 'href' => null],
+            'label' => 'Hours', 'value' => business('hours'), 'href' => null],
           ['icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
-            'label' => 'Head Office', 'value' => '1404, 49A Street NW, Edmonton, AB T6L 6H6, Canada', 'href' => null],
+            'label' => 'Registered office', 'value' => business_address(true), 'href' => null],
         ];
         foreach ($channels as $c): ?>
         <div class="glass rounded-2xl p-5 flex items-start gap-4">
@@ -73,7 +73,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         </div>
         <?php endforeach; ?>
 
-        <!-- Payment & global note -->
+        <!-- Payment note -->
         <div class="glass rounded-2xl p-5">
           <div class="text-xs uppercase tracking-widest mb-2" style="color:var(--text-tertiary)">Payments</div>
           <p class="text-sm" style="color:var(--text-secondary)">
@@ -87,7 +87,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="lg:col-span-3">
         <div class="glass rounded-3xl p-8 md:p-10">
           <h2 class="text-h2 mb-2">Send us a message</h2>
-          <p class="text-sm mb-8" style="color:var(--text-secondary)">We'll get back to you within 2 business hours.</p>
+          <p class="text-sm mb-8" style="color:var(--text-secondary)">We'll get back to you <?= e(business('response_time')) ?> during business hours.</p>
 
           <form id="contact-form" novalidate class="space-y-5">
             <?= csrf_field() ?>

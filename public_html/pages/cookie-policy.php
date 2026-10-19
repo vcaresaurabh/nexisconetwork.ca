@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Cookie Policy | Nexisco Network';
-$page_description = 'How Nexisco Network, a global digital agency, uses cookies and similar technologies on nexisconetwork.ca — strictly necessary, functional, and analytics cookies, plus your choices.';
+$page_description = 'How Nexisco Network, an ' . business('positioning') . ', uses cookies and similar technologies on nexisconetwork.ca — strictly necessary, functional, and analytics cookies, plus your choices.';
 $page_canonical   = 'https://nexisconetwork.ca/cookie-policy';
 $last_updated     = 'June 18, 2026';
+$privacy_email    = business('privacy_contact')['email'];
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -24,7 +25,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <p><em>This Cookie Policy is provided for general information and forms part of our <a href="/privacy">Privacy Policy</a>. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
 
-      <p>This Cookie Policy is issued by Nexisco Network, a digital agency based in Canada with its registered office at 1404, 49A Street NW, Edmonton, Alberta T6L 6H6, Canada ("Nexisco Network", "we", "our", "us"). We are a global digital agency serving clients across the United States, Canada, and worldwide, delivering web development, digital marketing, and ecommerce development on a remote-friendly basis. This policy explains how we use cookies and similar technologies on <strong>nexisconetwork.ca</strong> and how you can control them.</p>
+      <p>This Cookie Policy is issued by Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "we", "our", "us"). We are an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. This policy explains how we use cookies and similar technologies on <strong>nexisconetwork.ca</strong> and how you can control them.</p>
 
       <h2>1. What Are Cookies?</h2>
       <p>Cookies are small text files that a website places on your device when you visit. They let a site remember your actions and preferences over time, keep your session secure, and help the owner understand how the site is used. We also use related browser technologies such as <code>localStorage</code> and <code>sessionStorage</code>, which work in a similar way. In this policy, "cookies" refers to all of these technologies.</p>
@@ -113,13 +114,14 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <h2>9. More Information and Contact</h2>
       <p>For more detail on how we handle personal information generally, please read our <a href="/privacy">Privacy Policy</a>. If you have questions about our use of cookies, contact us:</p>
+      <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Privacy Officer — Nexisco Network</strong><br>
-        1404, 49A Street NW<br>
-        Edmonton, Alberta T6L 6H6<br>
-        Canada<br>
-        Phone: <a href="tel:+18889099466">+1 (888) 909-9466</a><br>
-        Email: <a href="mailto:privacy@nexisconetwork.ca">privacy@nexisconetwork.ca</a>
+        <strong>Privacy Officer — <?= e(business('legal_name')) ?></strong><br>
+        <?= e($reg_office['street']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['country']) ?><br>
+        Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
+        Email: <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a>
       </address>
     </div>
   </div>

@@ -83,7 +83,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="label-tag mb-3 mx-auto" data-anim="fade-up">What's included</div>
       <h2 class="text-h1 mb-3" data-split="words">Everything you need to grow</h2>
       <p class="text-lg" style="color:var(--text-secondary)" data-anim="fade-up">
-        Senior-level delivery, built around your goals — for clients in the US, Canada &amp; worldwide.
+        Built around your goals — for businesses in Canada and the US.
       </p>
     </div>
 
@@ -213,7 +213,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Ready to grow?</h2>
     <p class="text-lg mb-8" style="color:var(--text-secondary)">
-      Get a free quote for <?= e($service['name']) ?> — free consultation, global delivery, USD &amp; CAD.
+      Get a free quote for <?= e($service['name']) ?> — free consultation, work delivered online, USD &amp; CAD.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">
       <a href="/start-project?service=<?= e($service['slug']) ?>" class="btn btn-gradient btn-lg" data-magnetic>

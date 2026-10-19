@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../data/services.php';
 
 $page_title       = 'Services — Web Development, Digital Marketing & Ecommerce | Nexisco Network';
-$page_description = 'Three things, done exceptionally well: web development, digital marketing, and ecommerce development. A global digital agency serving the US, Canada, and worldwide.';
+$page_description = 'Three things, done exceptionally well: web development, digital marketing, and ecommerce development. An ' . business('positioning') . '.';
 $page_canonical   = 'https://nexisconetwork.ca/services';
 
 require_once __DIR__ . '/../partials/head.php';
@@ -27,7 +27,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       Three pillars.<br>One growth partner.
     </h1>
     <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
-      Web development, digital marketing, and ecommerce — for businesses in the US, Canada, and worldwide.
+      Web development, digital marketing, and ecommerce — for businesses in Canada and the US.
       Project work or ongoing monthly plans, billed in USD or CAD.
     </p>
   </div>

@@ -73,7 +73,7 @@ $body = mail_template([
 ]);
 
 // NOTE (owner): Uncomment when real PHPMailer is installed
-// send_mail('support@nexisconetwork.ca', 'Nexisco Network', $subject, $body);
+// send_mail(business('email'), business('brand_name'), $subject, $body);
 
 // Log to file in dev (remove in production)
 if (defined('APP_DEBUG') && APP_DEBUG) {
@@ -83,5 +83,6 @@ if (defined('APP_DEBUG') && APP_DEBUG) {
 
 json_response([
     'success' => true,
-    'message' => "Thanks {$name}! We received your message and will reply within 2 business hours.",
+    'message' => "Thanks {$name}! We received your message and will reply " . business('response_time')
+               . ' during business hours (' . business('hours') . ').',
 ]);

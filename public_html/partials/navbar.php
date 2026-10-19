@@ -83,12 +83,12 @@ $services = $SERVICES ?? [];
 
     <!-- ── Desktop CTAs ──────────────────────────────────────── -->
     <div class="hidden lg:flex items-center gap-3">
-      <a href="tel:+18889099466" class="nav-link text-sm py-2" aria-label="Call us">
+      <a href="<?= e(business_tel_href()) ?>" class="nav-link text-sm py-2" aria-label="Call us">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="1.5" stroke-linecap="round" aria-hidden="true" class="inline mr-1.5">
           <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.5h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
         </svg>
-        +1 (888) 909-9466
+        <?= e(business('phone')) ?>
       </a>
       <a href="/start-project" class="btn btn-primary text-sm" data-magnetic>Get a Free Quote</a>
     </div>
@@ -151,8 +151,8 @@ $services = $SERVICES ?? [];
   </nav>
 
   <div class="p-6 border-t space-y-3" style="border-color:var(--border-subtle)">
-    <a href="tel:+18889099466" class="btn btn-secondary w-full text-center">
-      Call +1 (888) 909-9466
+    <a href="<?= e(business_tel_href()) ?>" class="btn btn-secondary w-full text-center">
+      Call <?= e(business('phone')) ?>
     </a>
     <a href="/start-project" class="btn btn-gradient w-full text-center">Get a Free Quote</a>
   </div>

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/helpers.php';
 
 $page_title       = 'Partner Program — White-Label Web, Marketing & Ecommerce | Nexisco Network';
-$page_description = 'Resell or white-label Nexisco Network\'s web development, digital marketing, and ecommerce services under your own brand. For agencies, freelancers, and consultants worldwide — billed in USD or CAD.';
+$page_description = 'Resell or white-label Nexisco Network\'s web development, digital marketing, and ecommerce services under your own brand. For agencies, freelancers, and consultants in Canada and the US — billed in USD or CAD.';
 $page_canonical   = 'https://nexisconetwork.ca/partners';
 
 require_once __DIR__ . '/../partials/head.php';
@@ -25,7 +25,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <h1 class="text-display mb-4 max-w-3xl" data-split="words">Your brand.<br>Our delivery.</h1>
     <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
       Resell or white-label our web development, digital marketing, and ecommerce work under your own name.
-      Built for agencies, freelancers, and consultants worldwide — billed in USD or CAD.
+      Built for agencies, freelancers, and consultants in Canada and the US — billed in USD or CAD.
     </p>
     <div class="flex flex-wrap gap-4 mt-8" data-anim="fade-up">
       <a href="#apply" class="btn btn-gradient btn-lg" data-magnetic>Become a Partner</a>
@@ -117,7 +117,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
           'title' => 'Senior Delivery, Your Brand', 'desc' => 'Experienced designers, developers, and marketers ship the work — your client only ever sees your name.'],
         ['icon' => 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-          'title' => 'Global & Remote-Friendly', 'desc' => 'Serve clients in the US, Canada, and worldwide. We work across time zones and bill in USD or CAD.'],
+          'title' => 'Remote Delivery', 'desc' => 'Serve your clients in Canada and the US. Work is delivered online and billed in USD or CAD.'],
         ['icon' => 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
           'title' => 'Transparent Reporting', 'desc' => 'Clear scopes, timelines, and plain-English progress updates you can pass straight to your client.'],
         ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
@@ -181,7 +181,7 @@ require_once __DIR__ . '/../partials/navbar.php';
           </div>
           <div>
             <label class="form-label">Phone *</label>
-            <input type="tel" name="phone" class="form-input" placeholder="+1 (888) 909-9466" required autocomplete="tel">
+            <input type="tel" name="phone" class="form-input" placeholder="+1 (555) 123-4567" required autocomplete="tel">
           </div>
         </div>
 
@@ -225,7 +225,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <p class="text-xs text-center" style="color:var(--text-tertiary)">
           By submitting you agree to our <a href="/terms" class="underline">Terms</a> and
           <a href="/privacy" class="underline">Privacy Policy</a>.
-          Questions? Email <a href="mailto:support@nexisconetwork.ca" class="underline">support@nexisconetwork.ca</a>.
+          Questions? Email <a href="<?= e(business_mailto()) ?>" class="underline"><?= e(business('email')) ?></a>.
         </p>
       </form>
     </div>

@@ -6,78 +6,79 @@ declare(strict_types=1);
 
 class Seo {
 
-    /* ── Organization schema ──────────────────────────────────── */
+    /* ── Organization schema ──────────────────────────────────────
+     * The site's ONLY organization block, emitted once per page by
+     * partials/head.php. Every value comes from config/business.php.
+     * Never add aggregateRating / review here.
+     */
     public static function organization(): string {
-        $schema = [
-            '@context'  => 'https://schema.org',
-            '@type'     => 'Organization',
-            'name'      => 'Nexisco Network',
-            'legalName' => 'Nexisco Network',
-            'url'       => 'https://nexisconetwork.ca',
-            'logo'      => 'https://nexisconetwork.ca/assets/img/logo.png',
-            'sameAs'    => [],
-            'address'   => [
-                '@type'           => 'PostalAddress',
-                'streetAddress'   => '1404, 49A Street NW',
-                'addressLocality' => 'Edmonton',
-                'addressRegion'   => 'AB',
-                'postalCode'      => 'T6L 6H6',
-                'addressCountry'  => 'CA',
-            ],
-            'contactPoint' => [[
-                '@type'             => 'ContactPoint',
-                'telephone'         => '+1-888-909-9466',
-                'contactType'       => 'customer service',
-                'email'             => 'support@nexisconetwork.ca',
-                'areaServed'        => ['US', 'CA', 'Worldwide'],
-                'availableLanguage' => ['English'],
-            ]],
-        ];
-        return self::tag($schema);
-    }
-
-    /* ── ProfessionalService schema (global digital agency) ───── */
-    public static function professional_service(): string {
+        $url    = business('url');
+        $office = business('registered_office');
+        $hours  = business('hours_spec');
         $schema = [
             '@context'    => 'https://schema.org',
             '@type'       => 'ProfessionalService',
-            '@id'         => 'https://nexisconetwork.ca/#agency',
-            'name'        => 'Nexisco Network',
-            'legalName'   => 'Nexisco Network',
-            'description' => 'Nexisco Network is a global digital agency delivering web development, digital marketing, and ecommerce solutions for businesses in the US, Canada, and worldwide.',
-            'url'         => 'https://nexisconetwork.ca',
-            'telephone'   => '+1-888-909-9466',
-            'email'       => 'support@nexisconetwork.ca',
-            'image'       => 'https://nexisconetwork.ca/assets/img/og-image.png',
-            'logo'        => 'https://nexisconetwork.ca/assets/img/logo.png',
-            'priceRange'  => '$$',
-            'currenciesAccepted' => 'USD, CAD',
-            'paymentAccepted'    => 'Credit Card, Debit Card, Online Payment, Bank Transfer',
-            'areaServed'         => ['US', 'CA', 'Worldwide'],
+            '@id'         => $url . '/#organization',
+            'name'        => business('brand_name'),
+            'legalName'   => business('legal_name'),
+            'description' => business('brand_name') . ' is an ' . business('positioning')
+                           . ', delivering web development, digital marketing, and ecommerce development.',
+            'url'         => $url,
+            'logo'        => $url . '/assets/img/logo.png',
+            'image'       => $url . '/assets/img/og-image.png',
+            'telephone'   => business('phone_e164'),
+            'email'       => business('email'),
+            'foundingDate' => business('founding_date'),
+            'identifier'  => [
+                '@type'      => 'PropertyValue',
+                'propertyID' => business('jurisdiction_short') . ' Corporate Access Number',
+                'value'      => business('corporate_access_no'),
+            ],
             'address' => [
                 '@type'           => 'PostalAddress',
-                'streetAddress'   => '1404, 49A Street NW',
-                'addressLocality' => 'Edmonton',
-                'addressRegion'   => 'AB',
-                'postalCode'      => 'T6L 6H6',
-                'addressCountry'  => 'CA',
+                'streetAddress'   => $office['street'],
+                'addressLocality' => $office['city'],
+                'addressRegion'   => $office['region'],
+                'postalCode'      => $office['postal_code'],
+                'addressCountry'  => $office['country_code'],
             ],
+            'openingHoursSpecification' => [[
+                '@type'     => 'OpeningHoursSpecification',
+                'dayOfWeek' => $hours['days'],
+                'opens'     => $hours['opens'],
+                'closes'    => $hours['closes'],
+            ]],
+            'areaServed'         => self::area_served(),
+            'currenciesAccepted' => 'USD, CAD',
+            'paymentAccepted'    => 'Credit Card, Debit Card, Online Payment, Bank Transfer',
             'hasOfferCatalog' => [
                 '@type' => 'OfferCatalog',
                 'name'  => 'Digital Services',
                 'itemListElement' => [
-                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Web Development',        'url' => 'https://nexisconetwork.ca/services/web-development']],
-                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Digital Marketing',      'url' => 'https://nexisconetwork.ca/services/digital-marketing']],
-                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Ecommerce Development',  'url' => 'https://nexisconetwork.ca/services/ecommerce-development']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Web Development',       'url' => $url . '/services/web-development']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Digital Marketing',     'url' => $url . '/services/digital-marketing']],
+                    ['@type' => 'Offer', 'itemOffered' => ['@type' => 'Service', 'name' => 'Ecommerce Development', 'url' => $url . '/services/ecommerce-development']],
                 ],
             ],
         ];
+        $social = array_values(business('social_profiles') ?? []);
+        if ($social) $schema['sameAs'] = $social;
         return self::tag($schema);
     }
 
-    /* Backwards-compatible alias (some pages still call local_business()). */
-    public static function local_business(): string {
-        return self::professional_service();
+    /* ── WebSite schema ───────────────────────────────────────── */
+    public static function website(): string {
+        $url = business('url');
+        $schema = [
+            '@context'   => 'https://schema.org',
+            '@type'      => 'WebSite',
+            '@id'        => $url . '/#website',
+            'url'        => $url,
+            'name'       => business('brand_name'),
+            'publisher'  => ['@id' => $url . '/#organization'],
+            'inLanguage' => 'en-CA',
+        ];
+        return self::tag($schema);
     }
 
     /* ── Service schema ───────────────────────────────────────── */
@@ -88,9 +89,9 @@ class Seo {
             'name'        => $service['name'],
             'serviceType' => $service['name'],
             'description' => $service['description'] ?? $service['tagline'] ?? '',
-            'provider'    => ['@type' => 'Organization', 'name' => 'Nexisco Network'],
-            'areaServed'  => ['US', 'CA', 'Worldwide'],
-            'url'         => 'https://nexisconetwork.ca/services/' . ($service['slug'] ?? ''),
+            'provider'    => ['@id' => business('url') . '/#organization'],
+            'areaServed'  => self::area_served(),
+            'url'         => business('url') . '/services/' . ($service['slug'] ?? ''),
         ];
         return self::tag($schema);
     }
@@ -131,6 +132,15 @@ class Seo {
             'itemListElement' => $items,
         ];
         return self::tag($schema);
+    }
+
+    /** ISO country codes from config/business.php → schema.org Country objects. */
+    private static function area_served(): array {
+        $names = ['CA' => 'Canada', 'US' => 'United States'];
+        return array_map(
+            fn(string $code) => ['@type' => 'Country', 'name' => $names[$code] ?? $code],
+            business('area_served')
+        );
     }
 
     private static function tag(array $schema): string {
