@@ -70,7 +70,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <?php if ($plan['featured']): ?>
         <div class="absolute top-0 left-0 right-0 h-px" style="background:var(--accent-gradient)" aria-hidden="true"></div>
         <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold"
-             style="background:var(--accent-gradient);color:#FFFFFF"><?= e($plan['badge'] ?? 'Most Popular') ?></div>
+             style="background:var(--accent-gradient);color:#FFFFFF"><?= e($plan['badge'] ?? 'Recommended') ?></div>
         <?php endif; ?>
 
         <div class="p-6 flex flex-col flex-1">

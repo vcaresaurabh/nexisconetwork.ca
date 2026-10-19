@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../data/services.php';
 
 $page_title       = 'Services — Web Development, Digital Marketing & Ecommerce | Nexisco Network';
-$page_description = 'Three things, done exceptionally well: web development, digital marketing, and ecommerce development. An ' . business('positioning') . '.';
+$page_description = 'Web development, digital marketing, and ecommerce development, with fixed written quotes and your approval at each stage. An ' . business('positioning') . '.';
 $page_canonical   = 'https://nexisconetwork.ca/services';
 
 require_once __DIR__ . '/../partials/head.php';
@@ -48,7 +48,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="relative overflow-hidden aspect-video">
           <img src="<?= e($svc['card_image']) ?>"
                onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=60'"
-               alt="<?= e($svc['name']) ?> — <?= e($svc['tagline']) ?>"
+               alt=""
                loading="lazy" width="800" height="450"
                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                data-ken-burns>

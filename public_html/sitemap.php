@@ -11,7 +11,6 @@ $today    = date('Y-m-d');
 $static_urls = [
     ['loc' => $base . '/',              'priority' => '1.0', 'changefreq' => 'weekly'],
     ['loc' => $base . '/services',      'priority' => '0.9', 'changefreq' => 'weekly'],
-    ['loc' => $base . '/portfolio',     'priority' => '0.8', 'changefreq' => 'weekly'],
     ['loc' => $base . '/pricing',       'priority' => '0.8', 'changefreq' => 'monthly'],
     ['loc' => $base . '/about',         'priority' => '0.8', 'changefreq' => 'monthly'],
     ['loc' => $base . '/contact',       'priority' => '0.8', 'changefreq' => 'monthly'],

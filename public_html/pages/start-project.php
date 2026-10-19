@@ -29,7 +29,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 <!-- ── Hero ──────────────────────────────────────────────────────── -->
 <section class="relative min-h-[45vh] flex items-end overflow-hidden grain" style="background:var(--bg-primary)">
   <div class="bg-media-wrapper" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=60"
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=60"
          alt="" loading="eager"
          style="opacity:0.5;width:100%;height:100%;object-fit:cover" data-parallax="-15">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.6) 0%,rgba(250,251,252,0.97) 100%)"></div>

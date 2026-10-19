@@ -32,7 +32,7 @@ $FAQS = [
       ['q' => 'How does your project process work?',
        'a' => 'We follow four steps: Discovery & Quote, Strategy & Proposal, Design & Build, and Launch & Optimize. You approve the scope and designs before development begins, and you stay in the loop the whole way through.'],
       ['q' => 'Do you offer one-time projects or ongoing plans?',
-       'a' => 'Both. You can engage us for a one-time project (a website or store) or a recurring monthly plan (marketing retainers, ongoing growth, and iteration). Many clients combine the two.'],
+       'a' => 'Both. You can engage us for a one-time project (a website or store) or a recurring monthly plan (marketing retainers, ongoing growth, and iteration). You can combine the two.'],
       ['q' => 'How many revisions are included?',
        'a' => 'Each project includes defined revision rounds at the design and build stages — the exact number is set out in your proposal so expectations are clear from the start.'],
       ['q' => 'Who owns the final work?',
@@ -85,7 +85,7 @@ $FAQS = [
       ['q' => 'How do you report on performance?',
        'a' => 'You receive a live analytics dashboard plus a plain-English monthly report covering spend, results, and what we are changing next. No vanity metrics.'],
       ['q' => 'How quickly will I see marketing results?',
-       'a' => 'Paid ads can drive traffic within days; SEO and content typically compound over 3–6 months. We set realistic, channel-specific expectations in your strategy.'],
+       'a' => 'Paid ads can drive traffic within days; SEO and content usually take 3–6 months to show measurable movement. We set realistic, channel-specific expectations in your strategy.'],
     ],
   ],
   [

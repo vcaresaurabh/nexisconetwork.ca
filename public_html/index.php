@@ -80,6 +80,9 @@ $redirects = [
     '/services/business-it-support'   => '/services',
     '/services/hardware-upgrades'     => '/services',
     '/services/smart-home-iot'        => '/services',
+    // Portfolio of stock images removed (pre-appeal fixes, Oct 2026). Bring the
+    // page back only with real, client-approved work.
+    '/portfolio'                      => '/services',
 ];
 if (isset($redirects[$uri])) {
     header('Location: ' . $redirects[$uri], true, 301);
@@ -90,7 +93,6 @@ if (isset($redirects[$uri])) {
 $route_map = [
     '/'                  => 'pages/home.php',
     '/services'          => 'pages/services-index.php',
-    '/portfolio'         => 'pages/portfolio.php',
     '/pricing'           => 'pages/pricing.php',
     '/start-project'     => 'pages/start-project.php',
     '/about'             => 'pages/about.php',

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../includes/helpers.php';
 http_response_code(404);
 $page_title       = '404 — Page Not Found | Nexisco Network';
-$page_description = 'This page has moved or no longer exists. Explore our services, portfolio, or start a project with Nexisco Network.';
+$page_description = 'This page has moved or no longer exists. Explore our services, pricing, or start a project with Nexisco Network.';
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -35,7 +35,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <a href="/start-project" class="btn btn-gradient"  data-magnetic>Get a Free Quote</a>
       <a href="/"              class="btn btn-secondary" data-magnetic>Back to Home</a>
       <a href="/services"      class="btn btn-secondary" data-magnetic>Our Services</a>
-      <a href="/portfolio"     class="btn btn-secondary" data-magnetic>View Portfolio</a>
+      <a href="/pricing"       class="btn btn-secondary" data-magnetic>See Pricing</a>
     </div>
   </div>
 </section>

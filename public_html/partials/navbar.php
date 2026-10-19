@@ -74,7 +74,6 @@ $services = $SERVICES ?? [];
         </div>
       </li>
 
-      <li><a href="/portfolio" class="nav-link py-2">Portfolio</a></li>
       <li><a href="/pricing"   class="nav-link py-2">Pricing</a></li>
       <li><a href="/about"     class="nav-link py-2">About</a></li>
       <li><a href="/faq"       class="nav-link py-2">FAQ</a></li>
@@ -132,7 +131,6 @@ $services = $SERVICES ?? [];
   <nav class="flex-1 overflow-y-auto p-6 space-y-1" aria-label="Mobile navigation links">
     <a href="/"          class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Home</a>
     <a href="/services"  class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Services</a>
-    <a href="/portfolio" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Portfolio</a>
     <a href="/pricing"   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">Pricing</a>
     <a href="/about"     class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">About</a>
     <a href="/faq"       class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-900/5 text-lg font-medium transition-colors">FAQ</a>

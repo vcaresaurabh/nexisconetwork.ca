@@ -2,15 +2,14 @@
 declare(strict_types=1);
 /**
  * Nexisco Network — Homepage (digital agency)
- * Hero | Marquee | Stats | What We Do | Why Nexisco |
- * How It Works | Portfolio preview | Pricing preview | Testimonials | FAQ | CTA
+ * Hero | Marquee | At a Glance | What We Do | Why Nexisco |
+ * How It Works | Pricing preview | Why Work With Nexisco | FAQ | CTA
  */
 
 require_once __DIR__ . '/../includes/helpers.php';
 require_once __DIR__ . '/../includes/seo.php';
 require_once __DIR__ . '/../data/services.php';
 require_once __DIR__ . '/../data/pricing.php';
-require_once __DIR__ . '/../data/portfolio.php';
 require_once __DIR__ . '/../data/faqs.php';
 
 $page_title       = 'Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency';
@@ -19,15 +18,6 @@ $page_canonical   = 'https://nexisconetwork.ca/';
 
 // Homepage FAQs (first 5 from General category)
 $home_faqs = array_slice($FAQS[0]['items'] ?? [], 0, 5);
-
-// Portfolio preview — 2 per pillar (web, marketing, ecommerce)
-$preview = [];
-foreach (['web', 'marketing', 'ecommerce'] as $cat) {
-    $n = 0;
-    foreach ($PORTFOLIO as $p) {
-        if ($p['cat'] === $cat) { $preview[] = $p; if (++$n >= 2) break; }
-    }
-}
 
 // Pricing preview tiers
 $preview_plan_ids = ['starter', 'pro', 'advanced'];
@@ -49,7 +39,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <video class="bg-video" autoplay muted loop playsinline
            poster="/assets/img/hero/hero-poster.jpg"
            style="opacity:0.75">
-      <!-- NOTE (owner): add agency video sources (hero-bg.webm + hero-bg.mp4) -->
+      <?php /* NOTE (owner): add agency video sources (hero-bg.webm + hero-bg.mp4) */ ?>
     </video>
     <!-- Poster fallback -->
     <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1920&q=70"
@@ -125,7 +115,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p data-anim="fade-up"
          class="text-lg md:text-xl mb-10 max-w-xl"
          style="color:var(--text-secondary);line-height:1.7">
-        Expert
+        Professional
         <span class="typewriter" id="hero-typewriter">web development</span>
         for ambitious brands.<br>
         High-performing websites, data-driven marketing, and ecommerce stores that sell — for businesses in Canada and the US.
@@ -134,7 +124,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <!-- CTAs -->
       <div data-anim="fade-up" class="flex flex-wrap gap-4">
         <a href="/start-project" class="btn btn-gradient btn-lg"  data-magnetic>Get a Free Quote</a>
-        <a href="/portfolio"     class="btn btn-secondary btn-lg" data-magnetic>View Our Work →</a>
+        <a href="/services"      class="btn btn-secondary btn-lg" data-magnetic>See Our Services →</a>
       </div>
 
       <!-- Trust micro-badges -->
@@ -143,7 +133,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         $trust = [
           ['🌎', 'Serving Canada &amp; the US'],
           ['💳', 'Billed in USD &amp; CAD'],
-          ['🎯', 'Results-Focused'],
+          ['📝', 'Free, no-obligation quotes'],
           ['💻', 'Remote Delivery'],
         ];
         foreach ($trust as [$icon, $label]): ?>
@@ -162,8 +152,8 @@ require_once __DIR__ . '/../partials/navbar.php';
     Conversion-focused
   </div>
   <div class="hero-chip" style="bottom:22%;right:14%;animation-delay:-3s">
-    <span class="chip-icon" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(251,146,60,0.15));color:#EC4899">★</span>
-    Senior-level talent
+    <span class="chip-icon" style="background:linear-gradient(135deg,rgba(244,114,182,0.15),rgba(251,146,60,0.15));color:#EC4899">✓</span>
+    Fixed written quotes
   </div>
 
   <!-- Scroll indicator -->
@@ -200,12 +190,12 @@ require_once __DIR__ . '/../partials/navbar.php';
 </section>
 
 <!-- ================================================================
-     VALUE-STATS SECTION  (factual; real figures optional via config/site-stats.php)
+     AT A GLANCE  (plain business facts — no statistics)
      ================================================================ -->
-<section id="stats" class="relative section-padding overflow-hidden" aria-label="Nexisco by the numbers">
+<section id="stats" class="relative section-padding overflow-hidden" aria-label="Nexisco at a glance">
 
   <div class="bg-media-wrapper" aria-hidden="true">
-    <!-- NOTE (owner): replace with final stats background image -->
+    <?php /* NOTE (owner): replace with final stats background image */ ?>
     <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=70"
          alt="" loading="lazy" width="1920" height="900"
          data-parallax="-20"
@@ -218,20 +208,22 @@ require_once __DIR__ . '/../partials/navbar.php';
 
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
-      <p class="eyebrow">Our Track Record</p>
-      <h2>Results that <span class="text-gradient">compound</span></h2>
+      <p class="eyebrow">At a Glance</p>
+      <h2>Nexisco <span class="text-gradient">at a glance</span></h2>
       <p>Web development, digital marketing, and ecommerce for businesses in Canada and the US.</p>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8" data-stagger data-stagger-delay="0.1">
       <?php
-      // Factual value-stats. To show real numeric figures instead, set verifiable
-      // values in config/site-stats.php and wire them here.
+      // Plain business facts only — location comes from config/business.php.
+      // Do not add client counts, results or other statistics here.
+      $office      = business('registered_office');
+      $city_region = e($office['city'] . ', ' . $office['region_name']);
       $value_stats = [
-        ['big' => 'Canada · US',         'sub' => 'Serving ' . e(business('service_area'))],
-        ['big' => '3 Core Services',     'sub' => 'Web, marketing &amp; ecommerce, one team'],
-        ['big' => 'USD &amp; CAD',       'sub' => 'Billed in your currency'],
-        ['big' => 'Senior Specialists',  'sub' => 'Design, development &amp; marketing experts'],
+        ['big' => $city_region,          'sub' => 'Based in ' . $city_region],
+        ['big' => '3 Core Services',     'sub' => 'Web, marketing &amp; ecommerce'],
+        ['big' => 'USD or CAD',          'sub' => 'Billed in USD or CAD'],
+        ['big' => 'Free Quotes',         'sub' => 'Free, no-obligation quotes'],
       ];
       foreach ($value_stats as $s): ?>
       <div class="glass rounded-2xl p-8 text-center flex flex-col justify-center min-h-[150px]">
@@ -308,9 +300,8 @@ require_once __DIR__ . '/../partials/navbar.php';
       <!-- Left: Parallax image with floating badge widgets -->
       <div class="relative" data-reveal="circle">
         <div class="parallax-wrap rounded-3xl overflow-hidden aspect-[4/5]">
-          <!-- NOTE (owner): replace with a real team / studio photo -->
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
-               alt="The Nexisco Network team collaborating on a digital project"
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80"
+               alt="Laptop on a desk showing an analytics dashboard"
                loading="lazy" width="1200" height="1500"
                class="parallax-img" data-ken-burns>
         </div>
@@ -327,7 +318,7 @@ require_once __DIR__ . '/../partials/navbar.php';
             <span style="width:8px;height:8px;background:#10B981;border-radius:50%;display:inline-block;box-shadow:0 0 10px rgba(16,185,129,0.6);animation:widget-pulse 2s ease-in-out infinite"></span>
             <span class="text-xs font-semibold" style="color:#059669">USD &amp; CAD</span>
           </div>
-          <div class="text-sm font-semibold" style="color:var(--text-primary)">Transparent, results-driven pricing</div>
+          <div class="text-sm font-semibold" style="color:var(--text-primary)">Transparent, fixed pricing</div>
         </div>
       </div>
 
@@ -335,21 +326,21 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div>
         <p class="text-eyebrow mb-4" data-anim="fade-up">Why Nexisco</p>
         <h2 class="text-h1 mb-6" data-split="words">
-          The growth team your brand <span class="text-gradient-electric">actually needs.</span>
+          The growth partner your brand <span class="text-gradient-electric">actually needs.</span>
         </h2>
         <p class="text-base mb-8 leading-relaxed" style="color:var(--text-secondary)" data-anim="fade-up">
-          We're a senior-level agency that designs, builds, and grows digital businesses — with clear
-          communication, data-driven decisions, and a dedicated project manager on every engagement.
+          We design, build, and grow digital businesses with fixed written quotes, your approval at
+          each stage, plain-English monthly reports, and one point of contact.
         </p>
 
         <?php
         $benefits = [
-          ['icon' => '🧠', 'title' => 'Senior-Level Talent',       'desc' => 'Experienced designers, developers & marketers — no juniors learning on your dime.'],
+          ['icon' => '📝', 'title' => 'Fixed Written Quotes',       'desc' => 'Scope, timeline and price are agreed in writing before work starts.'],
           ['icon' => '🎯', 'title' => 'Conversion-Focused Design',  'desc' => 'Every page and campaign is built to drive a measurable business outcome.'],
-          ['icon' => '📊', 'title' => 'Data-Driven Marketing',      'desc' => 'We test, measure, and optimize so your budget compounds over time.'],
+          ['icon' => '📊', 'title' => 'Data-Driven Marketing',      'desc' => 'We test, measure, and explain every change in a plain-English monthly report.'],
           ['icon' => '📈', 'title' => 'Transparent Reporting',      'desc' => 'Live dashboards and plain-English monthly reports — no vanity metrics.'],
           ['icon' => '💻', 'title' => 'Remote Delivery',           'desc' => 'Work is delivered online for businesses in Canada and the US.'],
-          ['icon' => '🤝', 'title' => 'Dedicated Project Manager',  'desc' => 'One point of contact who keeps your project on time and on scope.'],
+          ['icon' => '🤝', 'title' => 'One Point of Contact',       'desc' => 'One point of contact from quote to launch, so you always know who to ask.'],
         ];
         ?>
         <ul class="space-y-5" data-stagger data-stagger-delay="0.07">
@@ -395,9 +386,9 @@ require_once __DIR__ . '/../partials/navbar.php';
     <?php
     $steps = [
       ['num' => '01', 'title' => 'Discovery & Quote',  'desc' => 'We learn your goals, audience, and scope, then send a clear, fixed quote in USD or CAD — free, no obligation.', 'img' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=70', 'color' => '#0891B2'],
-      ['num' => '02', 'title' => 'Strategy & Proposal','desc' => 'A prioritized plan and proposal: deliverables, timeline, and the channels or build that will move the needle.', 'img' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=70', 'color' => '#4F46E5'],
+      ['num' => '02', 'title' => 'Strategy & Proposal','desc' => 'A prioritized plan and proposal: deliverables, timeline, and the channels or build we recommend for your goals.', 'img' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=70', 'color' => '#4F46E5'],
       ['num' => '03', 'title' => 'Design & Build',     'desc' => 'We design, build, and launch campaigns — with check-ins and approvals so there are never any surprises.', 'img' => 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1200&q=70', 'color' => '#10B981'],
-      ['num' => '04', 'title' => 'Launch & Optimize',  'desc' => 'We go live, then measure and optimize — compounding your results with transparent monthly reporting.', 'img' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70', 'color' => '#F59E0B'],
+      ['num' => '04', 'title' => 'Launch & Optimize',  'desc' => 'We go live, then measure and optimize — with plain-English monthly reports.', 'img' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=70', 'color' => '#F59E0B'],
     ];
     foreach ($steps as $i => $step): ?>
     <div class="horizontal-scroll-panel" style="background:var(--bg-primary)">
@@ -433,46 +424,6 @@ require_once __DIR__ . '/../partials/navbar.php';
       </div>
     </div>
     <?php endforeach; ?>
-  </div>
-</section>
-
-<!-- ================================================================
-     PORTFOLIO PREVIEW
-     ================================================================ -->
-<section id="work" class="relative section-padding overflow-hidden grain" style="background:var(--bg-primary)" aria-label="Featured work">
-  <div class="glow-orb glow-orb-cyan" style="width:500px;height:500px;top:-8%;right:-6%;opacity:0.12" aria-hidden="true"></div>
-  <div class="container-wide relative z-10">
-    <div class="section-heading" data-anim="fade-up">
-      <p class="eyebrow">Featured Work</p>
-      <h2>A look at <span class="text-gradient">what we build</span></h2>
-      <p>A selection of projects across web, marketing, and ecommerce. <a href="/portfolio" class="underline hover:text-slate-900">See the full portfolio →</a></p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger data-stagger-delay="0.08">
-      <?php foreach ($preview as $p): ?>
-      <a href="/portfolio" class="group relative overflow-hidden rounded-2xl block"
-         style="background:var(--bg-secondary);border:1px solid var(--border-subtle)">
-        <div class="relative overflow-hidden aspect-[4/3]">
-          <img src="<?= e($p['image']) ?>"
-               onerror="this.src='https://images.unsplash.com/photo-1559028012-481c04fa702d?w=900&q=60'"
-               alt="<?= e($p['title']) ?> — <?= e($p['tag']) ?>"
-               loading="lazy" width="900" height="675"
-               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,0.55) 0%,transparent 55%)"></div>
-          <div class="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-semibold"
-               style="background:rgba(255,255,255,0.9);color:var(--accent)"><?= e($p['tag']) ?></div>
-          <div class="absolute bottom-3 left-4 right-4">
-            <div class="text-white font-semibold"><?= e($p['title']) ?></div>
-            <div class="text-white/80 text-xs mt-0.5"><?= e($p['desc']) ?></div>
-          </div>
-        </div>
-      </a>
-      <?php endforeach; ?>
-    </div>
-
-    <div class="text-center mt-10" data-anim="fade-up">
-      <a href="/portfolio" class="btn btn-secondary" data-magnetic>View Full Portfolio</a>
-    </div>
   </div>
 </section>
 
@@ -536,10 +487,9 @@ require_once __DIR__ . '/../partials/navbar.php';
 </section>
 
 <!-- ================================================================
-     WHY CLIENTS CHOOSE NEXISCO  (value section — the reviews carousel
-     can be re-enabled once genuine client testimonials are supplied)
+     WHY WORK WITH NEXISCO  (how the work runs — process facts only)
      ================================================================ -->
-<section id="why-clients" class="relative section-padding overflow-hidden" style="background:var(--bg-primary)" aria-label="Why clients choose Nexisco">
+<section id="why-clients" class="relative section-padding overflow-hidden" style="background:var(--bg-primary)" aria-label="Why work with Nexisco">
 
   <div class="bg-media-wrapper" aria-hidden="true">
     <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&q=60"
@@ -551,14 +501,14 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Why Nexisco</p>
-      <h2>Why clients <span class="text-gradient">choose Nexisco</span></h2>
+      <h2>Why work with <span class="text-gradient">Nexisco</span></h2>
       <p>Conversion-focused work and transparent delivery — for businesses in Canada and the US.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger data-stagger-delay="0.08">
       <?php
       $why_cards = [
-        ['icon' => '🧠', 'title' => 'Senior-level talent',      'desc' => 'Your work is handled by specialists — not juniors learning on the job.'],
+        ['icon' => '✅', 'title' => 'Approval at every stage',  'desc' => 'Nothing goes live until you\'ve reviewed and approved it.'],
         ['icon' => '🎯', 'title' => 'Conversion-focused builds', 'desc' => 'Every site and campaign is designed to turn visitors into customers.'],
         ['icon' => '📊', 'title' => 'Transparent reporting',     'desc' => 'Clear metrics and plain-English updates — no jargon, no vanity numbers.'],
         ['icon' => '💻', 'title' => 'Remote delivery',           'desc' => 'Work is delivered online, on a timeline confirmed in your proposal.'],
@@ -577,7 +527,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
     <!-- Section CTA -->
     <div class="mt-12 text-center" data-anim="fade-up">
-      <a href="/start-project" class="btn btn-gradient" data-magnetic>Be our next success story →</a>
+      <a href="/start-project" class="btn btn-gradient" data-magnetic>Start your project →</a>
     </div>
   </div>
 </section>
@@ -624,7 +574,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     <video class="bg-video" autoplay muted loop playsinline
            poster="/assets/img/backgrounds/cta-poster.jpg"
            style="opacity:0.6"></video>
-    <!-- NOTE (owner): replace with final CTA background image -->
+    <?php /* NOTE (owner): replace with final CTA background image */ ?>
     <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="800"
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45">
@@ -642,13 +592,13 @@ require_once __DIR__ . '/../partials/navbar.php';
         Let's build something<br><span class="text-gradient-anim">that performs.</span>
       </h2>
       <p class="text-lg mb-10 max-w-xl mx-auto" style="color:var(--text-secondary)" data-anim="fade-up">
-        Get a free quote today. Tell us your goals and we'll map the fastest path to growth —
-        in web, marketing, ecommerce, or all three.
+        Get a free quote today. Tell us your goals and we'll send a clear plan and a fixed,
+        written quote — for web, marketing, ecommerce, or all three.
       </p>
 
       <div class="flex flex-wrap gap-4 justify-center" data-anim="fade-up">
         <a href="/start-project" class="btn btn-gradient text-lg px-8 py-4" data-magnetic>Get a Free Quote</a>
-        <a href="/portfolio"     class="btn btn-secondary text-lg px-8 py-4" data-magnetic>View Our Work</a>
+        <a href="/services"      class="btn btn-secondary text-lg px-8 py-4" data-magnetic>See Our Services</a>
       </div>
 
       <div class="flex flex-wrap justify-center gap-6 mt-10 text-sm"

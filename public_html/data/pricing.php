@@ -41,9 +41,9 @@ $PRICING_PLANS = [
   [
     'id'       => 'pro',
     'name'     => 'Pro',
-    'tagline'  => 'Our most popular growth plan.',
+    'tagline'  => 'Our recommended growth plan.',
     'featured' => true,
-    'badge'    => 'Most Popular',
+    'badge'    => 'Recommended',
     'price'    => ['usd' => 549, 'cad' => 549],
     'features' => [
       'Custom Website Design',
@@ -52,7 +52,7 @@ $PRICING_PLANS = [
       'Conversion Optimization',
       'Performance Analytics',
       'Email Marketing Setup',
-      'Dedicated Manager',
+      'Single point of contact',
     ],
   ],
   [
@@ -69,7 +69,7 @@ $PRICING_PLANS = [
       'Conversion Funnels',
       'Advanced Analytics',
       'Monthly Reports',
-      'Dedicated Manager',
+      'Single point of contact',
     ],
   ],
   [
@@ -80,7 +80,7 @@ $PRICING_PLANS = [
     'price'    => ['usd' => 1299, 'cad' => 1299],
     'features' => [
       'Custom Enterprise Platform',
-      'Dedicated Project Manager',
+      'Single point of contact',
       'Full Digital Marketing',
       'Paid Ads Management',
       'Advanced Conversion Strategy',

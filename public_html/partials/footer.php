@@ -19,8 +19,7 @@
 
   <!-- ── Background layers ──────────────────────────────────────── -->
   <div class="bg-media-wrapper" aria-hidden="true">
-    <!-- NOTE (owner): replace with final footer background image -->
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=60"
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="600"
          style="opacity:0.20;object-fit:cover;width:100%;height:100%">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(241,245,249,0.85),rgba(241,245,249,0.98))"></div>
@@ -125,7 +124,6 @@
           <h4 class="text-sm font-semibold mb-4 uppercase tracking-wider" style="color:var(--text-tertiary)">Company</h4>
           <ul class="space-y-2.5 text-sm" style="color:var(--text-secondary)">
             <li><a href="/about"         class="hover:text-slate-900 transition-colors">About Us</a></li>
-            <li><a href="/portfolio"     class="hover:text-slate-900 transition-colors">Portfolio</a></li>
             <li><a href="/pricing"       class="hover:text-slate-900 transition-colors">Pricing</a></li>
             <li><a href="/partners"      class="hover:text-slate-900 transition-colors">Partner Program</a></li>
             <li><a href="/faq"           class="hover:text-slate-900 transition-colors">FAQ</a></li>

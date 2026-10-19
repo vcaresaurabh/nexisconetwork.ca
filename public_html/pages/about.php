@@ -3,7 +3,8 @@ declare(strict_types=1);
 /**
  * Nexisco Network — About (digital agency)
  * Hero | Business Model & Payments | Mission | What We Do |
- * Stats band | Why Nexisco | Company Details | Team | CTA
+ * Value band | Why Nexisco | Company Details | Who's behind Nexisco |
+ * What we cover | CTA
  */
 
 require_once __DIR__ . '/../includes/helpers.php';
@@ -22,7 +23,7 @@ require_once __DIR__ . '/../partials/navbar.php';
      ================================================================ -->
 <section class="relative min-h-[58vh] flex items-end overflow-hidden grain" style="background:var(--bg-primary)">
   <div class="bg-media-wrapper" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=70"
+    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=70"
          alt="" loading="eager"
          style="opacity:0.55;width:100%;height:100%;object-fit:cover" data-parallax="-20">
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,251,252,0.55) 0%,rgba(250,251,252,0.96) 100%)"></div>
@@ -37,7 +38,7 @@ require_once __DIR__ . '/../partials/navbar.php';
     </h1>
     <p class="text-xl max-w-2xl" style="color:var(--text-secondary)" data-anim="fade-up">
       Nexisco Network is an <?= e(business('positioning')) ?>. We design, market, and scale brands through
-      three things done exceptionally well — web development, digital marketing, and ecommerce development.
+      three services: web development, digital marketing, and ecommerce development.
     </p>
   </div>
 </section>
@@ -84,7 +85,7 @@ require_once __DIR__ . '/../partials/navbar.php';
           $model = [
             ['icon' => '🗂️', 'title' => 'Project or monthly',  'desc' => 'One-time projects or recurring monthly plans — whichever fits your goals.'],
             ['icon' => '📅', 'title' => 'Upfront or milestones','desc' => 'Pay upfront, or across an agreed milestone schedule for larger builds.'],
-            ['icon' => '🌍', 'title' => 'Remote delivery',      'desc' => 'Work is delivered online for ' . e(business('service_area')) . '.'],
+            ['icon' => '💻', 'title' => 'Remote delivery',      'desc' => 'Work is delivered online for ' . e(business('service_area')) . '.'],
             ['icon' => '💳', 'title' => 'USD &amp; CAD',        'desc' => 'Major credit &amp; debit cards, PayPal, and bank/wire transfer — billed in your currency.'],
             ['icon' => '🔒', 'title' => 'Secure by default',    'desc' => 'All transactions are processed securely with encryption.'],
           ];
@@ -216,7 +217,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 </section>
 
 <!-- ================================================================
-     VALUE BAND  (factual value-stats — see config/site-stats.php for real figures)
+     VALUE BAND  (how the work runs)
      ================================================================ -->
 <section class="relative py-20 overflow-hidden" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle)" aria-label="How we work">
   <div class="glow-orb glow-orb-cyan" style="width:350px;height:350px;top:-80px;left:-60px;opacity:0.10" aria-hidden="true"></div>
@@ -225,7 +226,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <?php
       $value_stats = [
         ['big' => 'Remote Delivery',   'sub' => 'Work is delivered online for ' . e(business('service_area'))],
-        ['big' => 'Full-Service Team', 'sub' => 'Web, marketing &amp; ecommerce specialists under one roof'],
+        ['big' => 'Fixed Written Quotes', 'sub' => 'Scope, timeline and price agreed before work starts'],
       ];
       foreach ($value_stats as $s): ?>
       <div class="glass rounded-2xl p-10 text-center flex flex-col justify-center min-h-[150px]">
@@ -245,19 +246,19 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
       <p class="eyebrow">Why Nexisco</p>
-      <h2>The growth team your brand <span class="text-gradient-electric">actually needs.</span></h2>
-      <p>A senior-level partner that thinks strategically, builds creatively, and reports honestly.</p>
+      <h2>The growth partner your brand <span class="text-gradient-electric">actually needs.</span></h2>
+      <p>A partner that thinks strategically, builds creatively, and reports honestly.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-stagger data-stagger-delay="0.07">
       <?php
       $reasons = [
-        ['icon' => '🏅', 'title' => 'Proven Expertise',          'desc' => 'Experienced designers, developers, and marketers across all three pillars — no juniors learning on your dime.'],
+        ['icon' => '✅', 'title' => 'Approval at Every Stage',   'desc' => 'You review and approve the strategy, design, build, and launch before we move on to the next stage.'],
         ['icon' => '🧠', 'title' => 'Strategic & Creative Thinking','desc' => 'We pair sharp strategy with original design, so your brand is both effective and memorable.'],
-        ['icon' => '🤝', 'title' => 'Client-Centered Approach',   'desc' => 'A dedicated point of contact, clear communication, and your goals at the center of every decision.'],
-        ['icon' => '📈', 'title' => 'Results That Matter',        'desc' => 'We measure what counts and report it in plain English — built to drive real business outcomes.'],
+        ['icon' => '🤝', 'title' => 'Client-Centered Approach',   'desc' => 'One point of contact, clear communication, and your goals at the center of every decision.'],
+        ['icon' => '📈', 'title' => 'Plain-English Reporting',    'desc' => 'A monthly report in plain English: what we did, what we measured, and what we\'ll change next.'],
         ['icon' => '🚀', 'title' => 'Scalable Solutions',         'desc' => 'Whether a one-time project or ongoing monthly plan, our work is built to grow with you.'],
-        ['icon' => '🌍', 'title' => 'Remote Delivery',            'desc' => 'Work is delivered online for ' . business('service_area') . ' — billed in USD or CAD.'],
+        ['icon' => '💻', 'title' => 'Remote Delivery',            'desc' => 'Work is delivered online for ' . business('service_area') . ' — billed in USD or CAD.'],
       ];
       foreach ($reasons as $r): ?>
       <div class="glass rounded-2xl p-8">
@@ -296,7 +297,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         </div>
         <div class="flex flex-wrap gap-4 mt-8" data-anim="fade-up">
           <a href="/contact" class="btn btn-gradient" data-magnetic>Get in Touch</a>
-          <a href="/portfolio"  class="btn btn-secondary" data-magnetic>View Our Work</a>
+          <a href="/services"  class="btn btn-secondary" data-magnetic>See Our Services</a>
         </div>
       </div>
 
@@ -340,24 +341,58 @@ require_once __DIR__ . '/../partials/navbar.php';
 </section>
 
 <!-- ================================================================
-     OUR TEAM / EXPERTISE
+     WHO'S BEHIND NEXISCO
      ================================================================ -->
-<section class="relative section-padding overflow-hidden grain" style="background:var(--bg-primary)" aria-label="Our expertise">
+<?php $office = business('registered_office'); ?>
+<section class="relative py-20 overflow-hidden" style="background:var(--bg-secondary);border-top:1px solid var(--border-subtle)" aria-label="Who's behind Nexisco">
+  <div class="relative z-10 container-wide">
+    <div class="section-heading" data-anim="fade-up">
+      <p class="eyebrow">Who we are</p>
+      <h2>Who's behind <span class="text-gradient">Nexisco</span></h2>
+    </div>
+
+    <div class="glass-strong rounded-3xl p-8 md:p-10 max-w-3xl mx-auto text-center" data-anim="fade-up">
+      <p class="text-lg md:text-xl font-semibold" style="color:var(--text-primary)">
+        <?= e(business('director')) ?> — <?= e(business('director_title')) ?>, <?= e(business('legal_name')) ?> · <?= e($office['city']) ?>, <?= e($office['region_name']) ?>
+      </p>
+      <p class="text-sm leading-relaxed mt-4" style="color:var(--text-secondary)">
+        <?= e(business('legal_name')) ?> is an <?= e(business('jurisdiction_short')) ?> corporation directed by
+        <?= e(business('director')) ?>, with its registered office in <?= e($office['city']) ?>, <?= e($office['region_name']) ?>.
+        Contact:
+        <a href="<?= e(business_tel_href()) ?>" class="font-medium hover:underline" style="color:var(--accent)"><?= e(business('phone')) ?></a>
+        ·
+        <a href="<?= e(business_mailto()) ?>" class="font-medium hover:underline" style="color:var(--accent)"><?= e(business('email')) ?></a>
+      </p>
+      <?php if ($li = business('director_linkedin')): ?>
+      <p class="text-sm mt-4">
+        <a href="<?= e($li) ?>" target="_blank" rel="noopener noreferrer" class="font-medium hover:underline" style="color:var(--accent)">
+          <?= e(business('director')) ?> on LinkedIn →
+        </a>
+      </p>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     WHAT WE COVER
+     ================================================================ -->
+<section class="relative section-padding overflow-hidden grain" style="background:var(--bg-primary)" aria-label="What we cover">
   <div class="glow-orb glow-orb-indigo" style="width:400px;height:400px;top:5%;right:-5%;opacity:0.10" aria-hidden="true"></div>
   <div class="container-wide relative z-10">
     <div class="section-heading" data-anim="fade-up">
-      <p class="eyebrow">Our Team</p>
-      <h2>A full-service team <span class="text-gradient">on your side</span></h2>
-      <p>Specialists across design, development, and marketing — collaborating as one team on your project.</p>
+      <p class="eyebrow">What we cover</p>
+      <h2>Design, build, market <span class="text-gradient">and sell</span></h2>
+      <p>Interface design, website builds, digital marketing, and online stores — each scoped in a fixed written quote before work starts.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-stagger data-stagger-delay="0.08">
       <?php
       $disciplines = [
-        ['icon' => '🎨', 'title' => 'Design &amp; UI/UX',    'desc' => 'Brand-aligned interfaces and experiences designed to convert.'],
-        ['icon' => '💻', 'title' => 'Web Development',       'desc' => 'Fast, accessible, SEO-ready builds on modern stacks.'],
-        ['icon' => '📈', 'title' => 'Digital Marketing',     'desc' => 'SEO, paid ads, social, and email that grow your pipeline.'],
-        ['icon' => '🛒', 'title' => 'Ecommerce',             'desc' => 'Shopify & WooCommerce stores built to sell.'],
+        ['icon' => '🎨', 'title' => 'Design &amp; UI/UX',    'desc' => 'Brand-aligned interface and user-experience design for your website or store.'],
+        ['icon' => '💻', 'title' => 'Web Development',       'desc' => 'Fast, accessible, SEO-ready website builds on modern stacks.'],
+        ['icon' => '📈', 'title' => 'Digital Marketing',     'desc' => 'SEO, paid ads, social, and email campaigns — tracked and reported monthly.'],
+        ['icon' => '🛒', 'title' => 'Ecommerce',             'desc' => 'Shopify & WooCommerce store builds, from product pages to checkout.'],
       ];
       foreach ($disciplines as $d): ?>
       <div class="glass rounded-2xl p-8 text-center">

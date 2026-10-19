@@ -43,7 +43,8 @@ require_once __DIR__ . '/../partials/navbar.php';
       <h2 class="text-h1" data-split="words">Three ways to partner.</h2>
       <p class="text-lg max-w-2xl mx-auto mt-4" style="color:var(--text-secondary)" data-anim="fade-up">
         Pick the model that fits how you work. Move between them as your client base grows —
-        every tier is delivered by the same senior team across web, marketing, and ecommerce.
+        every tier follows the same process: fixed written quotes, approval at each stage,
+        plain-English monthly reports, and one point of contact.
       </p>
     </div>
 
@@ -60,7 +61,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         [
           'name'  => 'White-Label',
           'tag'   => 'Under your brand',
-          'desc'  => 'We deliver the work in the background and you present it as your own. Your client never sees Nexisco — just your name on senior-level web, marketing, and ecommerce output.',
+          'desc'  => 'We deliver the work in the background and you present it as your own. Your client never sees Nexisco — just your name on the web, marketing, and ecommerce work.',
           'points'=> ['Unbranded deliverables & reports', 'You set your own client pricing', 'Preferred wholesale rates'],
           'featured' => true,
         ],
@@ -76,7 +77,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <div class="glass rounded-3xl p-8 <?= $m['featured'] ? 'ring-1 ring-[var(--accent)]' : '' ?>">
         <?php if ($m['featured']): ?>
         <div class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4"
-             style="background:var(--accent-gradient);color:#FFFFFF">Most Popular</div>
+             style="background:var(--accent-gradient);color:#FFFFFF">Recommended</div>
         <?php endif; ?>
         <div class="text-2xl font-bold mb-1"><?= e($m['name']) ?></div>
         <div class="text-sm mb-5" style="color:var(--accent)"><?= e($m['tag']) ?></div>
@@ -115,13 +116,13 @@ require_once __DIR__ . '/../partials/navbar.php';
       <?php
       $benefits = [
         ['icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-          'title' => 'Senior Delivery, Your Brand', 'desc' => 'Experienced designers, developers, and marketers ship the work — your client only ever sees your name.'],
+          'title' => 'White-Label Delivery', 'desc' => 'We deliver the work under your brand — your client only ever sees your name.'],
         ['icon' => 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
           'title' => 'Remote Delivery', 'desc' => 'Serve your clients in Canada and the US. Work is delivered online and billed in USD or CAD.'],
         ['icon' => 'M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
           'title' => 'Transparent Reporting', 'desc' => 'Clear scopes, timelines, and plain-English progress updates you can pass straight to your client.'],
         ['icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
-          'title' => 'Dedicated Project Manager', 'desc' => 'One point of contact who keeps every engagement on time, on scope, and easy to hand off.'],
+          'title' => 'Single Point of Contact', 'desc' => 'One point of contact who keeps every engagement on time, on scope, and easy to hand off.'],
       ];
       foreach ($benefits as $b): ?>
       <div class="glass rounded-2xl p-6 text-center">
@@ -139,8 +140,8 @@ require_once __DIR__ . '/../partials/navbar.php';
     </div>
 
     <p class="text-xs text-center mt-10 max-w-2xl mx-auto" style="color:var(--text-tertiary)">
-      You bring the client relationship and the brand. We bring the production capacity across web
-      development, digital marketing, and ecommerce — so you can say yes to more projects without hiring.
+      You bring the client relationship and the brand. We handle production across web
+      development, digital marketing, and ecommerce — so you can offer more services without hiring.
     </p>
   </div>
 </section>
