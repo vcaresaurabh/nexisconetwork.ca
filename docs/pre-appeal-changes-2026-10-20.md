@@ -5,7 +5,8 @@ Practices** policy). The site now represents Nexisco Network Inc. accurately and
 everywhere, nothing that implies clients, results, staff or capacity the business can't show, and the same content for
 every visitor, including Google's crawlers.
 
-- Branch: `pre-appeal-fixes` on top of `main` at `94dd99e`. **Not deployed.** Commits: Phase 1 `fa1d5fb` · Phase 2
+- Branch: `pre-appeal-fixes` on top of `main` at `94dd99e`. **Deployed to https://nexisconetwork.ca on 20 October
+  2026** (see "Deployment" at the end). Commits: Phase 1 `fa1d5fb` · Phase 2
   `1576f20` · Phase 3 `a5ebb8d` + `b28fd5f` (consistency fixes) · Phase 4 `7ccaa2b` · Phase 5 `a2ecb41` · final-review
   fixes `5b5833e` · this document.
 - Stack: plain PHP 8 front controller (`public_html/index.php` → `public_html/pages/*.php`), not a Next.js export. The
@@ -765,3 +766,32 @@ PASS  robots.txt
 
 ✓ All compliance checks passed.
 ```
+
+## Deployment (20 October 2026)
+
+- **Backup first:** the whole live `public_html` (822 files, 40 MB) was downloaded over SFTP with `lftp mirror` and
+  checked file-by-file against the server before anything changed. It is in the gitignored
+  `.deploy/backup-live-20261020T202917Z-full/`.
+- **Clean deploy:** `public_html/nexisconetwork.ca` was mirrored from this branch with deletion of everything not in the
+  build. Only the live `config/config.php` (credentials) and `.well-known/` (SSL validation) were kept.
+- **Removed from the server** (none of it was in this repository):
+  - `assist/`: a hidden printer tech-support lead page (HP and Epson printer setup images, `g-setup-assis.php`,
+    `admin-leads-assis.php`) with visitor-screening code (`asats/js/guard.js`, `bin/vi-build-geo.php`,
+    `bin/vi-refresh-ranges.php`, per-visitor `data/vi/sessions/*.json`). Geo/IP-range screening of visitors is what
+    Google treats as cloaking; this is very likely connected to the suspension. Do not restore it from the backup.
+  - unused old asset folders (`assets/img/{about,backgrounds,hero,icons,services,testimonials,textures}`, `assets/fonts`,
+    `assets/video`), `dev-router.php`, the portfolio and stats files.
+- **Root `public_html/.htaccess`** was an identical copy of the old site `.htaccess`, including a Content-Security-Policy
+  that allow-listed JivoChat/Chatresque chat scripts. It applies to the site folder too, so it was replaced with a
+  minimal comment-only file. The leftover `public_html/__deploytest.php` was removed.
+- **Live checks after deploy:** every page 200, `/portfolio` 301, old IT URLs 410, `/assist/` 404; the live response
+  carries this repo's CSP (no chat vendors); `node scripts/compliance-check.mjs https://nexisconetwork.ca` passes.
+- **Still to do on the server:**
+  - set the real SMTP password in `config/config.php` (it is still `CHANGE_ME`); until then forms don't email and the
+    newsletter shows "write to support@…";
+  - import `sql/schema.sql` in phpMyAdmin if the tables don't exist yet;
+  - turn off GoDaddy's injected traffic script (`img1.wsimg.com/traffic-assets/js/tccl.min.js`) in the hosting
+    settings — it is added by the platform, not by any file;
+  - after the deploy, rotate the cPanel/SSH password and remove the `nexisco-codespace-deploy-2026-10-20` key in cPanel
+    → SSH Access → Manage SSH Keys.
+
