@@ -35,7 +35,7 @@
           <div>
             <h3 class="text-lg font-semibold mb-1">Grow with us</h3>
             <p class="text-sm" style="color:var(--text-secondary)">
-              Web, marketing, and ecommerce insights — straight to your inbox. No spam; unsubscribe anytime. (CASL compliant.)
+              Web, marketing, and ecommerce insights — straight to your inbox. No spam; unsubscribe anytime.
             </p>
           </div>
 
@@ -146,28 +146,15 @@
         </div>
       </div>
 
-      <!-- ── Trust & Payment Badges ───────────────────────────── -->
+      <!-- ── Privacy & payments ─────────────────────────────────── -->
       <div class="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-6"
            style="border-color:var(--border-subtle)">
 
         <div class="flex flex-col gap-3 items-center md:items-start">
-          <div class="flex flex-wrap items-center gap-3 justify-center md:justify-start">
-            <?php
-            $badges = [
-              ['icon' => '🔒', 'label' => 'SSL Secured'],
-              ['icon' => '🇨🇦', 'label' => 'PIPEDA Compliant'],
-              ['icon' => '✉️', 'label' => 'CASL Compliant'],
-              ['icon' => '💳', 'label' => 'Payments in USD &amp; CAD'],
-            ];
-            foreach ($badges as $b): ?>
-            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs"
-                 style="background:var(--glass-bg);border:1px solid var(--border-subtle);color:var(--text-secondary)">
-              <span aria-hidden="true"><?= $b['icon'] ?></span>
-              <?= $b['label'] ?>
-            </div>
-            <?php endforeach; ?>
-          </div>
-          <!-- NOTE (owner): swap in real card-network / processor logos when confirmed. -->
+          <p class="text-xs text-center md:text-left" style="color:var(--text-secondary)">
+            We handle personal information in line with PIPEDA and send commercial email under CASL.
+          </p>
+          <?php /* NOTE (owner): add card-network / processor logos only once the processors are confirmed. */ ?>
           <p class="text-xs" style="color:var(--text-tertiary)">
             We accept major credit &amp; debit cards, PayPal, and bank/wire transfer.
           </p>

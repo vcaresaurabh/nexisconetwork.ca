@@ -129,7 +129,7 @@ function mail_template(array $data): string {
     <tr>
       <td style="padding:24px 40px;border-top:1px solid rgba(15,23,42,0.08);background:#F8FAFC">
         <p style="font-size:12px;color:#64748B;margin:0;line-height:1.6">
-          You're receiving this email from {$legal_name} because you requested a service or opted in to commercial communications. This message complies with Canada's Anti-Spam Legislation (CASL).<br><br>
+          You're receiving this email from {$legal_name} because you requested a service or opted in to commercial communications. We send commercial email under Canada's Anti-Spam Legislation (CASL).<br><br>
           <strong style="color:#475569">{$legal_name}</strong><br>
           {$address}<br>
           Phone: {$phone} · Email: {$email}<br><br>

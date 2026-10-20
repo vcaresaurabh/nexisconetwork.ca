@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Refund Policy | Nexisco Network';
 $page_description = 'Nexisco Network refund policy for digital professional services. How deposits, milestone payments, work-in-progress, and monthly retainers are handled, with refunds issued in the original currency (USD or CAD).';
 $page_canonical   = 'https://nexisconetwork.ca/refund-policy';
-$last_updated     = 'June 18, 2026';
+$last_updated     = 'October 20, 2026';
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -22,19 +22,17 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow">
     <div class="glass rounded-3xl p-8 md:p-12 prose-legal">
 
-      <p><em>This Refund Policy is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
-
       <h2>1. About This Policy</h2>
-      <p>This Refund Policy ("Policy") is issued by Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "we", "our", "us"). We are an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. This Policy forms part of, and should be read together with, our <a href="/terms">Terms of Service</a> and our <a href="/cancellation-policy">Cancellation Policy</a>. Where a term is defined in those documents, it carries the same meaning here.</p>
+      <p>This Refund Policy ("Policy") is issued by <?= e(business_identity()) ?>. We are an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. This Policy forms part of, and should be read together with, our <a href="/terms">Terms of Service</a> and our <a href="/cancellation-policy">Cancellation Policy</a>. Where a term is defined in those documents, it carries the same meaning here.</p>
 
       <h2>2. Digital Professional Services — No Physical Returns</h2>
       <p>Everything we sell is a <strong>digital professional service</strong>: design, strategy, development, marketing, and the deliverables produced through that work. There is <strong>no physical product, no shipment, and nothing to return or ship back</strong>. Because our services involve skilled labour, time, and tooling committed specifically to your project, refunds are assessed based on the work performed rather than on a "return" of goods.</p>
 
       <h2>3. Deposits</h2>
-      <p>Most engagements begin with a deposit (also called a kickoff or onboarding payment) that reserves capacity on our schedule and funds the discovery and planning phase. Once we have begun discovery, planning, or production work for your project, the deposit reflects work that has already started and is generally <strong>non-refundable</strong> to the extent that effort has been spent. If you cancel before any work has begun, we will refund the unspent portion of your deposit. See our <a href="/cancellation-policy">Cancellation Policy</a> for how to cancel.</p>
+      <p>Deposits apply to one-time project engagements. A one-time project typically begins with a deposit (also called a kickoff payment) that reserves time on our schedule and funds the discovery and planning phase. Once we have begun discovery, planning, or production work for your project, the deposit reflects work that has already started and is generally <strong>non-refundable</strong> to the extent that effort has been spent. If you cancel before any work has begun, we will refund the unspent portion of your deposit. See our <a href="/cancellation-policy">Cancellation Policy</a> for how to cancel. Monthly plans are covered in Section 6.</p>
 
       <h2>4. Milestone Payments and Work in Progress</h2>
-      <p>Projects are typically billed in milestones tied to phases such as discovery, design, build, and launch. Our guiding principle is simple: <strong>you pay for the work that has been completed and approved up to the date of cancellation.</strong></p>
+      <p>One-time projects are typically billed in milestones tied to phases such as discovery, design, build, and launch. Our guiding principle is simple: <strong>you pay for the work that has been completed and approved up to the date of cancellation.</strong></p>
       <ul>
         <li><strong>Completed and approved milestones</strong> are earned in full and are non-refundable.</li>
         <li><strong>Work in progress</strong> at the time of cancellation is charged on a fair, pro-rated basis for the effort spent on the current milestone, calculated from our time records and the deliverables produced to date.</li>
@@ -62,9 +60,10 @@ require_once __DIR__ . '/../partials/navbar.php';
       <h2>6. Monthly Plans and Retainers</h2>
       <p>Some services — including ongoing digital marketing and maintenance — are provided under a recurring monthly plan or retainer. For these arrangements:</p>
       <ul>
-        <li><strong>Current cycle:</strong> the fee for the cycle already in progress is non-refundable, because the team, time, and budget for that cycle have already been allocated and largely spent. Your services continue through the end of the paid cycle.</li>
-        <li><strong>Future cycles:</strong> you may cancel before the next renewal so that you are not billed for future cycles. Charges already taken for a future cycle that has not yet begun are refundable.</li>
-        <li><strong>Notice and renewal:</strong> cancellation timing and renewal notice requirements are set out in our <a href="/cancellation-policy">Cancellation Policy</a>.</li>
+        <li><strong>Minimum term:</strong> <?= e(business('min_term')) ?>. <strong>Setup fee:</strong> <?= e(business('setup_fee')) ?>. Monthly plans are billed each cycle in advance.</li>
+        <li><strong>Current cycle:</strong> the fee for the cycle already in progress is non-refundable, because the time and budget for that cycle have already been allocated and largely spent. Your services continue through the end of the paid cycle.</li>
+        <li><strong>Notice period:</strong> a monthly plan or retainer is cancelled on <?= e(business('cancellation_notice')) ?>' written notice, and fees remain payable through the end of the notice period. Cancellation timing and renewal details are set out in our <a href="/cancellation-policy">Cancellation Policy</a>.</li>
+        <li><strong>Future cycles:</strong> you are not billed for cycles that begin after your notice period ends. Charges already taken for such a cycle are refundable.</li>
       </ul>
 
       <h2>7. Currency of Refunds</h2>
@@ -94,7 +93,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <address class="not-italic">
         <strong><?= e(business('legal_name')) ?></strong><br>
         <?= e($reg_office['street']) ?><br>
-        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region']) ?> <?= e($reg_office['postal_code']) ?><br>
         <?= e($reg_office['country']) ?><br>
         Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
         Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a><br>

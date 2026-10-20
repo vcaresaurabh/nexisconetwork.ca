@@ -3,8 +3,9 @@ require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Privacy Policy | Nexisco Network';
 $page_description = 'Privacy policy for Nexisco Network, an ' . business('positioning') . '. How we collect, use, and protect your personal information under Canada\'s PIPEDA and Alberta PIPA, with GDPR-style rights for international visitors.';
 $page_canonical   = 'https://nexisconetwork.ca/privacy';
-$last_updated     = 'June 18, 2026';
-$privacy_email    = business('privacy_contact')['email'];
+$last_updated     = 'October 20, 2026';
+$privacy_contact  = business('privacy_contact');
+$privacy_email    = $privacy_contact['email'];
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -23,10 +24,9 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow">
     <div class="glass rounded-3xl p-8 md:p-12 prose-legal">
 
-      <p><em>This Privacy Policy is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
-
       <h2>1. Our Commitment to Privacy</h2>
-      <p>Nexisco Network (based in Canada with its registered office at <?= e(business_address(true)) ?>) ("Nexisco Network", "we", "our", "us") is an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. We are committed to protecting the personal information you entrust to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information in accordance with Canada's <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA), Alberta's <em>Personal Information Protection Act</em> (PIPA), and — for visitors in the European Union, the United Kingdom, and other regions with comparable laws — internationally recognized data-protection principles such as the GDPR.</p>
+      <p>This Privacy Policy is issued by <?= e(business_identity()) ?>. We are an <?= e(business('positioning')) ?>. We provide web development, digital marketing, and ecommerce development services, and our work is delivered online. We are committed to protecting the personal information you entrust to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information in accordance with Canada's <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA), Alberta's <em>Personal Information Protection Act</em> (PIPA), and — for visitors in the European Union, the United Kingdom, and other regions with comparable laws — internationally recognized data-protection principles such as the GDPR.</p>
+      <p><strong>Accountability:</strong> <?= e($privacy_contact['name']) ?>, <?= e($privacy_contact['title']) ?>, is our Privacy Officer and is accountable for <?= e(business('legal_name')) ?>'s compliance with PIPEDA and with this Privacy Policy, including handling privacy requests and complaints. You can reach the Privacy Officer at <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a> (see Section 13).</p>
 
       <h2>2. What Personal Information We Collect</h2>
       <p>We collect personal information necessary to provide our services, including:</p>
@@ -34,8 +34,8 @@ require_once __DIR__ . '/../partials/navbar.php';
         <li><strong>Contact and quote-form data:</strong> name, email address, phone number, company, project details, and budget range you share when requesting a free quote or starting a project</li>
         <li><strong>Communications:</strong> emails, messages, proposals, and project correspondence</li>
         <li><strong>Payment information:</strong> processed by PCI-compliant third-party payment processors in USD or CAD; we do not store full card numbers</li>
-        <li><strong>Technical and log data:</strong> IP address, browser type, device type, referring pages, and pages visited (via server logs and cookies)</li>
-        <li><strong>Analytics data:</strong> aggregated usage and traffic insights collected through privacy-respecting analytics tools</li>
+        <li><strong>Technical and log data:</strong> IP address, browser type, device type, referring pages, and pages visited (via server logs)</li>
+        <li><strong>Analytics data:</strong> aggregated usage and traffic insights, collected only if we enable an analytics tool on the site (none is enabled today), as described in our <a href="/cookie-policy">Cookie Policy</a></li>
         <li><strong>Cookie data:</strong> small identifiers stored in your browser, as described in our <a href="/cookie-policy">Cookie Policy</a></li>
       </ul>
 
@@ -58,7 +58,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>We retain personal information only as long as necessary for the purposes for which it was collected, or as required by law. Project and billing records are retained for the period required by applicable tax and accounting rules. Marketing data is retained until you unsubscribe or withdraw consent. When data is no longer needed, we securely delete or anonymize it.</p>
 
       <h2>6. Cross-Border Processing and Data Storage</h2>
-      <p>We rely on reputable third-party service providers — including analytics, payment processing, email delivery, and cloud hosting — to operate our business. Some of these providers may store or process personal information on servers located outside Canada, including in the United States and other jurisdictions. When personal information is processed in another country, it may be subject to the laws of that jurisdiction.</p>
+      <p>We rely on reputable third-party service providers — including payment processing, email delivery, cloud hosting, and, if we enable it, analytics — to operate our business. Some of these providers may store or process personal information on servers located outside Canada, including in the United States and other jurisdictions. When personal information is processed in another country, it may be subject to the laws of that jurisdiction.</p>
       <p>Where we transfer personal information across borders, we use contractual and technical safeguards designed to provide a comparable level of protection, and we disclose cross-border processing as required by PIPEDA. We do not claim that all data is stored exclusively in Canada.</p>
 
       <h2>7. Disclosure of Personal Information</h2>
@@ -70,13 +70,13 @@ require_once __DIR__ . '/../partials/navbar.php';
       </ul>
 
       <h2>8. Cookies and Tracking</h2>
-      <p>We use session cookies for security (including CSRF protection), functional cookies for preferences, and privacy-respecting analytics cookies to understand site usage. We do not sell your browsing data. See our <a href="/cookie-policy">Cookie Policy</a> for full details and your choices.</p>
+      <p>Today, this site sets a single cookie: a strictly necessary session cookie (<code>PHPSESSID</code>) used for security, including CSRF protection on our forms. We do not currently set functional, preference, analytics, or advertising cookies. If we introduce non-essential cookies such as analytics, we will update our Cookie Policy and ask for your consent before setting them where the law requires it. We do not sell your browsing data. See our <a href="/cookie-policy">Cookie Policy</a> for full details and your choices.</p>
 
       <h2>9. Your Privacy Rights</h2>
       <p><strong>For Canadian users (PIPEDA &amp; Alberta PIPA):</strong> You have the right to access the personal information we hold about you, request corrections to inaccurate information, withdraw consent for non-essential uses, and request deletion subject to legal retention requirements. You may also file a complaint with the <a href="https://www.priv.gc.ca" rel="noopener noreferrer" target="_blank">Office of the Privacy Commissioner of Canada</a> or, for Alberta residents, the <a href="https://oipc.ab.ca" rel="noopener noreferrer" target="_blank">Office of the Information and Privacy Commissioner of Alberta</a>.</p>
       <p><strong>For international and EU/UK visitors (GDPR-style rights):</strong> Where applicable law grants them, you have the right to access, rectification, erasure, restriction of processing, data portability, and objection to certain processing. You may also lodge a complaint with your local data-protection authority.</p>
       <p><strong>No sale of personal data:</strong> We do not sell your personal information to anyone.</p>
-      <p><strong>How to make a privacy request:</strong> Email <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a> with your request. We may ask you to verify your identity before acting. We aim to respond within 30 days, consistent with PIPEDA.</p>
+      <p><strong>How to make a privacy request:</strong> Email our Privacy Officer, <?= e($privacy_contact['name']) ?>, at <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a> with your request. We may ask you to verify your identity before acting. We aim to respond within 30 days, consistent with PIPEDA.</p>
 
       <h2>10. Security</h2>
       <p>We use reasonable, industry-standard safeguards including SSL/TLS encryption in transit, hashed credentials, access controls, rate limiting, and CSRF protection. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
@@ -91,9 +91,9 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>For questions, access requests, or complaints, please contact our designated Privacy Officer:</p>
       <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong>Privacy Officer — <?= e(business('legal_name')) ?></strong><br>
+        <strong>Privacy Officer: <?= e($privacy_contact['name']) ?>, <?= e($privacy_contact['title']) ?>, <?= e(business('legal_name')) ?></strong><br>
         <?= e($reg_office['street']) ?><br>
-        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region']) ?> <?= e($reg_office['postal_code']) ?><br>
         <?= e($reg_office['country']) ?><br>
         Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
         Email: <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a><br>

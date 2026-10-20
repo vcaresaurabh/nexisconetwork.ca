@@ -12,7 +12,7 @@ foreach ($FAQS as $cat) {
 }
 
 $page_title       = 'FAQ | Nexisco Network — Digital Agency Questions Answered';
-$page_description = 'Answers about Nexisco Network\'s web development, digital marketing, and ecommerce services — process, timelines, USD/CAD pricing, ownership, and working with ' . business('service_area') . '.';
+$page_description = 'Answers about Nexisco Network\'s web development, digital marketing, and ecommerce services — process, timelines, USD/CAD pricing, monthly-plan terms, ownership of one-time project work, and working with ' . business('service_area') . '.';
 $page_canonical   = 'https://nexisconetwork.ca/faq';
 $extra_head       = Seo::faq_page($all_faqs);
 

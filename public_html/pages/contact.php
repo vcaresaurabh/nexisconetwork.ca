@@ -135,7 +135,8 @@ require_once __DIR__ . '/../partials/navbar.php';
               Send Message
             </button>
             <p class="text-xs text-center" style="color:var(--text-tertiary)">
-              Your information is protected under PIPEDA. We never share your data.
+              We handle your information in line with PIPEDA and do not sell it. See our
+              <a href="/privacy" class="underline hover:text-[var(--accent)]">Privacy Policy</a> for how it is used and shared.
             </p>
           </form>
         </div>

@@ -3,8 +3,9 @@ require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Opt-In / Opt-Out | Nexisco Network';
 $page_description = 'How Nexisco Network handles email and SMS marketing consent under Canada\'s CASL. What subscribers receive, and how to unsubscribe or opt out at any time.';
 $page_canonical   = 'https://nexisconetwork.ca/opt-in-opt-out';
-$last_updated     = 'June 18, 2026';
-$privacy_email    = business('privacy_contact')['email'];
+$last_updated     = 'October 20, 2026';
+$privacy_contact  = business('privacy_contact');
+$privacy_email    = $privacy_contact['email'];
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -23,10 +24,8 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow">
     <div class="glass rounded-3xl p-8 md:p-12 prose-legal">
 
-      <p><em>This Opt-In / Opt-Out Policy is provided for general information. We recommend you have it reviewed by qualified legal counsel before relying on it for your business.</em></p>
-
       <h2>1. About This Policy</h2>
-      <p>Nexisco Network (based in Canada with its registered office at <?= e(business_address(true)) ?>) ("Nexisco Network", "we", "our", "us") is an Edmonton-based digital agency delivering web development, digital marketing, and ecommerce development services to <?= e(business('service_area')) ?>. This policy explains how we obtain consent to send you marketing communications, what those communications contain, and how you can opt out at any time. It supplements our <a href="/privacy">Privacy Policy</a>.</p>
+      <p>This Opt-In / Opt-Out Policy is issued by <?= e(business_identity()) ?>. We are an <?= e(business('positioning')) ?>, providing web development, digital marketing, and ecommerce development services. This policy explains how we obtain consent to send you marketing communications, what those communications contain, and how you can opt out at any time. It supplements our <a href="/privacy">Privacy Policy</a>.</p>
 
       <h2>2. Express Opt-In Consent Under CASL</h2>
       <p>Canada's Anti-Spam Legislation, <em>S.C. 2010, c. 23</em> ("CASL"), requires us to obtain consent before sending you a commercial electronic message ("CEM"). We rely on your <strong>express opt-in consent</strong> for marketing messages: you actively choose to subscribe — for example, by entering your email in a newsletter signup form, ticking a clearly-worded consent box, or asking to receive our growth tips. We do not add you to a marketing list by default, and we never buy or rent email lists.</p>
@@ -36,8 +35,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>If you opt in to our marketing list, you can expect occasional, relevant emails such as:</p>
       <ul>
         <li>Agency news and announcements about new services or capabilities</li>
-        <li>Case studies and recent project highlights from our work</li>
-        <li>Practical growth tips on web, marketing, and ecommerce</li>
+        <li>Web, marketing, and ecommerce insights, including practical tips</li>
         <li>Invitations, offers, and updates that may interest you</li>
       </ul>
       <p>We aim to send useful content on a reasonable cadence rather than flooding your inbox. We do <strong>not</strong> send unsolicited bulk mail.</p>
@@ -51,7 +49,7 @@ require_once __DIR__ . '/../partials/navbar.php';
         <li>Click the <strong>unsubscribe</strong> link included at the bottom of every commercial email we send.</li>
         <li>Or email us at <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a> with "Unsubscribe" in the subject line and the email address you wish to remove.</li>
       </ul>
-      <p>Every CEM we send identifies us as the sender, includes our mailing address, and provides a working unsubscribe mechanism that stays valid for at least 60 days. We honour unsubscribe requests promptly and, as required under section 11 of CASL, within 10 business days. You may keep using our services even if you opt out of marketing.</p>
+      <p>Every CEM we send identifies <?= e(business('legal_name')) ?> as the sender, includes our mailing address, and provides a working unsubscribe mechanism that stays valid for at least 60 days. We honour unsubscribe requests promptly and, as required under section 11 of CASL, within 10 business days. You may keep using our services even if you opt out of marketing.</p>
 
       <h2>6. SMS / Text-Message Consent (If Used)</h2>
       <p>If we ever offer SMS or text-message updates, we will collect separate express consent before sending them — opting in to email does not opt you in to SMS. Standard message and data rates from your carrier may apply. Where SMS is used, you can opt out at any time by replying <strong>STOP</strong> to any message we send, or by emailing <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a>. Replying <strong>HELP</strong> requests assistance. We do not currently run an SMS marketing program; this section applies only if and when one is introduced.</p>
@@ -69,13 +67,13 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>For any questions about your communication preferences or consent, please contact us:</p>
       <?php $reg_office = business('registered_office'); ?>
       <address class="not-italic">
-        <strong><?= e(business('legal_name')) ?> — Communications &amp; CASL Compliance</strong><br>
+        <strong><?= e(business('legal_name')) ?></strong><br>
         <?= e($reg_office['street']) ?><br>
-        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region']) ?> <?= e($reg_office['postal_code']) ?><br>
         <?= e($reg_office['country']) ?><br>
         Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
         Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a><br>
-        Privacy matters: <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a>
+        Privacy Officer: <?= e($privacy_contact['name']) ?>, <?= e($privacy_contact['title']) ?> — <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a>
       </address>
     </div>
   </div>

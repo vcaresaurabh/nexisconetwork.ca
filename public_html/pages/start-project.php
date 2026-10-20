@@ -163,7 +163,8 @@ require_once __DIR__ . '/../partials/navbar.php';
               Get My Free Quote
             </button>
             <p class="text-xs text-center" style="color:var(--text-tertiary)">
-              Your information is protected under PIPEDA. We never share your data. No obligation.
+              We handle your information in line with PIPEDA and do not sell it. See our
+              <a href="/privacy" class="underline hover:text-[var(--accent)]">Privacy Policy</a> for how it is used and shared. No obligation.
             </p>
           </form>
         </div>

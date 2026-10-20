@@ -456,8 +456,9 @@ require_once __DIR__ . '/../partials/navbar.php';
         <div class="mb-6">
           <div class="flex items-baseline gap-1">
             <span class="text-4xl font-bold">$<?= e((string)$plan['price']['usd']) ?></span>
-            <span class="text-sm" style="color:var(--text-tertiary)">/mo · USD / CAD</span>
+            <span class="text-sm" style="color:var(--text-tertiary)">USD/mo</span>
           </div>
+          <p class="text-xs mt-1" style="color:var(--text-tertiary)">CAD pricing on the Pricing page</p>
         </div>
 
         <ul class="space-y-2.5 mb-8">

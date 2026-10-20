@@ -333,7 +333,7 @@ require_once __DIR__ . '/../partials/navbar.php';
             <a href="<?= e(business_mailto()) ?>" class="font-medium hover:underline" style="color:var(--accent)"><?= e(business('email')) ?></a>
           </p>
           <p><span style="color:var(--text-tertiary)">Hours:</span> <?= e(business('hours')) ?></p>
-          <p class="text-xs pt-1" style="color:var(--text-tertiary)">PIPEDA &amp; CASL compliant.</p>
+          <p class="text-xs pt-1" style="color:var(--text-tertiary)">We handle personal information in line with PIPEDA and send commercial email under CASL.</p>
         </div>
       </div>
     </div>

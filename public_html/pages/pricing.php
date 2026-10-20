@@ -110,6 +110,38 @@ require_once __DIR__ . '/../partials/navbar.php';
       All plans available in <strong>USD or CAD</strong>. Custom project quotes available on request.
       Applicable taxes added where required.
     </p>
+
+    <!-- Plan terms — values come from config/business.php; never retype them here -->
+    <?php
+    $plan_terms = [
+      ['k' => 'Minimum term',      'v' => ucfirst(business('min_term'))],
+      ['k' => 'Cancellation',      'v' => ucfirst(business('cancellation_notice')) . '\' written notice'],
+      ['k' => 'Website ownership', 'v' => ucfirst(business('site_ownership'))],
+      ['k' => 'Setup fee',         'v' => ucfirst(business('setup_fee'))],
+      ['k' => 'Taxes',             'v' => 'Added where required'],
+      ['k' => 'Invoices',          'v' => 'Issued in USD or CAD'],
+    ];
+    ?>
+    <div class="glass rounded-3xl p-8 md:p-10 max-w-3xl mx-auto mt-12" data-anim="fade-up">
+      <h2 class="text-h2 mb-2">Plan terms</h2>
+      <p class="text-sm mb-6" style="color:var(--text-secondary)">These terms apply to every monthly plan above.</p>
+      <dl class="space-y-4">
+        <?php foreach ($plan_terms as $t): ?>
+        <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4 pb-4"
+             style="border-bottom:1px solid var(--border-subtle)">
+          <dt class="text-xs uppercase tracking-widest flex-shrink-0 sm:w-36" style="color:var(--text-tertiary)"><?= e($t['k']) ?></dt>
+          <dd class="text-sm font-medium" style="color:var(--text-primary)"><?= e($t['v']) ?></dd>
+        </div>
+        <?php endforeach; ?>
+      </dl>
+      <p class="text-xs mt-6 leading-relaxed" style="color:var(--text-tertiary)">
+        Custom one-time projects are quoted separately; for those, ownership of the final deliverables
+        transfers to you on full payment. Full details:
+        <a href="/terms" class="underline hover:text-slate-900">Terms of Service</a> ·
+        <a href="/cancellation-policy" class="underline hover:text-slate-900">Cancellation Policy</a> ·
+        <a href="/refund-policy" class="underline hover:text-slate-900">Refund Policy</a>
+      </p>
+    </div>
   </div>
 </section>
 

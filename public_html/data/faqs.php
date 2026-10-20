@@ -36,9 +36,9 @@ $FAQS = [
       ['q' => 'How many revisions are included?',
        'a' => 'Each project includes defined revision rounds at the design and build stages — the exact number is set out in your proposal so expectations are clear from the start.'],
       ['q' => 'Who owns the final work?',
-       'a' => 'You do. On full payment, ownership of the design files, code, and deliverables transfers to you, as set out in our Terms of Service. There is no lock-in.'],
+       'a' => 'For a one-time project, you do: on full payment, ownership of the final design files, code, and deliverables created for you transfers to you. A website delivered under a monthly plan is ' . business('site_ownership') . '. Both terms are set out in our Terms of Service.'],
       ['q' => 'Do you offer ongoing marketing retainers?',
-       'a' => 'Yes. Digital marketing works best as a continuous program, so we offer flexible monthly retainers covering SEO, paid ads, social, email, and conversion optimization. You can scale up or down with notice.'],
+       'a' => 'Yes. Digital marketing works best as a continuous program, so we offer flexible monthly retainers covering SEO, paid ads, social, email, and conversion optimization. Retainers have a minimum term of ' . business('min_term') . '; you can scale up or down as your needs change and cancel on ' . business('cancellation_notice') . '\' written notice.'],
     ],
   ],
   [

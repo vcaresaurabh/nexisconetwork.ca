@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/helpers.php';
 $page_title       = 'Terms of Service | Nexisco Network';
 $page_description = 'Terms of Service for Nexisco Network, an ' . business('positioning') . ', offering web development, digital marketing, and ecommerce development. Governing law: Province of Alberta, Canada.';
 $page_canonical   = 'https://nexisconetwork.ca/terms';
-$last_updated     = 'June 18, 2026';
+$last_updated     = 'October 20, 2026';
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>
@@ -22,7 +22,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow">
     <div class="glass rounded-3xl p-8 md:p-12 prose-legal">
 
-      <p><em>These Terms of Service ("Terms") form a binding agreement between you ("you", "Client") and Nexisco Network, a digital agency based in Canada with its registered office at <?= e(business_address(true)) ?> ("Nexisco Network", "Company", "we", "our", "us"). We are an <?= e(business('positioning')) ?>, and our work is delivered online. Please read these Terms carefully before engaging our services. We recommend you have your own legal advisor review any agreement before signing; nothing on this page is legal advice.</em></p>
+      <p><em>These Terms of Service ("Terms") form a binding agreement between you ("you", "Client") and <?= e(business_identity()) ?>. We are an <?= e(business('positioning')) ?>, and our work is delivered online. Please read these Terms carefully before engaging our services. We recommend you have your own legal advisor review any agreement before signing; nothing on this page is legal advice.</em></p>
 
       <h2>1. Scope of Services</h2>
       <p>Nexisco Network provides three categories of professional services: <strong>web development</strong>, <strong>digital marketing</strong>, and <strong>ecommerce development</strong>. Within these pillars we deliver capabilities such as website design and build, search engine optimization, paid media (including search and social advertising), social media, email marketing, content, conversion optimization, online store design and build, and related branding and UI/UX work. These Terms govern every engagement unless a separately signed agreement expressly states otherwise. Where a signed proposal, statement of work, or quote (a "Proposal") conflicts with these Terms, the Proposal controls for that engagement.</p>
@@ -38,11 +38,12 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <h2>3. Payment Terms</h2>
       <ul>
-        <li>Fees are billed in <strong>U.S. Dollars (USD) or Canadian Dollars (CAD)</strong>, as set out in the applicable Proposal or invoice.</li>
-        <li>Project work typically requires a <strong>deposit</strong> before work begins, followed by <strong>milestone payments</strong> tied to agreed phases. Ongoing services (such as marketing or maintenance) are billed as <strong>monthly retainers</strong> in advance.</li>
+        <li>Fees for all engagements — one-time projects, monthly plans, and retainers — are billed, and invoices issued, in <strong>U.S. Dollars (USD) or Canadian Dollars (CAD)</strong>, as set out in the applicable Proposal or invoice.</li>
+        <li>One-time project work typically requires a <strong>deposit</strong> before work begins, followed by <strong>milestone payments</strong> tied to agreed phases. Ongoing services (such as marketing or maintenance) are billed as <strong>monthly plans or retainers</strong> in advance.</li>
+        <li><strong>Monthly plans:</strong> minimum term: <?= e(business('min_term')) ?>; setup fee: <?= e(business('setup_fee')) ?>; cancellation: <?= e(business('cancellation_notice')) ?>' written notice (see Section 11). After the minimum term, a plan continues month to month until cancelled. Ownership of websites delivered under a monthly plan is set out in Section 5.</li>
         <li>Invoices are due within the period stated on the invoice (net fourteen (14) days unless otherwise agreed in writing).</li>
         <li><strong>Late payments</strong> may accrue interest at 1.5% per month (19.56% per annum) on overdue balances, plus reasonable collection costs. We may pause work on an engagement while an invoice is overdue.</li>
-        <li><strong>Applicable taxes</strong> (such as GST/HST/PST in Canada, or sales tax and similar charges in other jurisdictions) are added to invoices where required by law.</li>
+        <li><strong>Applicable taxes</strong> (such as GST/HST and provincial sales tax in Canada, or sales tax and similar charges in other jurisdictions) are added to invoices where required by law.</li>
         <li>Card and online payments are processed by PCI-DSS compliant third-party processors; we do not store full card numbers.</li>
         <li>Deposits and amounts already invoiced for work performed are governed by our <a href="/refund-policy">Refund Policy</a> and <a href="/cancellation-policy">Cancellation Policy</a>, which form part of these Terms.</li>
       </ul>
@@ -51,7 +52,8 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>Each Proposal defines the number of <strong>revision rounds</strong> included for the relevant deliverables. A revision round is a consolidated set of feedback returned to us as a single batch. Revisions must stay within the originally agreed scope. Work that exceeds the included rounds, or that changes the agreed scope, is treated as a change request and quoted separately before we proceed.</p>
 
       <h2>5. Intellectual Property &amp; Ownership</h2>
-      <p>Subject to <strong>full payment</strong> of all amounts due for an engagement, ownership of the final deliverables created specifically for you under the Proposal transfers to you on receipt of that payment. Until full payment is received, all deliverables, working files, and associated intellectual property remain the property of Nexisco Network.</p>
+      <p><strong>One-time project engagements:</strong> subject to <strong>full payment</strong> of all amounts due for a one-time project engagement, ownership of the final deliverables created specifically for you under the Proposal transfers to you on receipt of that payment. Until full payment is received, all deliverables, working files, and associated intellectual property for that project remain the property of Nexisco Network.</p>
+      <p><strong>Websites delivered under a monthly plan:</strong> a website delivered under a monthly plan is <?= e(business('site_ownership')) ?>. The full-payment ownership transfer above applies only to one-time project engagements.</p>
       <ul>
         <li>Pre-existing materials, frameworks, tools, libraries, and know-how that we owned before or develop outside your engagement remain ours; where these are embedded in a deliverable, you receive a non-exclusive licence to use them as part of that deliverable.</li>
         <li>Third-party assets (such as stock media, fonts, plugins, themes, or platform subscriptions) are licensed under their own terms, and you are responsible for maintaining any required licences after handover.</li>
@@ -81,11 +83,11 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p>To the maximum extent permitted by applicable law, the total aggregate liability of Nexisco Network, its directors, officers, employees, contractors, and affiliates arising out of or in connection with these Terms or the Services — whether in contract, tort (including negligence), strict liability, or otherwise — shall not exceed the total fees actually paid by you to us for the specific engagement giving rise to the claim during the three (3) months immediately preceding the event giving rise to liability. <strong>In no event shall Nexisco Network be liable for any indirect, incidental, special, exemplary, punitive, or consequential damages, including without limitation lost profits, lost revenue, lost data, business interruption, or loss of goodwill, even if advised of the possibility of such damages.</strong> Except as expressly set out in these Terms, all other warranties, conditions, and representations, express or implied, statutory or otherwise — including implied warranties of merchantability, fitness for a particular purpose, and non-infringement — are excluded to the fullest extent permitted by applicable law. Nothing in these Terms limits liability for fraud, gross negligence, willful misconduct, or any liability that cannot lawfully be excluded.</p>
 
       <h2>11. Termination</h2>
-      <p>Either party may terminate an engagement with written notice as set out in the applicable Proposal, or where no notice period is stated, on fourteen (14) days' written notice. Retainer engagements may be cancelled in line with our <a href="/cancellation-policy">Cancellation Policy</a>. On termination:</p>
+      <p>Either party may terminate an engagement with written notice as set out in the applicable Proposal, or where no notice period is stated, on fourteen (14) days' written notice. Monthly plans and retainers have a minimum term of <?= e(business('min_term')) ?> and may be cancelled by either party on <?= e(business('cancellation_notice')) ?>' written notice, in line with our <a href="/cancellation-policy">Cancellation Policy</a>. On termination:</p>
       <ul>
         <li>You will pay for all work performed and approved up to the effective date of termination, plus any non-cancellable third-party costs we incurred on your behalf.</li>
         <li>Deposits and milestone payments are handled per our <a href="/refund-policy">Refund Policy</a>.</li>
-        <li>Ownership of deliverables transfers only once the corresponding amounts are paid in full, per Section 5.</li>
+        <li>For one-time project engagements, ownership of deliverables transfers only once the corresponding amounts are paid in full; a website delivered under a monthly plan remains subject to the monthly-plan ownership term. Both are set out in Section 5.</li>
         <li>Either party may terminate immediately if the other commits a material breach that remains uncured for fourteen (14) days after written notice.</li>
       </ul>
 
@@ -109,14 +111,12 @@ require_once __DIR__ . '/../partials/navbar.php';
       <address class="not-italic">
         <strong><?= e(business('legal_name')) ?></strong><br>
         <?= e($reg_office['street']) ?><br>
-        <?= e($reg_office['city']) ?>, <?= e($reg_office['region_name']) ?> <?= e($reg_office['postal_code']) ?><br>
+        <?= e($reg_office['city']) ?>, <?= e($reg_office['region']) ?> <?= e($reg_office['postal_code']) ?><br>
         <?= e($reg_office['country']) ?><br>
         Phone: <a href="<?= e(business_tel_href()) ?>"><?= e(business('phone')) ?></a><br>
         Email: <a href="<?= e(business_mailto()) ?>"><?= e(business('email')) ?></a><br>
         Start a project: <a href="/start-project">Get a Free Quote</a>
       </address>
-
-      <p class="text-sm" style="color:var(--text-tertiary)"><em>This page is a general template and not legal advice. We recommend you have a qualified lawyer review these Terms before relying on them.</em></p>
     </div>
   </div>
 </section>
