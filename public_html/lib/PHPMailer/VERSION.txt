@@ -1,0 +1,1 @@
+PHPMailer 6.9.3 (https://github.com/PHPMailer/PHPMailer, tag v6.9.3) — src/PHPMailer.php, src/SMTP.php, src/Exception.php. LGPL-2.1, see LICENSE.

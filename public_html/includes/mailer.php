@@ -14,27 +14,39 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception as MailerException;
 
 /**
- * Send a transactional email.
+ * Send a transactional email. Returns false (and logs why) when SMTP isn't
+ * configured or the server rejects the message — callers must not report
+ * success to the visitor on false.
  *
  * @param array{to: string, to_name?: string, subject: string, html: string, text?: string, reply_to?: string} $params
  */
 function send_mail(array $params): bool {
-    $config = require __DIR__ . '/../config/config.php';
-    $smtp   = $config['smtp'] ?? [];
+    if (!mail_configured()) {
+        error_log('send_mail: SMTP is not configured in config/config.php');
+        return false;
+    }
+    $smtp = app_config()['smtp'];
 
     $mail = new PHPMailer(true);
 
     try {
         $mail->isSMTP();
-        $mail->Host        = $smtp['host']     ?? 'smtp.hostinger.com';
-        $mail->SMTPAuth    = true;
-        $mail->Username    = $smtp['user']     ?? '';
-        $mail->Password    = $smtp['pass']     ?? '';
-        $mail->SMTPSecure  = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port        = $smtp['port']     ?? 587;
-        $mail->CharSet     = PHPMailer::CHARSET_UTF8;
+        $mail->Host       = $smtp['host'];
+        $mail->SMTPAuth   = $smtp['auth'] ?? true;
+        $mail->Username   = $smtp['user'];
+        $mail->Password   = $smtp['pass'];
+        // 'tls' (STARTTLS, port 587), 'ssl' (implicit TLS, port 465) or '' (none — local testing only)
+        $mail->SMTPSecure = match ($smtp['secure'] ?? 'tls') {
+            'ssl'   => PHPMailer::ENCRYPTION_SMTPS,
+            ''      => '',
+            default => PHPMailer::ENCRYPTION_STARTTLS,
+        };
+        $mail->SMTPAutoTLS = ($smtp['secure'] ?? 'tls') !== '';
+        $mail->Port       = (int)($smtp['port'] ?? 587);
+        $mail->CharSet    = PHPMailer::CHARSET_UTF8;
+        $mail->Timeout    = 15;
 
-        $mail->setFrom($smtp['from_address'] ?? 'noreply@nexisconetwork.ca', $smtp['from_name'] ?? 'Nexisco Network');
+        $mail->setFrom($smtp['from_address'], $smtp['from_name'] ?? business('brand_name'));
         $mail->addAddress($params['to'], $params['to_name'] ?? '');
 
         if (!empty($params['reply_to'])) {
@@ -46,8 +58,7 @@ function send_mail(array $params): bool {
         $mail->Body    = $params['html'];
         $mail->AltBody = $params['text'] ?? strip_tags($params['html']);
 
-        $mail->send();
-        return true;
+        return $mail->send();
 
     } catch (MailerException) {
         error_log('PHPMailer error: ' . $mail->ErrorInfo);

@@ -48,6 +48,44 @@ function business_registration_line(): string {
     );
 }
 
+/* ── App config (config/config.php, gitignored) ──────────────── */
+function app_config(): array {
+    static $config = null;
+    $config ??= require __DIR__ . '/../config/config.php';
+    return $config;
+}
+
+/** True once real SMTP credentials are set in config/config.php. */
+function mail_configured(): bool {
+    $smtp = app_config()['smtp'] ?? [];
+    foreach (['host', 'user', 'pass', 'from_address'] as $key) {
+        $value = (string)($smtp[$key] ?? '');
+        if ($value === '' || str_starts_with($value, 'CHANGE_ME')) return false;
+    }
+    return true;
+}
+
+/** True once real database credentials (or a DSN) are set in config/config.php. */
+function db_configured(): bool {
+    $db = app_config()['db'] ?? [];
+    if (!empty($db['dsn'])) return true;
+    $pass = (string)($db['pass'] ?? '');
+    return !empty($db['user']) && $pass !== '' && !str_starts_with($pass, 'CHANGE_ME');
+}
+
+/** The newsletter needs both: a database for the consent record and email for double opt-in. */
+function newsletter_available(): bool {
+    return db_configured() && mail_configured();
+}
+
+/** Shown when a form can be neither emailed nor stored — never claim success then. */
+function form_unavailable_message(): string {
+    return sprintf(
+        "Sorry — we couldn't send this just now. Please email %s or call %s (%s).",
+        business('email'), business('phone'), business('hours')
+    );
+}
+
 /* ── Asset URL helper ────────────────────────────────────────── */
 function asset(string $path): string {
     $v = defined('ASSET_VERSION') ? '?v=' . ASSET_VERSION : '';
@@ -73,49 +111,68 @@ function csrf_field(): string {
     return '<input type="hidden" name="_token" value="' . e(csrf_token()) . '">';
 }
 
-function csrf_verify(string $token): bool {
+function csrf_verify(mixed $token): bool {
     if (session_status() === PHP_SESSION_NONE) session_start();
-    return hash_equals($_SESSION['csrf_token'] ?? '', $token);
+    $expected = $_SESSION['csrf_token'] ?? '';
+    // An empty (or non-string) token must never match a session that has no token yet
+    return is_string($token) && $token !== '' && $expected !== '' && hash_equals($expected, $token);
 }
 
 /* ── Rate limiting (filesystem-based, no Redis required) ─────── */
 function rate_limit(string $key, int $max, int $windowSeconds): bool {
     $dir  = sys_get_temp_dir() . '/nxn_rl/';
-    if (!is_dir($dir)) mkdir($dir, 0700, true);
+    if (!is_dir($dir) && !@mkdir($dir, 0700, true) && !is_dir($dir)) return true; // fail open if temp isn't writable
 
-    $file = $dir . md5($key) . '.json';
+    $fh = fopen($dir . md5($key) . '.json', 'c+');
+    if ($fh === false) return true;
+    flock($fh, LOCK_EX); // read-modify-write under one lock so concurrent requests can't all pass
+
     $now  = time();
-
-    $data = [];
-    if (file_exists($file)) {
-        $raw  = file_get_contents($file);
-        $data = $raw ? json_decode($raw, true) : [];
-    }
+    $data = json_decode((string)stream_get_contents($fh), true);
+    $data = is_array($data) ? $data : [];
 
     // Remove timestamps outside the window
-    $data = array_filter($data, fn($ts) => $ts > $now - $windowSeconds);
+    $data = array_filter($data, fn($ts) => is_int($ts) && $ts > $now - $windowSeconds);
 
-    if (count($data) >= $max) return false; // limit exceeded
-
-    $data[] = $now;
-    file_put_contents($file, json_encode(array_values($data)), LOCK_EX);
-    return true;
+    $allowed = count($data) < $max;
+    if ($allowed) {
+        $data[] = $now;
+        ftruncate($fh, 0);
+        rewind($fh);
+        fwrite($fh, json_encode(array_values($data)));
+    }
+    flock($fh, LOCK_UN);
+    fclose($fh);
+    return $allowed;
 }
 
 /* ── IP helper ───────────────────────────────────────────────── */
 function client_ip(): string {
-    foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'REMOTE_ADDR'] as $key) {
-        if (!empty($_SERVER[$key])) {
-            $ip = trim(explode(',', $_SERVER[$key])[0]);
-            if (filter_var($ip, FILTER_VALIDATE_IP)) return $ip;
-        }
+    // Proxy headers are set by the client unless a proxy overwrites them, so
+    // only the one named in app.client_ip_header is read ('' = REMOTE_ADDR only;
+    // 'CF-Connecting-IP' behind Cloudflare; 'X-Forwarded-For' behind a load
+    // balancer, rightmost entry = the one the proxy appended). Used for rate
+    // limiting and the newsletter consent record only — never to vary page content.
+    $header = (string)(app_config()['app']['client_ip_header'] ?? '');
+    if ($header !== '') {
+        $raw = $_SERVER['HTTP_' . strtoupper(str_replace('-', '_', $header))] ?? '';
+        $parts = array_map('trim', explode(',', (string)$raw));
+        $ip = strcasecmp($header, 'X-Forwarded-For') === 0 ? end($parts) : $parts[0];
+        if ($ip && filter_var($ip, FILTER_VALIDATE_IP)) return $ip;
     }
-    return '0.0.0.0';
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '0.0.0.0';
 }
 
 /* ── Sanitize & validate ─────────────────────────────────────── */
 function sanitize_string(string $value, int $maxLen = 500): string {
-    return substr(trim(strip_tags($value)), 0, $maxLen);
+    // Byte limit without splitting a multibyte character
+    return mb_strcut(trim(strip_tags(mb_scrub($value, 'UTF-8'))), 0, $maxLen, 'UTF-8');
+}
+
+/** Single-line fields (names, subjects…): control characters incl. CR/LF become spaces. */
+function sanitize_line(string $value, int $maxLen = 500): string {
+    return sanitize_string(preg_replace('/[\x00-\x1F\x7F]+/u', ' ', $value) ?? '', $maxLen);
 }
 
 function sanitize_email(string $email): string|false {
@@ -132,7 +189,7 @@ function json_response(array $data, int $status = 200): never {
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
     header('X-Content-Type-Options: nosniff');
-    echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_SUBSTITUTE);
     exit;
 }
 

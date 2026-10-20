@@ -36,12 +36,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
   <!-- Layer 1: image background -->
   <div class="bg-media-wrapper" aria-hidden="true">
-    <video class="bg-video" autoplay muted loop playsinline
-           poster="/assets/img/hero/hero-poster.jpg"
-           style="opacity:0.75">
-      <?php /* NOTE (owner): add agency video sources (hero-bg.webm + hero-bg.mp4) */ ?>
-    </video>
-    <!-- Poster fallback -->
+    <!-- Background image -->
     <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&q=70"
          alt=""
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.78"
@@ -572,9 +567,6 @@ require_once __DIR__ . '/../partials/navbar.php';
 <section id="cta" class="relative section-padding overflow-hidden" aria-label="Get a free quote">
 
   <div class="bg-media-wrapper" aria-hidden="true">
-    <video class="bg-video" autoplay muted loop playsinline
-           poster="/assets/img/backgrounds/cta-poster.jpg"
-           style="opacity:0.6"></video>
     <?php /* NOTE (owner): replace with final CTA background image */ ?>
     <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=1920&q=60"
          alt="" loading="lazy" width="1920" height="800"

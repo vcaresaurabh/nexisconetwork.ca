@@ -762,6 +762,19 @@ function initPageTransitions() {
    NEWSLETTER FORM
    ================================================================ */
 function initNewsletterForm() {
+  // When the server's reply can't be read (network error, HTML error page…), point
+  // people at the address in the footer's mailto link instead of leaving them stuck.
+  const fallbackMessage = () => {
+    const link = document.querySelector('#footer a[href^="mailto:"]');
+    let address = '';
+    try {
+      if (link) address = decodeURIComponent(link.getAttribute('href').slice(7).split('?')[0]);
+    } catch { address = ''; }
+    return address
+      ? `Sorry — something went wrong. To get updates by email, write to ${address} with “Subscribe” in the subject.`
+      : 'Sorry — something went wrong. Please try again later.';
+  };
+
   document.querySelectorAll('[data-newsletter-form]').forEach((form) => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -772,65 +785,35 @@ function initNewsletterForm() {
 
       if (!emailInput || !submitBtn) return;
 
-      submitBtn.disabled   = true;
+      const btnLabel = submitBtn.textContent;
+      submitBtn.disabled    = true;
       submitBtn.textContent = 'Subscribing…';
-
-      try {
-        const body = new FormData(form);
-        const res  = await fetch('/api/newsletter', { method: 'POST', body });
-        const json = await res.json();
-
-        if (msg) {
-          msg.textContent = json.message ?? (json.success ? 'Thanks! Check your inbox.' : 'Something went wrong.');
-          msg.className   = 'data-form-msg ' + (json.success ? 'text-success' : 'text-error');
-        }
-      } catch {
-        if (msg) { msg.textContent = 'Network error. Try again.'; }
-      } finally {
-        submitBtn.disabled   = false;
-        submitBtn.textContent = 'Subscribe';
+      if (msg) {
+        msg.textContent = '';
+        msg.classList.remove('text-success', 'text-error');
       }
-    });
-  });
-}
 
-/* ================================================================
-   CONTACT FORM
-   ================================================================ */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const submitBtn = form.querySelector('[type="submit"]');
-    const msg       = form.querySelector('[data-form-msg]');
-
-    if (submitBtn) {
-      submitBtn.disabled   = true;
-      submitBtn.textContent = 'Sending…';
-    }
-
-    try {
-      const body = new FormData(form);
-      const res  = await fetch('/api/contact', { method: 'POST', body });
-      const json = await res.json();
+      let ok = false;
+      let text = '';
+      try {
+        const res = await fetch('/api/newsletter', { method: 'POST', body: new FormData(form) });
+        let json = null;
+        try { json = await res.json(); } catch {}
+        ok   = res.ok && json?.success === true;
+        text = typeof json?.message === 'string' && json.message ? json.message : fallbackMessage();
+        if (ok) form.reset();
+      } catch {
+        text = fallbackMessage();
+      } finally {
+        submitBtn.disabled    = false;
+        submitBtn.textContent = btnLabel;
+      }
 
       if (msg) {
-        msg.textContent = json.message ?? (json.success ? 'Message sent! We\'ll be in touch.' : 'Something went wrong.');
-        msg.className   = json.success ? 'text-success mt-2' : 'text-error mt-2';
+        msg.textContent = text;
+        msg.classList.add(ok ? 'text-success' : 'text-error');
       }
-
-      if (json.success) form.reset();
-    } catch {
-      if (msg) { msg.textContent = 'Network error. Try again.'; }
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled   = false;
-        submitBtn.textContent = 'Send Message';
-      }
-    }
+    });
   });
 }
 
@@ -845,7 +828,9 @@ function initAll() {
     initFaqAccordion, initLazyVideos, handleMobileVideos, initHorizontalScroll,
     initKenBurns, initClipReveals, initTestimonialsCarousel, initHeroTypewriter,
     initHeroBlobs, initPageTransitions,
-    initNewsletterForm, initContactForm,
+    // Contact / quote / partner forms are bound by the inline script on their own page
+    // (one handler each — a second binding here would send every submission twice).
+    initNewsletterForm,
   ];
   steps.forEach((fn) => {
     try { fn(); } catch (err) { console.error('[init error]', fn.name, err); }

@@ -31,12 +31,20 @@ CREATE TABLE IF NOT EXISTS newsletter (
   casl_consent      TINYINT(1)   NOT NULL DEFAULT 0,
   consent_timestamp DATETIME,           -- CASL requires storing express consent timestamp
   consent_method    VARCHAR(100),        -- 'website_footer', 'contact_form', etc.
+  confirm_token     CHAR(64),            -- double opt-in link token; cleared once confirmed
+  unsub_token       CHAR(64),            -- unsubscribe link token (in every email)
   unsubscribed_at   DATETIME,
   ip_address        VARCHAR(45)  NOT NULL,
   created_at        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_subscribed (subscribed)
+  INDEX idx_subscribed (subscribed),
+  UNIQUE INDEX idx_confirm_token (confirm_token),
+  UNIQUE INDEX idx_unsub_token (unsub_token)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- Existing databases created before double opt-in:
+--   ALTER TABLE newsletter ADD COLUMN confirm_token CHAR(64) AFTER consent_method,
+--     ADD COLUMN unsub_token CHAR(64) AFTER confirm_token,
+--     ADD UNIQUE INDEX idx_confirm_token (confirm_token), ADD UNIQUE INDEX idx_unsub_token (unsub_token);
 
 -- ── Partner Applications ──────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS partners (

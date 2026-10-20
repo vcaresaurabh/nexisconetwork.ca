@@ -11,7 +11,7 @@ $config = require __DIR__ . '/config/config.php';
 define('APP_URL',     $config['app']['url']      ?? 'https://nexisconetwork.ca');
 define('APP_DEBUG',   $config['app']['debug']    ?? false);
 define('ANALYTICS_ID', $config['app']['analytics_id'] ?? '');
-define('ASSET_VERSION', '4'); // bumped for production-finalization — busts cached app.css / app.js
+define('ASSET_VERSION', '5'); // bumped for the pre-appeal fixes — busts cached app.css / app.js
 
 if (isset($config['app']['timezone'])) {
     date_default_timezone_set($config['app']['timezone']);
@@ -44,6 +44,8 @@ if (str_starts_with($uri, '/api/')) {
     $file = $api_files[$endpoint] ?? null;
 
     if ($file && file_exists(__DIR__ . '/' . $file)) {
+        // Form fields are strings; anything else (e.g. name[]=x) is treated as empty
+        $_POST = array_map(static fn($v) => is_string($v) ? $v : '', $_POST);
         require __DIR__ . '/' . $file;
     } else {
         json_response(['success' => false, 'message' => 'Endpoint not found.'], 404);
@@ -52,11 +54,13 @@ if (str_starts_with($uri, '/api/')) {
 }
 
 /* ── Admin routes ────────────────────────────────────────────────── */
-if (str_starts_with($uri, '/admin')) {
-    $admin_file = $uri === '/admin' || $uri === '/admin/' ? 'admin/index.php' : ltrim($uri, '/') . '.php';
-    if (file_exists(__DIR__ . '/' . $admin_file)) {
-        require __DIR__ . '/' . $admin_file;
+// Only /admin itself (the trim above turns /admin/ into /admin). Every other
+// /admin/* path is a 404 — no file path is ever built from the URL.
+if ($uri === '/admin' || str_starts_with($uri, '/admin/')) {
+    if ($uri === '/admin') {
+        require __DIR__ . '/admin/index.php';
     } else {
+        http_response_code(404);
         require __DIR__ . '/pages/404.php';
     }
     exit;
@@ -120,6 +124,9 @@ $route_map = [
     '/disclaimer'          => 'pages/disclaimer.php',
     '/cancellation-policy' => 'pages/cancellation-policy.php',
     '/opt-in-opt-out'      => 'pages/opt-in-opt-out.php',
+    // Newsletter double opt-in (links from the confirmation / welcome emails; not in the sitemap)
+    '/newsletter/confirm'     => 'pages/newsletter.php',
+    '/newsletter/unsubscribe' => 'pages/newsletter.php',
     // Meta
     '/robots.txt'          => 'robots.php',
     '/sitemap.xml'         => 'sitemap.php',

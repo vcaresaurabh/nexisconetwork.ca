@@ -54,8 +54,9 @@
 # Block direct access to config/, includes/, lib/, data/ PHP files
 <IfModule mod_rewrite.c>
   # Whole directories (not just *.php) so /pages/about.php/extra can't slip past.
-  # Page templates and partials are only rendered through index.php.
-  RewriteRule ^(config|includes|lib|data|pages|partials)/ - [F,L]
+  # Page templates, partials and API scripts only run through index.php
+  # (/api/contact etc. aren't files, so they're rewritten to index.php first).
+  RewriteRule ^(api|config|includes|lib|data|pages|partials)/ - [F,L]
 </IfModule>
 
 # Block .env files, git files, composer files

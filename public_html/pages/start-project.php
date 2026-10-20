@@ -180,6 +180,21 @@ require_once __DIR__ . '/../partials/navbar.php';
   const fb   = document.getElementById('pf-feedback');
   if (!form) return;
 
+  const FB_OK  = 'text-sm rounded-xl px-4 py-3 bg-green-900/30 text-green-400 border border-green-800';
+  const FB_ERR = 'text-sm rounded-xl px-4 py-3 bg-red-900/30 text-red-400 border border-red-800';
+
+  // Used when the reply isn't usable JSON (e.g. a host error page). Points the visitor to the
+  // email / phone already rendered on this page from config/business.php — no copies in JS.
+  function fallbackMessage() {
+    const mail  = document.querySelector('a[href^="mailto:"]');
+    const tel   = document.querySelector('a[href^="tel:"]');
+    const email = mail ? mail.getAttribute('href').slice(7).split('?')[0] : '';
+    const phone = tel ? (tel.textContent.match(/\+?\d[\d\s().-]*\d/) || [''])[0] : '';
+    const reach = [email && 'email ' + email, phone && 'call ' + phone].filter(Boolean).join(' or ');
+    return 'Sorry — something went wrong on our side and we can\'t confirm your request was sent. '
+         + (reach ? 'Please ' + reach + '.' : 'Please try again later.');
+  }
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     btn.disabled = true;
@@ -189,12 +204,17 @@ require_once __DIR__ . '/../partials/navbar.php';
     const data = new FormData(form);
     try {
       const r = await fetch('/api/contact', { method: 'POST', body: data });
-      const j = await r.json();
-      fb.className = 'text-sm rounded-xl px-4 py-3 ' + (j.success ? 'bg-green-900/30 text-green-400 border border-green-800' : 'bg-red-900/30 text-red-400 border border-red-800');
-      fb.textContent = j.message;
-      if (j.success) form.reset();
+      // Non-2xx replies (403/422/429/503) still carry {success:false, message}; read the body either way.
+      let j = null;
+      try { j = await r.json(); } catch { /* not JSON */ }
+      const ok  = r.ok && j !== null && j.success === true;
+      const msg = j && typeof j.message === 'string' && j.message.trim() ? j.message : '';
+      fb.className   = ok ? FB_OK : FB_ERR;
+      fb.textContent = ok ? (msg || 'Thanks — we received your request.')
+                          : ((j && j.success === false && msg) || fallbackMessage());
+      if (ok) form.reset();
     } catch {
-      fb.className = 'text-sm rounded-xl px-4 py-3 bg-red-900/30 text-red-400 border border-red-800';
+      fb.className = FB_ERR;
       fb.textContent = 'Network error — please try again.';
     }
     btn.disabled = false;

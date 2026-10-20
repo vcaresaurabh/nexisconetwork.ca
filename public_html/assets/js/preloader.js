@@ -1,7 +1,7 @@
 /**
  * Nexisco Network — Branded Preloader
  * SVG logo path draw animation + progress counter + curtain-wipe exit
- * Preloads hero video poster + critical images during loading phase
+ * Preloads critical above-fold images (img[data-preload]) during loading phase
  */
 
 (function () {
@@ -111,10 +111,6 @@
   /* ── Collect critical assets to preload ────────────────────────── */
   function getCriticalAssets() {
     const assets = [];
-
-    // Hero video poster
-    const heroPoster = document.querySelector('#hero video[poster]');
-    if (heroPoster?.poster) assets.push(heroPoster.poster);
 
     // First visible above-fold images
     document.querySelectorAll('img[data-preload]').forEach((img) => {

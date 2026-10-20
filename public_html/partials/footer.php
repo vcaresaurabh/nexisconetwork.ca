@@ -39,7 +39,9 @@
             </p>
           </div>
 
+          <?php if (newsletter_available()): /* double opt-in needs the database and email */ ?>
           <form data-newsletter-form class="w-full md:max-w-[520px] md:ml-auto" novalidate>
+            <?= csrf_field() ?>
             <!-- Honeypot -->
             <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="casl_consent" value="1">
@@ -57,11 +59,18 @@
 
             <p class="text-xs mt-3" style="color:var(--text-tertiary)">
               By subscribing you expressly consent to receive commercial electronic messages from
-              <?= e(business('legal_name')) ?> You may unsubscribe at any time.
+              <?= e(business('legal_name')) ?> We'll email you a link to confirm first. You may unsubscribe at any time.
               <a href="/privacy" class="underline hover:text-slate-900">Privacy Policy</a>.
             </p>
             <p data-form-msg class="text-sm mt-2" aria-live="polite"></p>
           </form>
+          <?php else: ?>
+          <p class="text-sm w-full md:max-w-[520px] md:ml-auto" style="color:var(--text-secondary)">
+            To get these updates by email, write to
+            <a href="<?= e(business_mailto() . '?subject=Subscribe') ?>" class="underline hover:text-slate-900"><?= e(business('email')) ?></a>
+            with “Subscribe” in the subject.
+          </p>
+          <?php endif; ?>
         </div>
       </div>
     </div>

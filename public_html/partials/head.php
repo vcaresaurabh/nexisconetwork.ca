@@ -169,7 +169,8 @@ if (empty($_SESSION['csrf_token'])) {
   <?php if (!empty($extra_head)) echo $extra_head; ?>
 
   <?php /* Google Analytics 4 — only emitted when a real Measurement ID is set in config */ ?>
-  <?php if (defined('ANALYTICS_ID') && ANALYTICS_ID !== ''): $gid = htmlspecialchars(ANALYTICS_ID, ENT_QUOTES, 'UTF-8'); ?>
+  <?php /* …and never on noindex pages (newsletter confirm/unsubscribe URLs carry private tokens) */ ?>
+  <?php if (defined('ANALYTICS_ID') && ANALYTICS_ID !== '' && !str_contains($page_robots, 'noindex')): $gid = htmlspecialchars(ANALYTICS_ID, ENT_QUOTES, 'UTF-8'); ?>
   <script async src="https://www.googletagmanager.com/gtag/js?id=<?= $gid ?>"></script>
   <script>
     window.dataLayer = window.dataLayer || [];

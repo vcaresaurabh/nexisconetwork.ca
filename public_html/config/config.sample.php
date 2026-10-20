@@ -11,6 +11,9 @@ return [
         'name' => 'nexisco_db',
         'user' => 'nexisco_user',
         'pass' => 'CHANGE_ME_strong_password',
+        // Optional: a full PDO DSN instead of the MySQL settings above
+        // (e.g. 'sqlite:/path/to/test.db' for local testing).
+        // 'dsn' => '',
     ],
     'smtp' => [
         'host'         => 'smtp.hostinger.com',
@@ -20,11 +23,20 @@ return [
         'from_address' => 'noreply@nexisconetwork.ca',
         'from_name'    => 'Nexisco Network',
         'admin_email'  => 'admin@nexisconetwork.ca',
+        'secure'       => 'tls',  // 'tls' (STARTTLS, port 587), 'ssl' (port 465) or '' (local testing only)
+        'auth'         => true,
     ],
     'app' => [
         'url'         => 'https://nexisconetwork.ca',
         'debug'       => false,
         'timezone'    => 'America/Edmonton',
-        'admin_pass'  => '', // Use password_hash() to generate this
+        // Which request header holds the visitor's IP (form rate limits + newsletter
+        // consent record): '' = the connection's address (no proxy), 'CF-Connecting-IP'
+        // behind Cloudflare, 'X-Forwarded-For' behind a load balancer. Only set it if
+        // the server accepts traffic exclusively from that proxy.
+        'client_ip_header' => '',
+        // Admin panel is disabled until this is a password_hash() value:
+        //   php -r "echo password_hash('your-password', PASSWORD_DEFAULT);"
+        'admin_pass'  => '',
     ],
 ];
