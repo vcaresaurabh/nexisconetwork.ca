@@ -78,9 +78,9 @@ fails, which shows the support email.
 telling visitors "we'll reply within 1 hour". They now work properly (see "Follow-up fixes" below), but they need two
 things in the server's `public_html/config/config.php`:
 
-1. **SMTP** — `smtp.host`, `smtp.port`, `smtp.user`, `smtp.pass`, `smtp.from_address` (and `secure`: `tls` for port
-   587 or `ssl` for 465) for a real mailbox on the domain. The sample still says `smtp.hostinger.com`, but the site is
-   hosted on GoDaddy cPanel — use the host's mail server.
+1. **SMTP** — `smtp.host`, `smtp.port`, `smtp.user`, `smtp.pass`, `smtp.from_address` for a real mailbox on the
+   domain. For GoDaddy that is `smtpout.secureserver.net`, port `465` (SSL is used automatically on 465; set
+   `secure` to `tls` for port 587).
 2. **Database** — create a MySQL database, import `sql/schema.sql`, and set `db.user` / `db.pass` (and `db.name`). The
    newsletter needs it for the CASL consent record; contact and partner forms also keep a copy there, and the admin
    panel lists them.

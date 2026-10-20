@@ -16,14 +16,14 @@ return [
         // 'dsn' => '',
     ],
     'smtp' => [
-        'host'         => 'smtp.hostinger.com',
-        'port'         => 587,
+        'host'         => 'smtpout.secureserver.net', // GoDaddy; use your host's SMTP server
+        'port'         => 465,
         'user'         => 'noreply@nexisconetwork.ca',
         'pass'         => 'CHANGE_ME_smtp_password',
         'from_address' => 'noreply@nexisconetwork.ca',
         'from_name'    => 'Nexisco Network',
         'admin_email'  => 'admin@nexisconetwork.ca',
-        'secure'       => 'tls',  // 'tls' (STARTTLS, port 587), 'ssl' (port 465) or '' (local testing only)
+        'secure'       => 'ssl',  // 'ssl' (port 465), 'tls' (STARTTLS, port 587) or '' (local testing only)
         'auth'         => true,
     ],
     'app' => [

@@ -35,13 +35,15 @@ function send_mail(array $params): bool {
         $mail->SMTPAuth   = $smtp['auth'] ?? true;
         $mail->Username   = $smtp['user'];
         $mail->Password   = $smtp['pass'];
-        // 'tls' (STARTTLS, port 587), 'ssl' (implicit TLS, port 465) or '' (none — local testing only)
-        $mail->SMTPSecure = match ($smtp['secure'] ?? 'tls') {
+        // 'tls' (STARTTLS, port 587), 'ssl' (implicit TLS, port 465) or '' (none — local testing only).
+        // Unset → follow the port, so GoDaddy's smtpout.secureserver.net:465 works without extra config.
+        $secure = $smtp['secure'] ?? ((int)($smtp['port'] ?? 587) === 465 ? 'ssl' : 'tls');
+        $mail->SMTPSecure = match ($secure) {
             'ssl'   => PHPMailer::ENCRYPTION_SMTPS,
             ''      => '',
             default => PHPMailer::ENCRYPTION_STARTTLS,
         };
-        $mail->SMTPAutoTLS = ($smtp['secure'] ?? 'tls') !== '';
+        $mail->SMTPAutoTLS = $secure !== '';
         $mail->Port       = (int)($smtp['port'] ?? 587);
         $mail->CharSet    = PHPMailer::CHARSET_UTF8;
         $mail->Timeout    = 15;
