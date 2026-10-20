@@ -25,7 +25,7 @@ class Seo {
                            . ', delivering web development, digital marketing, and ecommerce development.',
             'url'         => $url,
             'logo'        => $url . '/assets/img/logo.png',
-            'image'       => $url . '/assets/img/og-image.png',
+            'image'       => $url . '/assets/img/og-image.png?v=2',
             'telephone'   => business('phone_e164'),
             'email'       => business('email'),
             'foundingDate' => business('founding_date'),
@@ -50,7 +50,6 @@ class Seo {
             ]],
             'areaServed'         => self::area_served(),
             'currenciesAccepted' => 'USD, CAD',
-            'paymentAccepted'    => 'Credit Card, Debit Card, Online Payment, Bank Transfer',
             'hasOfferCatalog' => [
                 '@type' => 'OfferCatalog',
                 'name'  => 'Digital Services',

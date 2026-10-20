@@ -42,7 +42,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <?php /* NOTE (owner): add agency video sources (hero-bg.webm + hero-bg.mp4) */ ?>
     </video>
     <!-- Poster fallback -->
-    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1920&q=70"
+    <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&q=70"
          alt=""
          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.78"
          data-preload

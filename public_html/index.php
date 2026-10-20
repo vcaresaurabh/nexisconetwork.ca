@@ -96,7 +96,9 @@ $redirects = [
     '/portfolio' => '/services',
 ];
 if (isset($redirects[$uri])) {
-    header('Location: ' . $redirects[$uri], true, 301);
+    // Keep the query string (e.g. gclid / utm_*) so ad clicks stay attributed.
+    $qs = $_SERVER['QUERY_STRING'] ?? '';
+    header('Location: ' . $redirects[$uri] . ($qs !== '' ? '?' . $qs : ''), true, 301);
     exit;
 }
 

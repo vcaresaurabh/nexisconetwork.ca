@@ -3,6 +3,8 @@ require_once __DIR__ . '/../includes/helpers.php';
 http_response_code(410);
 $page_title       = '410 — Page Removed | Nexisco Network';
 $page_description = 'This page has been permanently removed.';
+$page_robots      = 'noindex, follow';
+$page_canonical   = false;
 require_once __DIR__ . '/../partials/head.php';
 require_once __DIR__ . '/../partials/navbar.php';
 ?>

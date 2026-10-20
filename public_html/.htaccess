@@ -37,9 +37,11 @@
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   # Content Security Policy — allows the CDNs/fonts/images the site actually uses
-  # ('unsafe-inline' is required by the site's inline styles/scripts; GA endpoints
-  #  are pre-allowed so analytics works once an ID is set in config).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com; media-src 'self' https://images.unsplash.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+  # ('unsafe-inline' is required by the site's inline styles/scripts; 'unsafe-eval'
+  #  by the standard Alpine.js build — without it the FAQ accordions and currency
+  #  toggle stop working; GA endpoints are pre-allowed so analytics works once an
+  #  ID is set in config).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com; media-src 'self' https://images.unsplash.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
 </IfModule>
 
 # ── Protect Sensitive Directories ────────────────────────────────
@@ -51,13 +53,9 @@
 
 # Block direct access to config/, includes/, lib/, data/ PHP files
 <IfModule mod_rewrite.c>
-  RewriteRule ^config/.*\.php$   - [F,L]
-  RewriteRule ^includes/.*\.php$ - [F,L]
-  RewriteRule ^lib/.*\.php$      - [F,L]
-  RewriteRule ^data/.*\.php$     - [F,L]
-  # Page templates and partials are only rendered through index.php
-  RewriteRule ^pages/.*\.php$    - [F,L]
-  RewriteRule ^partials/.*\.php$ - [F,L]
+  # Whole directories (not just *.php) so /pages/about.php/extra can't slip past.
+  # Page templates and partials are only rendered through index.php.
+  RewriteRule ^(config|includes|lib|data|pages|partials)/ - [F,L]
 </IfModule>
 
 # Block .env files, git files, composer files

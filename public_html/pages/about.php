@@ -418,7 +418,7 @@ require_once __DIR__ . '/../partials/navbar.php';
   <div class="relative z-10 container-narrow text-center">
     <h2 class="text-h1 mb-4" data-split="words">Ready to grow with us?</h2>
     <p class="text-lg mb-8 max-w-xl mx-auto" style="color:var(--text-secondary)">
-      Tell us your goals and we'll map the fastest path to growth — in web, marketing, ecommerce, or all three.
+      Tell us your goals and we'll send a clear plan and a fixed, written quote — for web, marketing, ecommerce, or all three.
       Free quote, no obligation, billed in USD or CAD.
     </p>
     <div class="flex flex-wrap gap-4 justify-center">

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/includes/helpers.php';
 header('Content-Type: text/plain; charset=utf-8');
 header('X-Robots-Tag: noindex');
 // Every public page is crawlable by everyone, Google's crawlers included

@@ -8,7 +8,8 @@ require_once __DIR__ . '/../includes/seo.php';
 $page_title       = $page_title       ?? 'Nexisco Network — Web Development, Digital Marketing & Ecommerce Agency';
 $page_description = $page_description ?? business('brand_name') . ' is an ' . business('positioning') . ', delivering web development, digital marketing, and ecommerce development.';
 $page_canonical   = $page_canonical   ?? 'https://nexisconetwork.ca' . strtok($_SERVER['REQUEST_URI'] ?? '/', '?');
-$og_image         = $og_image         ?? 'https://nexisconetwork.ca/assets/img/og-image.png';
+$og_image         = $og_image         ?? 'https://nexisconetwork.ca/assets/img/og-image.png?v=2';
+$page_robots      = $page_robots      ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 $theme_color      = '#0891B2';
 $page_keywords    = $page_keywords    ?? 'web development, web design, digital marketing agency, SEO, PPC, social media marketing, ecommerce development, Shopify, WooCommerce, conversion optimization, branding, Nexisco Network';
 $page_type        = $page_type        ?? 'website'; // override per page (article, service, etc.)
@@ -30,11 +31,13 @@ if (empty($_SESSION['csrf_token'])) {
   <title><?= htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') ?></title>
   <meta name="description" content="<?= htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="keywords"    content="<?= htmlspecialchars($page_keywords, ENT_QUOTES, 'UTF-8') ?>">
+  <?php if ($page_canonical !== false): /* error pages set false: no canonical for a removed URL */ ?>
   <link rel="canonical"    href="<?= htmlspecialchars($page_canonical, ENT_QUOTES, 'UTF-8') ?>">
+  <?php endif; ?>
   <meta name="author"      content="Nexisco Network">
   <meta name="publisher"   content="Nexisco Network">
-  <meta name="robots"      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="googlebot"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="robots"      content="<?= htmlspecialchars($page_robots, ENT_QUOTES, 'UTF-8') ?>">
+  <meta name="googlebot"   content="<?= htmlspecialchars($page_robots, ENT_QUOTES, 'UTF-8') ?>">
   <meta name="bingbot"     content="index, follow">
   <meta name="rating"      content="general">
   <meta name="format-detection" content="telephone=no">
@@ -48,7 +51,9 @@ if (empty($_SESSION['csrf_token'])) {
   <meta property="og:site_name"   content="Nexisco Network">
   <meta property="og:title"       content="<?= htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8') ?>">
   <meta property="og:description" content="<?= htmlspecialchars($page_description, ENT_QUOTES, 'UTF-8') ?>">
+  <?php if ($page_canonical !== false): ?>
   <meta property="og:url"         content="<?= htmlspecialchars($page_canonical, ENT_QUOTES, 'UTF-8') ?>">
+  <?php endif; ?>
   <meta property="og:image"       content="<?= htmlspecialchars($og_image, ENT_QUOTES, 'UTF-8') ?>">
   <meta property="og:image:secure_url" content="<?= htmlspecialchars($og_image, ENT_QUOTES, 'UTF-8') ?>">
   <meta property="og:image:type"  content="image/png">

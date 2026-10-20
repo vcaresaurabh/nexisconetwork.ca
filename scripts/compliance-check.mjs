@@ -13,8 +13,10 @@
  *   1. Every sitemap URL returns 200.
  *   2. Every page footer shows the legal name, Corporate Access Number,
  *      "Registered office" and an hours line in Mountain Time.
- *   3. Visible text, alt/title text and meta tags contain no banned pattern
- *      (old IT-repair business, unprovable claims, template text, Pacific Time).
+ *   3. Visible text, alt/title text, meta tags and JSON-LD contain no banned
+ *      pattern (old IT-repair business, unprovable claims, template text,
+ *      Pacific Time, "global / worldwide / headquarters" positioning), and no
+ *      internal link points at /portfolio or a retired IT-repair URL.
  *   4. No rating markup (aggregateRating / ratingValue / reviewCount).
  *   5. /portfolio is a 301 to /services; old IT-repair URLs return 410 Gone.
  *   6. Same page for every visitor: the homepage is identical for a browser,
@@ -56,6 +58,11 @@ const BANNED = {
   ],
   'template text': ['general template', 'qualified legal counsel', 'qualified lawyer', 'lorem ipsum'],
   'time zones': ['PT', 'PST', 'PDT', 'Pacific'],
+  // Phase 1 positioning: an Edmonton-based agency serving Canada and the US.
+  positioning: [
+    'worldwide', 'global agency', 'global digital agency', 'around the world', 'across time zones',
+    'headquartered', 'headquarters', 'head office', 'HQ',
+  ],
 };
 
 /**
@@ -130,6 +137,34 @@ function metaText(html) {
   const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? '';
   const metas = [...html.matchAll(/<meta\b[^>]*>/gi)].flatMap((m) => attrValues(m[0], 'content'));
   return [decode(title), ...metas].join('\n');
+}
+
+/** Every string value inside the page's JSON-LD blocks (FAQ answers, descriptions…). */
+function jsonLdText(html, fail) {
+  const out = [];
+  const walk = (v) => {
+    if (typeof v === 'string') out.push(v);
+    else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+  };
+  for (const m of html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try { walk(JSON.parse(m[1])); } catch { fail('invalid JSON-LD block'); }
+  }
+  return out.join('\n');
+}
+
+/** Same-site paths of every <a href>. */
+function internalLinks(html, base) {
+  const paths = new Set();
+  for (const href of attrValues(html, 'href')) {
+    if (!href || /^(mailto:|tel:|#|javascript:)/i.test(href)) continue;
+    try {
+      const u = new URL(href, base);
+      if (u.origin === new URL(base).origin || u.hostname.replace(/^www\./, '') === 'nexisconetwork.ca') {
+        paths.add(u.pathname.replace(/\/+$/, '') || '/');
+      }
+    } catch { /* ignore malformed */ }
+  }
+  return paths;
 }
 
 function footerText(html) {
@@ -252,8 +287,15 @@ async function main() {
         if (!footer) fail(p, 'no <footer> found');
         for (const req of FOOTER_REQUIRED) if (footer && !req.test(footer)) fail(p, `footer lacks ${req.label}`);
 
-        const text = [visibleText(html), ...attrValues(html, 'alt'), ...attrValues(html, 'title'), metaText(html)].join('\n');
+        const text = [
+          visibleText(html), ...attrValues(html, 'alt'), ...attrValues(html, 'title'), metaText(html),
+          jsonLdText(html, (msg) => fail(p, msg)),
+        ].join('\n');
         for (const hit of bannedHits(text)) fail(p, `banned ${hit}`);
+
+        for (const link of internalLinks(html, base)) {
+          if (link === PORTFOLIO.path || GONE.includes(link)) fail(p, `links to retired URL ${link}`);
+        }
 
         const rating = html.match(RATING_MARKUP);
         if (rating) fail(p, `rating markup "${rating[0]}"`);
@@ -301,7 +343,7 @@ async function main() {
       const val = v.join(':').trim();
       if (key === 'user-agent') { agents = lastWasAgent ? [...agents, val] : [val]; lastWasAgent = true; continue; }
       lastWasAgent = false;
-      if (key === 'disallow' && val === '/') {
+      if (key === 'disallow' && /^\/\*?\$?$/.test(val)) {
         const blocked = agents.filter((a) => a === '*' || GOOGLE_CRAWLERS.some((g) => g.toLowerCase().startsWith(a.toLowerCase())));
         if (blocked.length) fail('/robots.txt', `Disallow: / for ${blocked.join(', ')}`);
       }
