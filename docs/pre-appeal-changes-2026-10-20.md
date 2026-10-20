@@ -74,14 +74,21 @@ fails, which shows the support email.
 
 ## Before you turn ads back on
 
-**Contact, quote, newsletter and partner forms don't deliver anything in production.** In this repo, `send_mail()` is
-commented out in `public_html/api/contact.php`, `api/newsletter.php` and `api/partners.php`, and submissions are only
-logged when debug mode is on. Visitors are still told "We received your message and will reply within 1 hour" or "Check
-your inbox for a welcome email". The newsletter consent record the Opt-In policy describes isn't stored either (the
-database insert is commented out). Leads sent from ad clicks would be lost, and the "within 1 hour" promise couldn't be
-kept. Install the real PHPMailer files, set the SMTP details in `config/config.php`, uncomment the sends (the contact one
-uses the wrong `send_mail()` signature — it takes one array), and test each form before running ads. (If the live server
-runs a different version of these files, check it there.)
+**Set up email and the database so the forms can deliver.** The forms used to throw every submission away while
+telling visitors "we'll reply within 1 hour". They now work properly (see "Follow-up fixes" below), but they need two
+things in the server's `public_html/config/config.php`:
+
+1. **SMTP** — `smtp.host`, `smtp.port`, `smtp.user`, `smtp.pass`, `smtp.from_address` (and `secure`: `tls` for port
+   587 or `ssl` for 465) for a real mailbox on the domain. The sample still says `smtp.hostinger.com`, but the site is
+   hosted on GoDaddy cPanel — use the host's mail server.
+2. **Database** — create a MySQL database, import `sql/schema.sql`, and set `db.user` / `db.pass` (and `db.name`). The
+   newsletter needs it for the CASL consent record; contact and partner forms also keep a copy there, and the admin
+   panel lists them.
+
+Until both are set, each form shows an honest error with the support email and phone number instead of a fake "thanks",
+and the footer shows "write to support@… to subscribe" instead of a signup form. After setting them, send one test
+contact message, one quote request, one partner application and one newsletter sign-up (click the confirmation link)
+before running ads. Also set `app.admin_pass` to a `password_hash()` value if you want the admin panel.
 
 **The live server doesn't match this repo — check the hosting before you appeal.** A read-only request to
 https://nexisconetwork.ca on 20 October 2026 showed:
@@ -155,25 +162,17 @@ These are the judgment calls made while working without stopping between phases.
 - "Hashed credentials" was removed from Privacy §10 because nothing is hashed (the admin password is compared in plain
   text — see below).
 
-### Found during the audit, outside this brief (not changed)
+### Found during the audit, outside this brief
 
-- **Admin panel security** (`public_html/admin/index.php`):
-  - With `admin_pass` empty (the default in `config.sample.php`), an **empty password logs in**. When `$config` isn't
-    set, it falls back to a password hard-coded in `admin/index.php`.
-  - `/admin/…` builds an include path from the URL with no sanitising, so `/admin/../pages/terms` (sent with
-    `--path-as-is`) includes arbitrary `.php` files.
-  - Set a hashed admin password in production, and fix or remove the panel.
+Fixed after the five phases (see "Follow-up fixes"): the admin-panel security holes, the contact form's double submit,
+the 404 video posters, the unpinned Alpine.js and the unused font files. Still open:
+
 - **`npm run build` now needs PHP and `public_html/config/config.php`**, because the compliance check runs as
   `postbuild` and starts its own `php -S`. On a CSS-only build machine, run `npx @tailwindcss/cli …` directly or point
   the check at a running server with `BASE_URL`.
-- **The contact form submits twice.** Both `app.js` and an inline script on `/contact` bind its submit handler.
-- **Missing media**: the hero and CTA video posters (`/assets/img/hero/hero-poster.jpg`,
-  `/assets/img/backgrounds/cta-poster.jpg`) return 404. `public_html/assets/fonts/*` is unused, and
-  `JetBrainsMono-Regular.woff2` is actually a saved HTML error page.
-- **Other**:
-  - Alpine is loaded from an unpinned `@3.x.x` URL.
-  - HSTS uses `includeSubDomains; preload`, so any HTTP-only subdomain (cPanel, webmail) becomes unreachable.
-  - `setup.sh` and the stack section of `CLAUDE.md` describe a Next.js/Three.js scaffold that isn't this site.
+- **HSTS** uses `includeSubDomains; preload`, so any HTTP-only subdomain (cPanel, webmail) becomes unreachable.
+- `setup.sh` and the stack section of `CLAUDE.md` describe a Next.js/Three.js scaffold that isn't this site.
+- PHPMailer is vendored at 6.9.3 (the latest 6.x); 7.x exists if you want to upgrade later.
 
 ## Phase 0 — Inventory (read-only)
 
@@ -575,6 +574,19 @@ These need an owner decision or sit outside the topics or files I was assigned:
 | 11 | public_html/.htaccess | final review — direct access / Alpine under CSP | RewriteRule ^pages/.*\.php$ - [F,L] (bypassable as /pages/about.php/x); CSP script-src without 'unsafe-eval' (Alpine accordions and currency toggle break on Apache) | RewriteRule ^(config\|includes\|lib\|data\|pages\|partials)/ - [F,L]; CSP script-src adds 'unsafe-eval' |
 | 12 | public_html/robots.php, public_html/api/newsletter.php, public_html/config/site-stats.php | final review — small fixes | /robots.php fatal when requested directly; "…offers from Nexisco Network Inc.."; unused stats config mentioning "Worldwide" | robots.php loads helpers; single period; site-stats.php deleted |
 | 13 | scripts/compliance-check.mjs | final review — guard gaps | No positioning patterns; JSON-LD text not scanned; internal links not checked; only "Disallow: /" detected | Bans worldwide / global agency / around the world / across time zones / headquartered / headquarters / head office / HQ; scans JSON-LD strings; fails on links to /portfolio or retired IT URLs; detects "Disallow: /*" |
+
+## Follow-up fixes (after the five phases)
+
+Done after the brief, on the owner's request to finish the remaining items. Each change was built by one agent, checked
+by an independent verifier, then reviewed adversarially (security, regressions, copy consistency) and re-fixed.
+
+| Area | Before | After |
+|---|---|---|
+| Form delivery | `lib/PHPMailer` was a stub whose `send()` returned false, yet `send_mail()` reported success; every `send_mail()` call was commented out; nothing was stored outside debug mode. Visitors were told "we received your message and will reply within 1 hour". | Real PHPMailer 6.9.3 (LGPL, `lib/PHPMailer/LICENSE`). Contact, quote and partner forms email the business (Reply-To = visitor) and store a row when a database is configured. If neither works the visitor gets an error with the email and phone number. If the message was stored but not emailed, there's no reply-time promise. Visitor input is escaped in emails and single-line fields can't inject extra lines. |
+| Newsletter | Single opt-in: any address could be subscribed or re-subscribed by anyone; the consent record was never stored; the welcome email's "Unsubscribe" button linked to a policy page that unsubscribes no one. | Double opt-in: the form stores a pending row and emails a confirmation link; consent (time, method, IP) is recorded only when the link is used. Every email has a working one-click-page unsubscribe link (`/newsletter/unsubscribe`). Links need a button press (POST + CSRF), so email scanners can't confirm or unsubscribe anyone. The footer hides the form until email and the database are configured. |
+| Form security | Newsletter and partner endpoints had no CSRF check; `csrf_verify('')` passed for a new session; array fields crashed the endpoints; `client_ip()` trusted spoofable proxy headers; rate limits counted rejected attempts and weren't atomic; `/api/*.php` could be hit directly. | CSRF on every form; empty/array tokens rejected; non-string fields treated as empty; IP from `REMOTE_ADDR` unless `app.client_ip_header` names a trusted proxy header; rate limits count only valid submissions, are atomic (`flock`) and give the email/phone when hit; direct `/api/*.php` → 404 (and 403 on Apache). |
+| Admin panel | Empty password logged in (or a hard-coded fallback password); `/admin/../pages/x` included arbitrary PHP; GET logout. | Disabled until `app.admin_pass` is a `password_hash()`; `password_verify`, CSRF, rate limit and session regeneration on sign-in; only `/admin` is routed; POST logout with CSRF; lists stored contacts, partner applications and confirmed subscribers from the database. |
+| Front end | The contact form posted twice (app.js and an inline script); two empty `<video>` elements requested 404 posters on every homepage view; Alpine loaded from `@3.x.x`; CDN scripts had no integrity check; unused fonts (one was an HTML error page). | One handler per form, each handling error replies; videos removed; Alpine pinned to 3.17.4; every CDN script has a Subresource Integrity hash; fonts deleted; `ASSET_VERSION` bumped so browsers fetch the new JS/CSS. |
 
 ## Files touched
 

@@ -460,6 +460,10 @@ suspended under the **Unacceptable Business Practices** policy, so these rules o
    Never disallow Googlebot, AdsBot-Google or Google-InspectionTool in `robots.txt`.
 7. **Run the compliance check before every deploy:** `node scripts/compliance-check.mjs` (also runs after
    `npm run build`). It must exit 0. Add an allowlist entry only with a comment explaining why.
+8. **Forms never fake success.** A form may say "received" only if the submission was emailed (`send_mail()` returned
+   true) or stored (`db_run()` succeeded); otherwise it returns an error that gives the email address and phone number.
+   Don't promise a reply time unless the message was emailed. The newsletter is double opt-in: consent is recorded only
+   when the emailed confirmation link is used, and every email carries a working unsubscribe link.
 
 ---
 
