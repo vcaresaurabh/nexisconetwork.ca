@@ -90,6 +90,11 @@ and the footer shows "write to support@… to subscribe" instead of a signup for
 contact message, one quote request, one partner application and one newsletter sign-up (click the confirmation link)
 before running ads. Also set `app.admin_pass` to a `password_hash()` value if you want the admin panel.
 
+When you send newsletters (from any tool), email only rows with `subscribed = 1 AND casl_consent = 1`, and put each
+person's own link `https://nexisconetwork.ca/newsletter/unsubscribe?token=<unsub_token>` in every email — the Opt-In
+policy promises that link. Delete sign-ups that were never confirmed (`subscribed = 0 AND casl_consent = 0`) after about
+30 days.
+
 **The live server doesn't match this repo — check the hosting before you appeal.** A read-only request to
 https://nexisconetwork.ca on 20 October 2026 showed:
 
