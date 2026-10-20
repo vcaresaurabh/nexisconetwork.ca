@@ -29,7 +29,7 @@ require_once __DIR__ . '/../partials/navbar.php';
 
       <h2>2. Express Opt-In Consent Under CASL</h2>
       <p>Canada's Anti-Spam Legislation, <em>S.C. 2010, c. 23</em> ("CASL"), requires us to obtain consent before sending you a commercial electronic message ("CEM"). We rely on your <strong>express opt-in consent</strong> for marketing messages: you actively choose to subscribe — for example, by entering your email in a newsletter signup form, ticking a clearly-worded consent box, or asking to receive our growth tips. We do not add you to a marketing list by default, and we never buy or rent email lists.</p>
-      <p>When you give consent, we record what you agreed to, when, and how, so we can demonstrate it if asked. In limited cases CASL also permits messages based on an existing business relationship; where we rely on that, the same easy opt-out described below still applies.</p>
+      <p>When you give consent, we record what you agreed to, when, and how, so we can demonstrate it if asked.</p>
 
       <h2>3. What Subscribers Receive</h2>
       <p>If you opt in to our marketing list, you can expect occasional, relevant emails such as:</p>

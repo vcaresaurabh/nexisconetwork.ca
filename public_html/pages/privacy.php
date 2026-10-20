@@ -64,7 +64,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <h2>7. Disclosure of Personal Information</h2>
       <p>We do not sell, rent, or trade your personal information. We may share information with:</p>
       <ul>
-        <li><strong>Service providers:</strong> hosting, payment processing, analytics, and email delivery — under confidentiality and data-processing agreements</li>
+        <li><strong>Service providers:</strong> hosting, payment processing, email delivery, and, if we enable it, analytics — under confidentiality and data-processing agreements</li>
         <li><strong>Law enforcement and regulators:</strong> when required by court order, subpoena, or applicable law</li>
         <li><strong>Business transfers:</strong> in connection with a merger, acquisition, or sale of assets, subject to equivalent privacy protections</li>
       </ul>
@@ -79,7 +79,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       <p><strong>How to make a privacy request:</strong> Email our Privacy Officer, <?= e($privacy_contact['name']) ?>, at <a href="<?= e(business_mailto($privacy_email)) ?>"><?= e($privacy_email) ?></a> with your request. We may ask you to verify your identity before acting. We aim to respond within 30 days, consistent with PIPEDA.</p>
 
       <h2>10. Security</h2>
-      <p>We use reasonable, industry-standard safeguards including SSL/TLS encryption in transit, hashed credentials, access controls, rate limiting, and CSRF protection. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
+      <p>We use reasonable, industry-standard safeguards including SSL/TLS encryption in transit, access controls, rate limiting, and CSRF protection. No method of transmission or storage is completely secure, so we cannot guarantee absolute security.</p>
 
       <h2>11. Children's Privacy</h2>
       <p>Our services are intended for businesses and adults. They are not directed to individuals under 16, and we do not knowingly collect personal information from children. If you believe a child has provided us personal information, please contact us so we can delete it.</p>

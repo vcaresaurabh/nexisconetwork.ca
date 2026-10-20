@@ -136,7 +136,7 @@ require_once __DIR__ . '/../partials/navbar.php';
       </dl>
       <p class="text-xs mt-6 leading-relaxed" style="color:var(--text-tertiary)">
         Custom one-time projects are quoted separately; for those, ownership of the final deliverables
-        transfers to you on full payment. Full details:
+        created for you transfers to you on full payment. Full details:
         <a href="/terms" class="underline hover:text-slate-900">Terms of Service</a> ·
         <a href="/cancellation-policy" class="underline hover:text-slate-900">Cancellation Policy</a> ·
         <a href="/refund-policy" class="underline hover:text-slate-900">Refund Policy</a>
