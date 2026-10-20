@@ -440,4 +440,27 @@ npx gltf-transform resize input.glb output.glb --width 1024  # texture resize
 
 ---
 
+## 🛡️ GOOGLE ADS COMPLIANCE RULES
+
+nexisconetwork.ca is a plain PHP site (`public_html/`), not the Next.js stack described above. Its Google Ads account was
+suspended under the **Unacceptable Business Practices** policy, so these rules override anything else in this file:
+
+1. **Business facts come only from `public_html/config/business.php`.** Read them with `business()` and the
+   `business_*()` helpers in `public_html/includes/helpers.php` (legal name, Corporate Access Number, registered office,
+   phone, email, hours, plan terms, privacy contact). Never hard-code a copy in a template or in the JSON-LD.
+2. **No invented clients, results, testimonials, reviews, ratings, people, statistics, awards or certifications** — and no
+   rating markup (`aggregateRating`, `ratingValue`, `reviewCount`). Describe how the work runs (fixed written quotes,
+   approval at each stage, plain-English monthly reports, one point of contact), not outcomes we can't prove.
+3. **No stock images presented as staff, the team, the office or client work.** Decorative images get `alt=""`; content
+   images get a neutral, literal description. A director photo only if it's a real photo of the director.
+4. **A portfolio only with real, client-approved work.** `/portfolio` currently 301-redirects to `/services`.
+5. **Hours are in Mountain Time** (`business('hours')`). Never Pacific Time.
+6. **No content that varies by visitor.** No IP, ASN, country, Tor, user-agent or referrer checks; no bot blocking or
+   cloaking; no geo-redirects; no popups on load. Google's crawlers and reviewers must see exactly what customers see.
+   Never disallow Googlebot, AdsBot-Google or Google-InspectionTool in `robots.txt`.
+7. **Run the compliance check before every deploy:** `node scripts/compliance-check.mjs` (also runs after
+   `npm run build`). It must exit 0. Add an allowlist entry only with a comment explaining why.
+
+---
+
 *This file is the single source of truth. Update it as the project evolves.*

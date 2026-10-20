@@ -5,7 +5,9 @@
   "scripts": {
     "build": "npx @tailwindcss/cli -i src/input.css -o public_html/assets/css/app.css --minify",
     "watch": "npx @tailwindcss/cli -i src/input.css -o public_html/assets/css/app.css --watch",
-    "dev": "npx @tailwindcss/cli -i src/input.css -o public_html/assets/css/app.css --watch"
+    "dev": "npx @tailwindcss/cli -i src/input.css -o public_html/assets/css/app.css --watch",
+    "postbuild": "node scripts/compliance-check.mjs",
+    "compliance-check": "node scripts/compliance-check.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.4",
