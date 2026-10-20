@@ -47,7 +47,7 @@ $consent_ip        = client_ip();
 // Send welcome email (stub)
 $welcome = mail_template([
     'title'    => 'Welcome to Nexisco Network Updates',
-    'body'     => "<p>Thanks for subscribing! You'll receive IT tips, security alerts, and exclusive offers from Nexisco Network.</p>
+    'body'     => "<p>Thanks for subscribing! You'll receive web, marketing, and ecommerce insights and occasional offers from " . e(business('legal_name')) . ".</p>
     <p>As promised — no spam. You can unsubscribe any time via the link below.</p>",
     'cta_text' => 'Unsubscribe',
     'cta_url'  => APP_URL . '/opt-in-opt-out',

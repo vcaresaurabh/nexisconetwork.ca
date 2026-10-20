@@ -1,12 +1,17 @@
 # Nexisco Network — Apache .htaccess
 # HTTPS redirect, URL rewriting, security headers, compression, caching
 
-# ── Force HTTPS ──────────────────────────────────────────────────
+# ── Canonical host + HTTPS ───────────────────────────────────────
+# The only server-level redirects: www → apex and http → https (one hop).
+# They depend on the requested host/scheme only — never on the visitor's
+# IP, country, user-agent or referrer. Local dev hosts are left on http.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.nexisconetwork\.ca$ [NC]
+  RewriteRule ^ https://nexisconetwork.ca%{REQUEST_URI} [L,R=301]
+
   RewriteCond %{HTTPS} off
-  RewriteCond %{HTTP_HOST} !^localhost [NC]
-  RewriteCond %{REMOTE_ADDR} !^127\.
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
@@ -50,6 +55,9 @@
   RewriteRule ^includes/.*\.php$ - [F,L]
   RewriteRule ^lib/.*\.php$      - [F,L]
   RewriteRule ^data/.*\.php$     - [F,L]
+  # Page templates and partials are only rendered through index.php
+  RewriteRule ^pages/.*\.php$    - [F,L]
+  RewriteRule ^partials/.*\.php$ - [F,L]
 </IfModule>
 
 # Block .env files, git files, composer files

@@ -62,27 +62,38 @@ if (str_starts_with($uri, '/admin')) {
     exit;
 }
 
-/* ── 301 Redirects (retired IT routes → new agency routes) ───────── */
+/* ── 410 Gone (URLs from the previous IT-repair / booking site) ──── */
+// These pages described services this business does not offer. They are gone
+// for good: answer 410 instead of redirecting them to agency pages.
+$gone = [
+    '/membership',
+    '/book',
+    '/book/confirmation',
+    '/book-confirmation',
+    '/eula',
+    '/uninstall',
+    '/services/virus-malware-removal',
+    '/services/pc-laptop-repair',
+    '/services/data-recovery',
+    '/services/network-wifi-setup',
+    '/services/software-installation',
+    '/services/remote-support',
+    '/services/business-it-support',
+    '/services/hardware-upgrades',
+    '/services/smart-home-iot',
+];
+if (in_array($uri, $gone, true)) {
+    require __DIR__ . '/pages/410.php';
+    exit;
+}
+
+/* ── 301 Redirects ───────────────────────────────────────────────── */
+// The only page-level redirect. http → https and www → apex live in .htaccess.
+// Nothing here may depend on who the visitor is (IP, country, user-agent, referrer).
 $redirects = [
-    // Retired top-level routes
-    '/membership'        => '/pricing',
-    '/book'              => '/start-project',
-    '/book/confirmation' => '/start-project',
-    '/eula'              => '/terms',
-    '/uninstall'         => '/terms',
-    // Retired IT service detail routes → consolidated /services
-    '/services/virus-malware-removal' => '/services',
-    '/services/pc-laptop-repair'      => '/services',
-    '/services/data-recovery'         => '/services',
-    '/services/network-wifi-setup'    => '/services',
-    '/services/software-installation' => '/services',
-    '/services/remote-support'        => '/services',
-    '/services/business-it-support'   => '/services',
-    '/services/hardware-upgrades'     => '/services',
-    '/services/smart-home-iot'        => '/services',
     // Portfolio of stock images removed (pre-appeal fixes, Oct 2026). Bring the
     // page back only with real, client-approved work.
-    '/portfolio'                      => '/services',
+    '/portfolio' => '/services',
 ];
 if (isset($redirects[$uri])) {
     header('Location: ' . $redirects[$uri], true, 301);

@@ -127,14 +127,6 @@ function sanitize_phone(string $phone): string {
     return preg_replace('/[^\d+\-() ]/', '', substr(trim($phone), 0, 20));
 }
 
-/* ── Booking reference generator ────────────────────────────── */
-function generate_booking_ref(): string {
-    $prefix = 'NXN';
-    $date   = date('ymd');
-    $rand   = strtoupper(substr(base_convert(bin2hex(random_bytes(3)), 16, 36), 0, 4));
-    return "{$prefix}-{$date}-{$rand}";
-}
-
 /* ── JSON response helper (for API endpoints) ────────────────── */
 function json_response(array $data, int $status = 200): never {
     http_response_code($status);

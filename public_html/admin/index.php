@@ -118,7 +118,6 @@ function read_log(string $filename, int $max = 50): array {
 
   <!-- Stats -->
   <?php
-  $bookings   = read_log('nxn_bookings.log');
   $contacts   = read_log('nxn_contact.log');
   $newsletter = read_log('nxn_newsletter.log');
   $partners   = read_log('nxn_partners.log');
@@ -126,7 +125,6 @@ function read_log(string $filename, int $max = 50): array {
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:32px">
     <?php
     $stats = [
-      ['label' => 'Bookings',    'count' => count($bookings)],
       ['label' => 'Contacts',    'count' => count($contacts)],
       ['label' => 'Subscribers', 'count' => count($newsletter)],
       ['label' => 'Partner Apps','count' => count($partners)],
@@ -143,7 +141,6 @@ function read_log(string $filename, int $max = 50): array {
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
     <?php
     $sections = [
-      ['title' => 'Recent Bookings',    'rows' => $bookings],
       ['title' => 'Recent Contacts',    'rows' => $contacts],
       ['title' => 'Recent Subscribers', 'rows' => $newsletter],
       ['title' => 'Partner Applications','rows' => $partners],

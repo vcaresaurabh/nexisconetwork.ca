@@ -8,27 +8,6 @@ CREATE DATABASE IF NOT EXISTS nexisco_db
 
 USE nexisco_db;
 
--- ── Bookings ─────────────────────────────────────────────────────
-CREATE TABLE IF NOT EXISTS bookings (
-  id              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  booking_ref     VARCHAR(20)  NOT NULL UNIQUE,
-  service_slug    VARCHAR(60)  NOT NULL,
-  preferred_date  DATE         NOT NULL,
-  preferred_time  VARCHAR(10)  NOT NULL,
-  name            VARCHAR(120) NOT NULL,
-  email           VARCHAR(254) NOT NULL,
-  phone           VARCHAR(20)  NOT NULL,
-  notes           TEXT,
-  newsletter      TINYINT(1)   NOT NULL DEFAULT 0,
-  status          ENUM('pending','confirmed','completed','cancelled') NOT NULL DEFAULT 'pending',
-  ip_address      VARCHAR(45)  NOT NULL,
-  created_at      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  INDEX idx_email   (email),
-  INDEX idx_status  (status),
-  INDEX idx_created (created_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 -- ── Contact Form Submissions ──────────────────────────────────────
 CREATE TABLE IF NOT EXISTS contacts (
   id              INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -51,7 +30,7 @@ CREATE TABLE IF NOT EXISTS newsletter (
   subscribed        TINYINT(1)   NOT NULL DEFAULT 1,
   casl_consent      TINYINT(1)   NOT NULL DEFAULT 0,
   consent_timestamp DATETIME,           -- CASL requires storing express consent timestamp
-  consent_method    VARCHAR(100),        -- 'website_footer', 'booking_form', etc.
+  consent_method    VARCHAR(100),        -- 'website_footer', 'contact_form', etc.
   unsubscribed_at   DATETIME,
   ip_address        VARCHAR(45)  NOT NULL,
   created_at        DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,

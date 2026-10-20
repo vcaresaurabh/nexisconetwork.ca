@@ -1,6 +1,9 @@
 <?php
 header('Content-Type: text/plain; charset=utf-8');
 header('X-Robots-Tag: noindex');
+// Every public page is crawlable by everyone, Google's crawlers included
+// (Googlebot, AdsBot-Google, Google-InspectionTool). Only non-public
+// directories are listed below. Never add a rule that blocks a crawler.
 ?>
 User-agent: *
 Allow: /
@@ -12,4 +15,4 @@ Disallow: /includes/
 Disallow: /data/
 Disallow: /lib/
 
-Sitemap: https://nexisconetwork.ca/sitemap.xml
+Sitemap: <?= business('url') ?>/sitemap.xml

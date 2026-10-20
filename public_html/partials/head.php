@@ -153,6 +153,8 @@ if (empty($_SESSION['csrf_token'])) {
     }
     body { overflow: hidden; } /* unlocked by preloader.js */
   </style>
+  <!-- Without JavaScript the preloader can't exit: show the page straight away -->
+  <noscript><style>#preloader { display: none; } body { overflow: auto; }</style></noscript>
 
   <!-- ── Structured Data: one organization block + WebSite (from config/business.php) ── -->
   <?= Seo::organization() ?>

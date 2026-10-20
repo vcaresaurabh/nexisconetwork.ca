@@ -126,7 +126,7 @@ require_once __DIR__ . '/../partials/navbar.php';
             <div>
               <label for="cf-message" class="form-label">Message *</label>
               <textarea id="cf-message" name="message" class="form-input" rows="5"
-                        placeholder="Describe your issue or question…" required></textarea>
+                        placeholder="Tell us about your project or question…" required></textarea>
             </div>
 
             <div id="cf-feedback" class="text-sm rounded-xl px-4 py-3 hidden" aria-live="polite"></div>

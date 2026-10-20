@@ -23,7 +23,7 @@ BOLD='\033[1m'
 print_banner() {
 cat << 'EOF'
   ╔══════════════════════════════════════════════════╗
-  ║   NEXISCO NETWORK  —  Smart IT. Seamless Support  ║
+  ║   NEXISCO NETWORK  —  Web · Marketing · Ecommerce ║
   ╚══════════════════════════════════════════════════╝
 EOF
 }
@@ -117,13 +117,13 @@ smoke_test() {
     "/services"
     "/about"
     "/contact"
-    "/book"
-    "/membership"
+    "/pricing"
+    "/start-project"
     "/faq"
     "/partners"
     "/privacy"
     "/terms"
-    "/services/virus-malware-removal"
+    "/services/web-development"
     "/sitemap.xml"
     "/robots.txt"
   )
